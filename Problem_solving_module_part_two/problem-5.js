@@ -30,8 +30,8 @@ function printNumber(a, b) {
 	for (let i = a; i <= b; i++) {
 		if (b % i === 0 && i % a === 0) {
 			output += ' ' + i;
+			count++;
 		}
-		count++;
 	}
 	if (count === 0) {
 		output = ' NO ';
@@ -40,6 +40,7 @@ function printNumber(a, b) {
 	return console.log(output);
 }
 
-printNumber(1, 1); // 1
-printNumber(5, 20); // 5,10,20
-printNumber(5, 32); // error
+printNumber(1, 1); /// 1
+printNumber(5, 20); /// 5,10,20
+printNumber(5, 32); /// NO
+printNumber(6, 20); /// NO
