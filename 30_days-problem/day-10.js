@@ -49,5 +49,7 @@ function makePattern(num) {
 	return result;
 }
 
-console.log(makePattern(5));
-console.log(makePattern(2));
+console.log(makePattern(5)); /// 5
+console.log(makePattern(2)); /// 2
+console.log(makePattern(' * ')); // error
+console.log(makePattern('hello ')); // error
