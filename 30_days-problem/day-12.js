@@ -24,9 +24,9 @@ const lowestNumber = (arr) => {
 		return console.log('Input array must have at least 3 elements.');
 	}
 
-	let min = arr[0];
-	let secondMin = arr[1];
-	let thirdMin = arr[2];
+	let min = Infinity;
+	let secondMin = Infinity;
+	let thirdMin = Infinity;
 
 	for (let i = 0; i < arr.length; i++) {
 		let currentMin = arr[i];
@@ -51,8 +51,9 @@ console.log(lowestNumber([3, 6])); // error
 console.log(lowestNumber([1, 2, 3, 6, 5, 4, 8, 10])); // output 3
 
 console.log(lowestNumber([3, 6, 5, 4, 8, 10])); // output 5
-
-////////////////////////////////////////////////////////////////
+console.log(
+	'/////////////////////////////////////////////////////////////////////',
+);
 // point : solution 2 using built-in function
 
 const lowestNumber2 = (arr) => {
@@ -66,3 +67,5 @@ console.log('...............................');
 console.log(lowestNumber2([1, 2, 3, 6, 5, 4, 8, 10])); // output 3
 console.log(lowestNumber2([3, 6])); // error
 console.log(lowestNumber2([3, 6, 5, 4, 8, 10])); // output 5
+
+console.log(lowestNumber2(3, 4, 3, 41, 4, 2));
