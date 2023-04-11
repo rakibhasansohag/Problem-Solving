@@ -36,3 +36,24 @@ console.log(sumNumbers('12dfds34fsdf56fsdf78dsfds9')); /// 45
 console.log(
 	'///////////////////////////////////////////////////////////////////////////////',
 );
+
+//  point : solution 2 : using built - in and regex
+
+const sumNumbers1 = (str) => {
+	const regex = /\d/g;
+	const numbers = str.match(regex);
+	let sum = 0;
+
+	if (numbers) {
+		numbers.forEach((number) => {
+			sum += parseInt(number);
+		});
+	}
+	return sum;
+};
+
+console.log(sumNumbers1('afdafdf5fdfdf5fdfdf4fdfdf4fd')); /// 18
+
+console.log(sumNumbers1('abc1dfddf4djfdrfdf8fdfd9')); /// 22
+
+console.log(sumNumbers1('12dfds34fsdf56fsdf78dsfds9')); /// 45
