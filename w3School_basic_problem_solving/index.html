@@ -5,19 +5,40 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>problem Solving
-	</title>
+	<title>problem Solving</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-	<h1>Write a JavaScript program to calculate the days left before Christmas..</h1>
-	<h2>Output:</h2>
+	<h1>Write a JavaScript program to calculate multiplication and division of two numbers (input from the user).</h1>
+
+	<div class="form-container">
+		<form>
+			<div class="form-input">
+				<label for="num1">First Number:</label>
+				<input type="number" id="num1" name="num1" placeholder="Enter First Number" required>
+			</div>
+
+			<div class="form-input">
+				<label for="num2">Second Number:</label>
+				<input type="number" id="num2" name="num2" placeholder="Enter Second Number" required>
+			</div>
+
+			<div class="form-submit">
+				<input type="button" value="Multiply" onclick="multiply()">
+				<input onclick="divideBy()" type="button" value="Divide">
+			</div>
+		</form>
+	</div>
+
+
+	<h2>The Result IS ::</h2>
 	<h1 id="demo"> </h1>
 
 
 
-	<script src="./problem-7.js"></script>
+	<script src="./problem-8.js"></script>
 </body>
 
 </html>
