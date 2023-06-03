@@ -19,7 +19,7 @@ function convertToFahrenheit(celsius) {
 	let fahrenheit = (celsius * 9) / 5 + 32;
 	let message = `${celsius}°C is ${fahrenheit}°F`;
 	console.log(message);
-}        
+}
 
 function convertToCelsius(fahrenheit) {
 	let celsius = ((fahrenheit - 32) * 5) / 9;
