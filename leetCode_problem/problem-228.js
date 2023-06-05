@@ -38,3 +38,85 @@ Explanation: The ranges are:
 
 
 */
+
+// / -------------solution 1 -----------------------//
+
+var summaryRanges = function (nums) {
+	let indexNumber = 0;
+	let result = [];
+	let start;
+	let flag = true;
+
+	for (let i = 0; i < nums.length; i++) {
+		if (nums[i] - 1 != nums[i - 1] && nums[i] + 1 != nums[i + 1]) {
+			result.push(`${nums[i]}`);
+		} else if (nums[i] + 1 === nums[i + 1]) {
+			indexNumber = i + 1;
+
+			if (flag) {
+				start = i;
+				flag = false;
+			}
+		} else {
+			if (!indexNumber) {
+				result.push(`${nums[i]}`);
+			} else {
+				result.push(`${nums[start]}->${nums[indexNumber]}`);
+				flag = true;
+			}
+		}
+	}
+
+	return result;
+};
+
+const nums1 = [0, 1, 2, 4, 5, 7];
+const nums2 = [0, 2, 3, 4, 6, 8, 9];
+const nums3 = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+const result = summaryRanges(nums1);
+const result2 = summaryRanges(nums2);
+const result3 = summaryRanges(nums3);
+console.log(result);
+console.log(result2);
+console.log(result3); // [0->8]
+
+// / -------------solution 2 ( not good ) -----------------------//
+
+/*
+
+var summaryRanges = function (nums) {
+	let arr = [];
+	let result = [];
+
+	for (let i = 0; i < nums.length; i++) {
+		if (nums[i] + 1 === nums[i + 1]) {
+			arr.push(nums[i]);
+		} else if (nums[i] + 1 !== nums[i + 1] && nums[i] === nums[i - 1] + 1) {
+			arr.push(nums[i]);
+			result.push(arr);
+			arr = [];
+		} else {
+			result.push;
+		}
+	}
+
+	for (let j = 0; j < result.length; j++) {
+		if (result[j].length > 1) {
+			result[j] = `${result[j][0]}->${result[j][result[j].length - 1]}`;
+		} else {
+			result[j] = `${result[j][0]}`;
+		}
+	}
+
+	return result;
+};
+
+const nums1 = [0, 1, 2, 4, 5, 7];
+const nums2 = [0, 2, 3, 4, 6, 8, 9];
+
+const result = summaryRanges(nums1);
+const result2 = summaryRanges(nums2);
+console.log(result);
+console.log(result2);
+
+*/
