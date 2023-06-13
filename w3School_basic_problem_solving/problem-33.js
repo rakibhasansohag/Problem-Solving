@@ -58,3 +58,18 @@ function convertTimeIntoHoursAndMinutes2(nums) {
 
 console.log(convertTimeIntoHoursAndMinutes2(200));
 console.log(convertTimeIntoHoursAndMinutes2(100));
+
+// task : Convert the letters of a given string in alphabetical order
+
+// point : solution 1 ( using built-in methods )
+
+function convertLettersIntoAlphabeticalOrder(str) {
+	let letters = str.split('');
+
+	let sorted = letters.sort();
+
+	return sorted.join('');
+}
+console.log(convertLettersIntoAlphabeticalOrder('webmaster'));
+
+// point: solution 2 ( using for loop )
