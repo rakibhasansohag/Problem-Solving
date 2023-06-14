@@ -83,3 +83,37 @@ function divisionString(number1, number2) {
 }
 
 console.log(divisionString(80, 6));
+
+// task : Create a new string of specified copies of a given string
+
+// point : solution 1 :
+
+function string_copies(str, n) {
+	if (n < 0) return false;
+	return str.repeat(n);
+}
+
+console.log(string_copies('abc', 5));
+console.log(string_copies('abc', 0));
+
+// task : Create a new string of 4 copies of the last 3 characters of a given original string
+
+// point : solution 1 :
+
+// function newString(str) {
+// 	let lastThree = str.substring(str.length - 3);
+// 	return lastThree.repeat(4);
+// }
+
+function newString(str) {
+	if (str.length >= 3) {
+		let lastThree = str.substring(str.length - 3);
+		return lastThree.repeat(4);
+	} else {
+		return false;
+	}
+}
+
+console.log(newString('JavaScript'));
+console.log(newString('js'));
+console.log(newString('python 3.0'));
