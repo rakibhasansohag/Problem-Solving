@@ -48,3 +48,38 @@ function equal_pt(str) {
 console.log(equal_pt('paatpss'));
 console.log(equal_pt('paatps'));
 console.log(equal_pt('ptptpt'));
+
+// task : Divide two positive numbers and return a string with properly formatted commas
+
+// point : solution 1 :
+
+function division_string(n1, n2) {
+	let result = Math.round(n1 / n2).toString();
+	let resultArray = result.split('');
+
+	if (result >= 1000) {
+		for (let i = resultArray.length - 3; i > 0; i -= 3) {
+			resultArray.splice(i, 0, ',');
+		}
+	}
+	return resultArray;
+}
+console.log(division_string(80, 6));
+
+// point :  solution 2 :
+
+function divisionString(number1, number2) {
+	let result = Math.round(number1 / number2).toString();
+
+	let resultArray = result.split('');
+
+	if (result >= 1000) {
+		for (let i = resultArray.length - 3; i > 0; i -= 3) {
+			resultArray.splice(i, 0, ',');
+		}
+	}
+
+	return resultArray;
+}
+
+console.log(divisionString(80, 6));
