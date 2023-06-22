@@ -111,3 +111,48 @@ console.log('w3School way solution : ');
 console.log(checkString2('xYr'));
 console.log(checkString2('XXyx'));
 console.log(checkString2('xYrX'));
+
+// task : Find the number of inversions of a specified array of integers.
+// / what is inversions ?
+// point 1 : a reversal of position, order, form, or relationship: such as : a change in the order of two elements in a mathematical expression such that the product remains unchanged.
+
+// point: solution 1 : ( nested for loop )
+
+function findInversions(arr) {
+	let character = 0;
+
+	for (let i = 0; i < arr.length; i++) {
+		for (let j = i + 1; j < arr.length; j++) {
+			if (arr[i] > arr[j]) {
+				character++;
+			}
+		}
+	}
+	return character;
+}
+
+console.log('--------------another problem-----------------');
+
+console.log(findInversions([0, 3, 2, 5, 9]));
+console.log(findInversions([1, 5, 4, 3]));
+console.log(findInversions([10, 30, 20, -10]));
+
+// point: solution 2 : ( for loop )
+
+function findInversions2(arr) {
+	let character = 0;
+
+	for (let i = 0; i < arr.length; i++) {
+		for (let j = i + 1; j < arr.length; j++) {
+			if (arr[i] > arr[j]) {
+				character++;
+			}
+		}
+	}
+
+	return character;
+}
+
+console.log(findInversions2([0, 3, 2, 5, 9]));
+console.log(findInversions2([1, 5, 4, 3]));
+console.log(findInversions2([10, 30, 20, -10]));
