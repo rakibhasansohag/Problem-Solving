@@ -90,3 +90,44 @@ function changeCase2(str) {
 	if (y > x) return str.toLowerCase();
 	else return str.toUpperCase();
 }
+
+console.log('-------------- another problem -----------------');
+
+// task : Rearrange characters of a given string in such way that it will become equal to another given string.
+
+// point: solution 1 : ( with split and sort method )
+
+function rearrangeCharacters(str1, str2) {
+	let firstSet = str1.split('');
+	let secondSet = str2.split('');
+	let result = true;
+
+	firstSet.sort();
+	secondSet.sort();
+
+	for (let i = 0; i < Math.max(firstSet.length, secondSet.length); i++) {
+		if (firstSet[i] !== secondSet[i]) {
+			result = false;
+		}
+	}
+	return result;
+}
+
+console.log(rearrangeCharacters('abc', 'cab'));
+console.log(rearrangeCharacters('xyz', 'zyp'));
+console.log('-------------- another answer -----------------');
+
+// point: solution 2 : ( with split and sort method )
+
+function rearrangeCharacters2(str1, str2) {
+	let firstSet = str1.split('').sort();
+	let secondSet = str2.split('').sort();
+
+	for (let i = 0; i < Math.max(firstSet.length, secondSet.length); i++) {
+		if (firstSet[i] !== secondSet[i]) return false;
+	}
+	return true;
+}
+
+console.log(rearrangeCharacters2('abc', 'cab'));
+console.log(rearrangeCharacters2('xyz', 'zyp'));
