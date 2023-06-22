@@ -64,23 +64,39 @@ console.log(checkString('xYrX'));
 // point: solution 2 : ( w3school way )
 
 function checkString2(str) {
-	let isFirstCharacterLowerCase = str[0] === str[0].toLowerCase();
-	let isFirstCharacterUpperCase = str[0] === str[0].toUpperCase();
+	const isLowerCase = (symbol) => {
+		if ('a' <= symbol && symbol <= 'z') {
+			return true;
+		}
+		return false;
+	};
 
-	if (!(isFirstCharacterLowerCase && isFirstCharacterUpperCase)) return false;
+	const isUpperCase = (symbol) => {
+		if ('A' <= symbol && symbol <= 'Z') {
+			return true;
+		}
+		return false;
+	};
+
+	const isFirstCharLower = isLowerCase(str[0]);
+	const isFirstCharUpper = isUpperCase(str[0]);
+
+	if (!(isFirstCharLower || isFirstCharUpper)) {
+		return false;
+	}
 
 	for (let i = 1; i < str.length; i++) {
-		if (i % 2 === 1) {
+		if (i % 2) {
 			if (
-				(str[i] === str[i].toLowerCase() && isFirstCharacterLowerCase) ||
-				(str[i] === str[i].toUpperCase() && isFirstCharacterUpperCase)
+				isLowerCase(str[i]) === isFirstCharLower ||
+				isUpperCase(str[i]) === isFirstCharUpper
 			) {
 				return false;
 			}
 		} else {
 			if (
-				(str[i] === str[i].toLowerCase() && !isFirstCharacterLowerCase) ||
-				(str[i] === str[i].toUpperCase() && !isFirstCharacterUpperCase)
+				isLowerCase(str[i]) !== isFirstCharLower ||
+				isUpperCase(str[i]) !== isFirstCharUpper
 			) {
 				return false;
 			}
