@@ -137,3 +137,60 @@ function findTwoElements3(arr, num) {
 
 console.log(findTwoElements3([12, 10, 33, 34], 10));
 console.log(findTwoElements3([12, 10, 33, 34], 24));
+
+// task : Find the number of times to replace a given number with the sum of its digits until it convert to a single digit number.
+console.log('---------------- another problems -----------------');
+// point : solution 1 : ( while loop W3 school solution  )
+
+function findNumberOfTimes(num) {
+	const digitSum = (num) => {
+		let sum = 0;
+
+		while (num) {
+			sum += num % 10;
+			num = Math.floor(num / 10);
+		}
+
+		return sum;
+	};
+
+	let result = 0;
+
+	while (num >= 10) {
+		result += 1;
+		num = digitSum(num);
+	}
+	return result;
+}
+
+console.log(findNumberOfTimes(123));
+console.log(findNumberOfTimes(156));
+
+// point : solution 2 : ( while loop and toString , split , reduce method )
+
+function findNumberOfTimes2(num) {
+	let sum = num
+		.toString()
+		.split('')
+		.reduce((acc, cur) => {
+			return acc + Number(cur);
+		}, 0);
+
+	let result = 1;
+
+	while (sum >= 10) {
+		result += 1;
+
+		sum = sum
+			.toString()
+			.split('')
+			.reduce((acc, cur) => {
+				return acc + Number(cur);
+			}, 0);
+	}
+
+	return result;
+}
+
+console.log(findNumberOfTimes2(123));
+console.log(findNumberOfTimes2(156));
