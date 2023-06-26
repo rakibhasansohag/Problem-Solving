@@ -78,3 +78,43 @@ console.log(evenNumbers(sample, 5));
 console.log(evenNumbers(sample2, 6));
 
 // point :  solution 2 ( using reduce method )
+
+console.log('--------------another problem-----------------');
+
+// task : Check a number from three given numbers where two numbers are equal, find the third one.
+
+// point :  solution 1 ( using condition )
+
+function equalNumbers(a, b, c) {
+	if (a === b) {
+		return c;
+	} else if (b === c) {
+		return a;
+	} else {
+		return 'No equal numbers';
+	}
+}
+
+console.log(equalNumbers(1, 2, 2));
+console.log(equalNumbers(1, 1, 2));
+console.log(equalNumbers(1, 2, 3));
+
+// point :  solution 2 ( using multi condition )
+
+function equalNumbers2(x, y, z) {
+	if (x !== y && x !== z && y !== z) {
+		return 'No equal numbers';
+	} else if (x === y) {
+		return z;
+	} else if (x === z) {
+		return y;
+	} else {
+		return x;
+	}
+}
+console.log('------------- another solution --------------');
+console.log(equalNumbers2(1, 2, 2));
+console.log(equalNumbers2(1, 1, 2));
+console.log(equalNumbers2(1, 2, 3));
+
+console.log('--------------another problem-----------------');
