@@ -53,4 +53,28 @@ console.log(primeNumbers2(5));
 console.log(primeNumbers2(11));
 console.log(primeNumbers2(19));
 
+console.log('------------ another problem --------------');
 
+// task : Find the number of even values in sequence before the first occurrence of a given number.
+const sample = [1, 2, 3, 4, 5, 6, 7, 8];
+const sample2 = [1, 3, 5, 6, 7, 8];
+// point :  solution 1 ( using for loop and condition )
+
+function evenNumbers(arr, num) {
+	let result = 0;
+
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] % 2 === 0 && arr[i] !== num) {
+			result++;
+		}
+		if (arr[i] === num) {
+			return result;
+		}
+	}
+	return -1;
+}
+
+console.log(evenNumbers(sample, 5));
+console.log(evenNumbers(sample2, 6));
+
+// point :  solution 2 ( using reduce method )
