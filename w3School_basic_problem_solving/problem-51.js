@@ -118,3 +118,26 @@ console.log(equalNumbers2(1, 1, 2));
 console.log(equalNumbers2(1, 2, 3));
 
 console.log('--------------another problem-----------------');
+
+// task : Find the number of trailing zeros in the decimal representation of the factorial of a given number.
+
+// point :  solution 1 ( using for loop , condition and while loop )
+
+function trailingZeros(num) {
+	let result = 0;
+
+	for (let i = 5; i <= num; i += 5) {
+		let j = i;
+
+		while (j % 5 === 0) {
+			j /= 5;
+			result++;
+		}
+	}
+
+	return result;
+}
+
+console.log(trailingZeros(8));
+console.log(trailingZeros(9));
+console.log(trailingZeros(10));
