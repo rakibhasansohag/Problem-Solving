@@ -113,6 +113,7 @@ function equalNumbers2(x, y, z) {
 	}
 }
 console.log('------------- another solution --------------');
+
 console.log(equalNumbers2(1, 2, 2));
 console.log(equalNumbers2(1, 1, 2));
 console.log(equalNumbers2(1, 2, 3));
