@@ -138,3 +138,63 @@ console.log(
 		[0, 0, 3],
 	]),
 ); /// false
+
+console.log('------------------ another problem ------------------');
+
+// task : Write a JavaScript program to find all the possible options to replace the hash in a string (Consists of digits and one hash (#)) with a digit to produce an integer divisible by 3.
+
+// point : solution 1 ( using  for loop with  2d array )
+
+console.time('replaceHash1');
+function replaceHash(str) {
+	let result = [];
+	for (let i = 0; i < 10; i++) {
+		let newStr = str.replace('#', i);
+		if (Number(newStr) % 3 === 0) {
+			result.push(newStr);
+		}
+	}
+	return result;
+}
+console.log(replaceHash('2#0')); /// ["210", "240", "270"]
+console.log(replaceHash('2#3')); /// ["213", "243", "273"]
+console.log(replaceHash('4#2')); ///[ '402', '432', '462', '492' ]
+console.timeEnd('replaceHash1');
+
+// point : solution ( using for loop and charAt() method (w3School way) )
+
+console.time('replaceHash2');
+
+function replaceHash2(str) {
+	let digitSum = 0;
+	let left = '0'.charCodeAt();
+	let right = '9'.charCodeAt();
+	let result = [];
+	let hashSplit = str.split('');
+	let hashPosition = -1;
+
+	for (let i = 0; i < hashSplit.length; i++) {
+		if (
+			left <= hashSplit[i].charCodeAt() &&
+			hashSplit[i].charCodeAt() <= right
+		) {
+			digitSum += hashSplit[i].charCodeAt() - left;
+		} else {
+			hashPosition = i;
+		}
+	}
+
+	for (let i = 0; i < 10; i++) {
+		if ((digitSum + i) % 3 === 0) {
+			hashSplit[hashPosition] = String.fromCharCode(left + i);
+			result.push(hashSplit.join(''));
+		}
+	}
+
+	return result;
+}
+
+console.log(replaceHash2('2#0')); /// ["210", "240", "270"]
+console.log(replaceHash2('2#3')); /// ["213", "243", "273"]
+console.log(replaceHash2('4#2')); ///[ '402', '432', '462', '492' ]
+console.timeEnd('replaceHash2');
