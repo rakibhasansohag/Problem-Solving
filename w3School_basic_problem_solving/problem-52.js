@@ -196,5 +196,5 @@ function replaceHash2(str) {
 
 console.log(replaceHash2('2#0')); /// ["210", "240", "270"]
 console.log(replaceHash2('2#3')); /// ["213", "243", "273"]
-console.log(replaceHash2('4#2')); ///[ '402', '432', '462', '492' ]
+console.log(replaceHash2('4#2')); /// [ '402', '432', '462', '492' ]
 console.timeEnd('replaceHash2');
