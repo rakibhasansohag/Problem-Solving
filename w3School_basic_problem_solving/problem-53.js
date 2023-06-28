@@ -160,3 +160,37 @@ function isIncreasingDigitsSequence(num) {
 console.log(isIncreasingDigitsSequence(123));
 console.log(isIncreasingDigitsSequence(1223));
 console.log(isIncreasingDigitsSequence(54677));
+
+console.log(
+	'------------------------ another problem ------------------------',
+);
+
+// task : Check whether a point lies strictly inside a given circle
+
+// point: solution 1 ( Math.sqrt )
+
+function isCirce(x, y, x1, y1, r) {
+	let distance = Math.sqrt((x - x1) ** 2 + (y - y1) ** 2);
+
+	return distance < r;
+}
+
+console.log(isCirce(0, 0, 2, 4, 6));
+console.log(isCirce(0, 0, 2, 4, 4));
+
+// point : solution 2 (  condition  )
+
+function isCirce2(x, y, x1, y1, r) {
+	let distance = (x - x1) ** (x - x1) + (y - y1) * (y - y1);
+
+	r *= r; // r = r * r
+
+	if (distance < r) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+console.log(isCirce2(0, 0, 2, 4, 6));
+console.log(isCirce2(0, 0, 2, 4, 4));
