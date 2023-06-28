@@ -125,3 +125,38 @@ console.log(
 		[0, 1, 0],
 	]) === false,
 ); // not square matrix
+
+console.log(
+	'------------------------ another problem ------------------------',
+);
+
+// task : Check whether a given number is in a given range.
+
+function isInRange(range1, range2, range3) {
+	return range2 >= range1 && range2 <= range3;
+}
+
+console.log(isInRange(1, 2, 3));
+console.log(isInRange(1, 2, -3));
+console.log(isInRange(1.1, 1.2, 1.3));
+
+console.log(
+	'------------------------ another problem ------------------------',
+);
+
+// task : Check whether a given integer has an increasing digits sequence.
+
+function isIncreasingDigitsSequence(num) {
+	let str = num.toString();
+
+	for (let i = 0; i < str.length; i++) {
+		if (parseInt(str[i]) >= parseInt(str[i + 1])) {
+			return false;
+		}
+	}
+	return true;
+}
+
+console.log(isIncreasingDigitsSequence(123));
+console.log(isIncreasingDigitsSequence(1223));
+console.log(isIncreasingDigitsSequence(54677));
