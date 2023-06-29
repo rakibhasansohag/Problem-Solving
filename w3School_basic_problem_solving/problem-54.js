@@ -78,3 +78,61 @@ console.log(isIncreasingOrDecreasing([1, 2, 2]));
 console.log(isIncreasingOrDecreasing([-3, -2, -1]));
 
 console.timeEnd('isIncreasingOrDecreasing');
+
+// task :  Find whether the members of a given array of integers is a permutation of numbers from 1 to a given integer.
+
+// point : solution 1 ( using for loop )
+
+console.time('isPermutation');
+
+function isPermutation(arr, n) {
+	for (let i = 0; i < n; i++) {
+		if (arr.indexOf(i + 1) < 0) {
+			return false;
+		}
+	}
+	return true;
+}
+
+console.log(isPermutation([1, 2, 3, 4, 5], 5));
+console.log(isPermutation([1, 2, 3, 5], 5));
+
+console.timeEnd('isPermutation');
+
+// point : solution 2 ( using recursion )
+
+console.time('isPermutation with recursion');
+
+function isPermutation2(arr, n) {
+	if (n === 0) return true;
+
+	if (arr.indexOf(n) < 0) return false;
+
+	return isPermutation2(arr, n - 1);
+}
+
+console.log(isPermutation2([1, 2, 3, 4, 5], 5));
+console.log(isPermutation2([1, 2, 3, 5], 5));
+
+console.timeEnd('isPermutation with recursion');
+
+// point : ( without using built-in function )
+
+console.time('isPermutation without built-in function');
+
+function isPermutation3(arr, n) {
+	for (let i = 0; i < n; i++) {
+		let j = 0;
+		while (j < n) {
+			if (arr[j] === i + 1) break;
+			j++;
+		}
+		if (j === n) return false;
+	}
+	return true;
+}
+
+console.log(isPermutation3([1, 2, 3, 4, 5], 5));
+console.log(isPermutation3([1, 2, 3, 5], 5));
+
+console.timeEnd('isPermutation without built-in function');
