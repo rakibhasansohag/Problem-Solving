@@ -136,3 +136,35 @@ console.log(isPermutation3([1, 2, 3, 4, 5], 5));
 console.log(isPermutation3([1, 2, 3, 5], 5));
 
 console.timeEnd('isPermutation without built-in function');
+
+console.log('another problems...');
+// task : Create the value of NOR of two given booleans.
+
+// point : solution 1 ( using for loop )
+
+console.time('nor');
+
+function nor(a, booleans) {
+	if (!a && !booleans) return true;
+	return false;
+}
+
+console.log(nor(true, false));
+console.log(nor(false, false));
+console.log(nor(true, true));
+
+console.timeEnd('nor');
+
+// point : solution 2 ( using recursion )
+
+console.time('nor with recursion');
+
+function nor2(a, booleans) {
+	return !a && !booleans;
+}
+
+console.log(nor2(true, false));
+console.log(nor2(false, false));
+console.log(nor2(true, true));
+
+console.timeEnd('nor with recursion');
