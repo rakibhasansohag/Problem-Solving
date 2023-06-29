@@ -168,3 +168,33 @@ console.log(nor2(false, false));
 console.log(nor2(true, true));
 
 console.timeEnd('nor with recursion');
+
+console.log('another problems...');
+// task : Find the longest string from a given array.
+
+// point : solution 1 ( using for loop )
+
+console.time('longestString');
+
+function longestString(arr) {
+	let longest = arr[0];
+
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i].length > longest.length) {
+			longest = arr[i];
+		}
+	}
+	return longest;
+}
+
+console.log(longestString(['a', 'aa', 'aaa', 'aaaaa', 'aaaa']));
+console.log(longestString(['a', 'aa', 'aaa', 'aaaaa', 'aaaa', 'aaaaaa']));
+console.log(
+	longestString(['a', 'aa', 'aaa', 'aaaaa', 'aaaa', 'aaaaaa', 'aaaaaaa']),
+);
+
+console.log(
+	longestString(['hello', 'helloAgain', 'Hello whats up :) ', 'it is me']),
+);
+
+console.timeEnd('longestString');
