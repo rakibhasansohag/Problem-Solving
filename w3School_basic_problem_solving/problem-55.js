@@ -95,6 +95,7 @@ console.log(reverseBits2(234)); /// 87
 
 console.timeEnd('solution 2 reverse the order of the bits in a given integer');
 
+// error : 0 is not working ( need unshift to work  )
 // point : solution 3 ( using toString(2) and parseInt(2) without  for loop or while loop )
 
 console.time('solution 3 reverse the order of the bits in a given integer');
@@ -105,8 +106,8 @@ const reverseBits3 = (num) => {
 	return parseInt(binary, 2);
 };
 
-console.log(reverseBits3(14)); ///
-console.log(reverseBits3(56)); ///
-console.log(reverseBits3(234)); ///
+console.log(reverseBits3(14)); /// 7
+console.log(reverseBits3(56)); /// 7
+console.log(reverseBits3(234)); /// 87
 
 console.timeEnd('solution 3 reverse the order of the bits in a given integer');
