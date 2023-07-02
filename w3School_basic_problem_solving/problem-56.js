@@ -35,3 +35,58 @@ console.log(nearestRoundNumber1(56)); /// 60
 console.log(nearestRoundNumber1(592)); /// 600
 
 console.timeEnd('nearestRoundNumber2');
+
+console.log('---------------------- another problem ----------------------');
+
+// task : Find the smallest prime number strictly greater than a given number
+
+// point : solution 1 ( nested for loop )
+console.time('smallestPrimeNumber1');
+function smallestPrimeNumber(value) {
+	for (let i = value + 1; ; i++) {
+		let isPrime = true;
+
+		for (let j = 2; j * j <= i; j++) {
+			if (i % j === 0) {
+				isPrime = false;
+				break;
+			}
+		}
+		if (isPrime) {
+			return i;
+		}
+	}
+}
+console.log(smallestPrimeNumber(3)); /// 5
+console.log(smallestPrimeNumber(17)); /// 19
+console.log(smallestPrimeNumber(23)); /// 29
+
+console.timeEnd('smallestPrimeNumber1');
+
+// point : solution 2 ( while loop )
+
+console.time('smallestPrimeNumber2');
+
+function smallestPrimeNumber1(value) {
+	let i = value + 1;
+	while (true) {
+		let isPrime = true;
+
+		for (let j = 2; j * j <= i; j++) {
+			if (i % j === 0) {
+				isPrime = false;
+				break;
+			}
+		}
+		if (isPrime) {
+			return i;
+		}
+		i++;
+	}
+}
+
+console.log(smallestPrimeNumber1(3)); /// 5
+console.log(smallestPrimeNumber1(17)); /// 19
+console.log(smallestPrimeNumber1(23)); /// 29
+
+console.timeEnd('smallestPrimeNumber2');
