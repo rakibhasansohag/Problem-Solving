@@ -90,3 +90,47 @@ console.log(smallestPrimeNumber1(17)); /// 19
 console.log(smallestPrimeNumber1(23)); /// 29
 
 console.timeEnd('smallestPrimeNumber2');
+
+console.log('---------------------- another problem ----------------------');
+
+// task : Find the number of even digits in a given integer..
+
+// point : solution 1 ( for loop )
+
+console.time('evenDigits1');
+
+function evenDigits(value) {
+	let count = 0;
+	for (let i = value; i > 0; i = Math.floor(i / 10)) {
+		if (i % 2 === 0) {
+			count++;
+		}
+	}
+	return count;
+}
+
+console.log(evenDigits(123)); /// 1
+console.log(evenDigits(1020)); /// 3
+console.log(evenDigits(102)); /// 2
+
+console.timeEnd('evenDigits1');
+
+// point : solution 2 ( while loop )
+
+console.time('evenDigits2');
+
+function evenDigits1(value) {
+	let count = 0;
+
+	while (value) {
+		count += value % 2 === 0;
+		value = Math.floor(value / 10);
+	}
+	return count;
+}
+
+console.log(evenDigits1(123)); /// 1
+console.log(evenDigits1(1020)); /// 3
+console.log(evenDigits1(102)); /// 2
+
+console.timeEnd('evenDigits2');
