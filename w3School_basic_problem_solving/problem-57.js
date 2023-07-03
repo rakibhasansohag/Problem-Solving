@@ -154,12 +154,15 @@ console.timeEnd('SOLUTION :: 1');
 console.time('SOLUTION :: 2');
 
 const changeChar2 = (str) => {
-	return str.split('').map((char) => {
-		let characters = char.charCodeAt(0) - 'a'.charCodeAt(0);
-		let newCharacters = 25 - characters + 'a'.charCodeAt(0);
+	return str
+		.split('')
+		.map((char) => {
+			let characters = char.charCodeAt(0) - 'a'.charCodeAt(0);
+			let newCharacters = 25 - characters + 'a'.charCodeAt(0);
 
-		return String.fromCharCode(newCharacters);
-	});
+			return String.fromCharCode(newCharacters);
+		})
+		.join('');
 };
 
 console.log(changeChar2('abcxyz')); // zyxabc
