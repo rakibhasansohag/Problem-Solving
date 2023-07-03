@@ -63,5 +63,38 @@ console.timeEnd(' removeDuplicateChar3');
 
 console.log('----------------------- another problem -----------------------');
 
-
 // task : Replace the first digit in a string (should contains at least digit) with $ character.
+
+// POINT : SOLUTION 1 ( for loop and isNaN() with split() )
+
+console.time(' replaceFirstDigit');
+
+function replaceFirstDigit(str) {
+	let newArr = str.split('');
+
+	for (let i = 0; i < newArr.length; i++) {
+		if (!isNaN(newArr[i])) {
+			newArr[i] = '$';
+			break;
+		}
+	}
+	return newArr.join('');
+}
+
+console.log(replaceFirstDigit('abc1dabc'));
+console.log(replaceFirstDigit('p3ython'));
+console.log(replaceFirstDigit('ab1cabc'));
+console.timeEnd(' replaceFirstDigit');
+
+// POINT : SOLUTION 2 ( using replace() )
+
+console.time(' replaceFirstDigit2');
+
+function replaceFirstDigit2(str) {
+	return str.replace(/[0-9]/, '$');
+}
+
+console.log(replaceFirstDigit2('abc1dabc'));
+console.log(replaceFirstDigit2('p3ython'));
+console.log(replaceFirstDigit2('ab1cabc'));
+console.timeEnd(' replaceFirstDigit2');
