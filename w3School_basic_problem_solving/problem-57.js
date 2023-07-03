@@ -119,3 +119,51 @@ console.log(primeFactors2(103)); // [103]
 console.log(primeFactors2(104)); // [2, 13]
 
 console.timeEnd('SOLUTION :: 2');
+
+console.log('-------------------- another problem ---------------------');
+/*
+ task : Change the characters (lower case) in a string where a turns into z, b turns into y, c turns into x, ..., n turns into m, m turns into n, ..., z turns into a.
+
+
+*/
+
+// point : SOLUTION : 1 ( condition , loop and charCodeAt )
+
+console.time('SOLUTION :: 1');
+
+const changeChar = (str) => {
+	let result = [];
+
+	for (let i = 0; i < str.length; i++) {
+		let characters = str.charCodeAt(i) - 'a'.charCodeAt(0);
+		let newCharacters = 25 - characters + 'a'.charCodeAt(0);
+
+		result.push(String.fromCharCode(newCharacters));
+	}
+	return result.join('');
+};
+
+console.log(changeChar('abcxyz')); // zyxabc
+console.log(changeChar('python')); // kbgslm
+console.log(changeChar('lmnop')); // onmlk
+
+console.timeEnd('SOLUTION :: 1');
+
+// point : SOLUTION : 2 ( using map and charCodeAt )
+
+console.time('SOLUTION :: 2');
+
+const changeChar2 = (str) => {
+	return str.split('').map((char) => {
+		let characters = char.charCodeAt(0) - 'a'.charCodeAt(0);
+		let newCharacters = 25 - characters + 'a'.charCodeAt(0);
+
+		return String.fromCharCode(newCharacters);
+	});
+};
+
+console.log(changeChar2('abcxyz')); // zyxabc
+console.log(changeChar2('python')); // kbgslm
+console.log(changeChar2('lmnop')); // onmlk
+
+console.timeEnd('SOLUTION :: 2');
