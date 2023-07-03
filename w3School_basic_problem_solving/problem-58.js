@@ -98,3 +98,54 @@ console.log(replaceFirstDigit2('abc1dabc'));
 console.log(replaceFirstDigit2('p3ython'));
 console.log(replaceFirstDigit2('ab1cabc'));
 console.timeEnd(' replaceFirstDigit2');
+
+console.log('----------------------- another problem -----------------------');
+
+// task : Test whether a given integer is greater than 15 return the given number, otherwise return 15
+
+// POINT : SOLUTION 1 ( if else )
+
+console.time(' testNumber');
+
+function testNumber(num) {
+	if (num > 15) {
+		return num;
+	} else {
+		return 15;
+	}
+}
+
+console.log(testNumber(10));
+console.log(testNumber(20));
+console.log(testNumber(15));
+console.timeEnd(' testNumber');
+
+// POINT : SOLUTION 2 ( ternary operator )
+
+console.time(' testNumber2');
+
+function testNumber2(num) {
+	return num > 15 ? num : 15;
+}
+
+console.log(testNumber2(10));
+console.log(testNumber2(20));
+console.log(testNumber2(15));
+console.timeEnd(' testNumber2');
+
+// point : SOLUTION 3 ( while loop )
+
+console.time(' testNumber3');
+
+function testNumber3(num) {
+	while (num <= 15) {
+		num++;
+	}
+	return num;
+}
+
+console.log(testNumber3(10));
+console.log(testNumber3(20));
+console.log(testNumber3(15));
+
+console.timeEnd(' testNumber3');
