@@ -149,3 +149,45 @@ console.log(testNumber3(20));
 console.log(testNumber3(15));
 
 console.timeEnd(' testNumber3');
+
+// task : Reverse the bits of a given 16 bits unsigned short integer.
+
+// POINT : SOLUTION 1 ( for loop and toString() )
+
+console.time(' reverseBits');
+
+function reverseBits(num) {
+	let binary = num.toString(2);
+
+	let result = '';
+
+	for (let i = binary.length - 1; i >= 0; i--) {
+		result += binary[i];
+	}
+	return parseInt(result, 2);
+}
+
+console.log(reverseBits(12345)); /// 9987
+console.log(reverseBits(10)); /// 5
+console.log(reverseBits(5)); /// 5
+console.timeEnd(' reverseBits');
+
+// POINT : SOLUTION 2 ( for loop and Math.floor() )
+
+console.time(' reverseBits2');
+
+function reverseBits2(num) {
+	let result = 0;
+
+	for (let i = 0; i < 16; i++) {
+		result = result * 2 + (num % 2);
+
+		num = Math.floor(num / 2);
+	}
+	return result;
+}
+
+console.log(reverseBits2(12345)); /// 39948
+console.log(reverseBits2(10)); /// 20480
+console.log(reverseBits2(5)); /// 40960
+console.timeEnd(' reverseBits2');
