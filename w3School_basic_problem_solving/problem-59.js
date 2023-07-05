@@ -133,3 +133,111 @@ console.log(roundNumber7([1, 22, 30, 54, 56])); /// 2
 console.log(roundNumber7([1, 22, 32, 54, 56])); /// 0
 console.log(roundNumber7([1, 22, 32, 54, 56, 60])); /// 5
 console.timeEnd('roundNumber7');
+
+console.log('---------------------- another problem ----------------------');
+
+// task : Check whether all the digits in a given number are the same or not.
+
+// point: solution 1 ( using for loop );
+
+console.time('sameNumber1');
+
+function sameNumber(num) {
+	let result = true;
+	const str = num.toString();
+
+	for (let i = 0; i < str.length; i++) {
+		if (str[i] !== str[0]) {
+			result = false;
+		}
+	}
+
+	return result;
+}
+
+console.log(sameNumber(222222)); /// true
+console.log(sameNumber(222221)); /// false
+console.log(sameNumber(111111)); /// true
+
+console.timeEnd('sameNumber1');
+
+// point: solution 2 ( using for of loop );
+
+console.time('sameNumber2');
+
+function sameNumber2(num) {
+	const str = num.toString();
+
+	for (const item of str) {
+		if (item !== str[0]) {
+			return false;
+		}
+	}
+	return true;
+}
+
+console.log(sameNumber2(222222)); /// true
+console.log(sameNumber2(222221)); /// false
+console.log(sameNumber2(111111)); /// true
+console.timeEnd('sameNumber2');
+
+// point: solution 3 ( using while with Math.floor );
+
+console.time('sameNumber3');
+
+function sameNumber3(num) {
+	let first = num % 10;
+
+	while (num) {
+		if (num % 10 !== first) {
+			return false;
+		}
+		num = Math.floor(num / 10);
+	}
+	return true;
+}
+
+console.log(sameNumber3(222222)); /// true
+console.log(sameNumber3(222221)); /// false
+console.log(sameNumber3(111111)); /// true
+
+console.timeEnd('sameNumber3');
+
+// point: solution 4 ( using forEach );
+
+console.time('sameNumber4');
+
+function sameNumber4(num) {
+	let result = true;
+	const str = num.toString();
+
+	str.split('').forEach((item) => {
+		if (item !== str[0]) {
+			result = false;
+		}
+	});
+	return result;
+}
+
+console.log(sameNumber4(222222)); /// true
+console.log(sameNumber4(222221)); /// false
+console.log(sameNumber4(111111)); /// true
+
+console.timeEnd('sameNumber4');
+
+// point: solution 5 ( using every );
+
+console.time('sameNumber5');
+
+function sameNumber5(num) {
+	const str = num.toString();
+
+	const result = str.split('').every((item) => item === str[0]);
+	return result;
+}
+
+console.log(sameNumber5(222222)); /// true
+console.log(sameNumber5(222221)); /// false
+console.log(sameNumber5(111111)); /// true
+
+console.timeEnd('sameNumber5');
