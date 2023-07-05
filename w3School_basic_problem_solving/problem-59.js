@@ -95,3 +95,41 @@ console.log(roundNumber5([1, 22, 30, 54, 56])); /// 2
 console.log(roundNumber5([1, 22, 32, 54, 56])); /// 0
 console.log(roundNumber5([1, 22, 32, 54, 56, 60])); /// 5
 console.timeEnd('roundNumber5');
+
+// point: solution 6 ( using map )
+
+console.time('roundNumber6');
+
+function roundNumber6(arr) {
+	let result = 0;
+
+	arr.map((item, index) => {
+		if (item % 10 === 0) {
+			result = index;
+		}
+	});
+	return result;
+}
+
+console.log(roundNumber6([1, 22, 30, 54, 56])); /// 2
+console.log(roundNumber6([1, 22, 32, 54, 56])); /// 0
+console.log(roundNumber6([1, 22, 32, 54, 56, 60])); /// 5
+console.timeEnd('roundNumber6');
+
+// point: solution 7 ( using reduce )
+
+console.time('roundNumber7');
+
+function roundNumber7(arr) {
+	return arr.reduce((acc, item, index) => {
+		if (item % 10 === 0) {
+			acc = index;
+		}
+		return acc;
+	}, 0);
+}
+
+console.log(roundNumber7([1, 22, 30, 54, 56])); /// 2
+console.log(roundNumber7([1, 22, 32, 54, 56])); /// 0
+console.log(roundNumber7([1, 22, 32, 54, 56, 60])); /// 5
+console.timeEnd('roundNumber7');
