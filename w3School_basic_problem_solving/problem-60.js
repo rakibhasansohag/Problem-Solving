@@ -49,3 +49,41 @@ console.log(findCommonElements3([1, 2, 3, 4, 5], [1, 2, 3, 4, 5]));
 console.log(findCommonElements3([1, 2, 3, 4, 5], [2, 3, 4, 5, 6]));
 
 console.timeEnd('findCommonELements3');
+
+console.log('---------------another problem -----------------');
+
+// task : Simplify a given absolute path for a file in Unix-style.
+
+// todo : 1.1 : ( what is unix Style path ? )
+// / unix style path is a path that starts with a forward slash / and does not have a drive letter like c: or d:.
+
+// todo : 1.2 : ( what is absolute path ? )
+/// An absolute path is defined as the specifying the location of a file or directory from the root directory(/).
+
+//  point  : solution 1 ( using for loop and array methods (pop,push,join) )
+
+console.time(' simplifyPath1 ');
+function simplifyPath(path) {
+	let result = [];
+	let pathArr = path.split('/');
+
+	for (let i = 0; i < pathArr.length; i++) {
+		if (pathArr[i] === '..') {
+			result.pop();
+		} else if (pathArr[i] !== '.' && pathArr[i] !== '') {
+			result.push(pathArr[i]);
+		} else {
+			continue;
+		}
+	}
+	return '/' + result.join('/');
+}
+
+console.log(simplifyPath('/home/'));
+console.log(simplifyPath('/a/./b/../../c/'));
+console.log(simplifyPath('/a/../../b/../c//.//'));
+console.log(simplifyPath('/a//b////c/d//././/..'));
+
+console.log(simplifyPath('/home/var/./www/../html//sql/'));
+
+console.timeEnd('simplifyPath1');
