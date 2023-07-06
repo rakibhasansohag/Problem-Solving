@@ -87,3 +87,37 @@ console.log(simplifyPath('/a//b////c/d//././/..'));
 console.log(simplifyPath('/home/var/./www/../html//sql/'));
 
 console.timeEnd('simplifyPath1');
+
+console.log('---------------another problem -----------------');
+
+// task : Sort the strings of a given array of strings in the order of increasing lengths.
+
+//  point  : solution 1 ( using sort method )
+
+function sortByLength(arr) {
+	return arr.sort((a, b) => a.length - b.length);
+}
+
+let arra = ['xyz', 'acd', 'aa', 'bb', 'zzz', '', 'a', 'b'];
+
+console.log('original array : ', arra + '\n');
+console.log(sortByLength(arra));
+
+// point : solution 2 ( using for loop and array methods (push,sort) )
+
+function sortByLength2(arr) {
+	for (let i = 0; i < arr.length; i++) {
+		for (let j = i + 1; j < arr.length; j++) {
+			if (arr[i].length > arr[j].length) {
+				let temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+			}
+		}
+	}
+	return [...arr];
+}
+
+console.log('original array : ', arra + '\n');
+console.log(sortByLength2(arra));
+
