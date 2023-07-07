@@ -257,3 +257,40 @@ console.log(
 		'https://www.w3resource.com/javascript-exercises/?name=saif&age=23&country=BD',
 	),
 );
+
+console.log('----------- another problem -----------------');
+
+// task : Write a JavaScript program to find the maximum integer n such that 1 + 2 + ... + n <= a given integer.
+
+//  point  : solution 1 ( using while loop ) // good way
+
+function findMaxInt(n) {
+	let sum = 0;
+	let i = 0;
+
+	while (sum <= n) {
+		// i++;
+		// sum += i;
+		sum += i++;
+	}
+	return i - 2;
+}
+
+console.log(findMaxInt(11));
+console.log(findMaxInt(15));
+
+// point  : solution 2 ( using for loop ) // bad way
+
+function findMaxInt2(n) {
+	let sum = 0;
+
+	for (let i = 0; sum <= n; i++) {
+		sum += i;
+		if (sum > n) {
+			return i - 1;
+		}
+	}
+}
+
+console.log(findMaxInt2(11));
+console.log(findMaxInt2(15));
