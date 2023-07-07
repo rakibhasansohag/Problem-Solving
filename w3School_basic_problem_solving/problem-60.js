@@ -128,18 +128,31 @@ console.log('----------- another problem -----------------');
 //  point  : solution 1 ( using split method )
 
 function breakAddress(url) {
-	let result = url.split('://');
-	let protocol = result[0];
-	let address = result[1].split('/');
-	let domain = address[0];
-	let path = address[1].split('?')[0];
-	let query = address[1].split('&');
-	let queryObj = {};
+	const result = url.split('://');
+	if (result.length === 1) return 'invalid url';
+
+	const [protocol, address] = result;
+	const addressComponents = address.split('/');
+
+	if (addressComponents.length === 1) return 'invalid url';
+
+	const domain = addressComponents[0];
+	const pathComponents = addressComponents[1].split('?');
+	const path = pathComponents[0];
+	const query = pathComponents[1] ? pathComponents[1].spit('&') : [];
+
+	const queryObj = [];
+
 	for (let i = 0; i < query.length; i++) {
-		let key = query[i].split('=')[0];
-		let value = query[i].split('=')[1];
+		const keyValue = query[i].split('=');
+		if (keyValue.length === 2) {
+			throw new Error('invalid query parameter formate  ');
+		}
+		const key = keyValue[0];
+		const value = keyValue[1];
 		queryObj[key] = value;
 	}
+
 	return {
 		result,
 		protocol,
@@ -149,12 +162,16 @@ function breakAddress(url) {
 	};
 }
 
-console.log(breakAddress('https://www.w3resource.com/javascript-exercises/'));
-console.log(
-	breakAddress(
-		'https://www.w3resource.com/javascript-exercises/?name=saif&age=23&country=BD',
-	),
-);
+try {
+	console.log(breakAddress('https://www.w3resource.com/javascript-exercises/'));
+	console.log(
+		breakAddress(
+			'https://www.w3resource.com/javascript-exercises/?name=saif&age=23&country=BD',
+		),
+	);
+} catch (error) {
+	console.log(`An Error Occured : ${error.message}`);
+}
 
 //  point  : solution 2 ( using regex )
 
