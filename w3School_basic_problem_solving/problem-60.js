@@ -121,3 +121,122 @@ function sortByLength2(arr) {
 console.log('original array : ', arra + '\n');
 console.log(sortByLength2(arra));
 
+console.log('----------- another problem -----------------');
+
+// task : Break an address of an url and put it's part into an array.
+
+//  point  : solution 1 ( using split method )
+
+function breakAddress(url) {
+	let result = url.split('://');
+	let protocol = result[0];
+	let address = result[1].split('/');
+	let domain = address[0];
+	let path = address[1].split('?')[0];
+	let query = address[1].split('&');
+	let queryObj = {};
+	for (let i = 0; i < query.length; i++) {
+		let key = query[i].split('=')[0];
+		let value = query[i].split('=')[1];
+		queryObj[key] = value;
+	}
+	return {
+		result,
+		protocol,
+		domain,
+		path,
+		queryObj,
+	};
+}
+
+console.log(breakAddress('https://www.w3resource.com/javascript-exercises/'));
+console.log(
+	breakAddress(
+		'https://www.w3resource.com/javascript-exercises/?name=saif&age=23&country=BD',
+	),
+);
+
+//  point  : solution 2 ( using regex )
+
+function breakAddress2(url) {
+	let result = url.match(/(\w+):\/\/([\w.]+)\/(\S*)(?:\?(\S*))?/); // Copied from stackOverflow
+	let protocol = result[1];
+	let domain = result[2];
+	let path = result[3];
+	let query = result[4] ? result[4].split('&') : [];
+	let queryObj = {};
+	for (let i = 0; i < query.length; i++) {
+		let key = query[i].split('=')[0];
+		let value = query[i].split('=')[1];
+		queryObj[key] = value;
+	}
+	return {
+		result,
+		protocol,
+		domain,
+		path,
+		queryObj,
+	};
+}
+
+console.log(breakAddress2('https://www.w3resource.com/javascript-exercises/'));
+
+console.log(
+	breakAddress2(
+		'https://www.w3resource.com/javascript-exercises/?name=saif&age=23&country=BD',
+	),
+);
+
+// point : solution3 ( using URL constructor )
+
+function breakAddress3(url) {
+	let urlObj = new URL(url);
+
+	let protocol = urlObj.protocol;
+	let domain = urlObj.hostname;
+	let path = urlObj.pathname;
+	let query = urlObj.searchParams;
+	let queryObj = {};
+
+	for (let [key, value] of query) {
+		queryObj[key] = value;
+	}
+
+	return {
+		protocol,
+		domain,
+		path,
+		queryObj,
+	};
+}
+
+console.log(breakAddress3('https://www.w3resource.com/javascript-exercises/'));
+
+console.log(
+	breakAddress3(
+		'https://www.w3resource.com/javascript-exercises/?name=saif&age=23&country=BD',
+	),
+);
+
+// point : solution4 ( using split and  w3SChool way )
+
+function breakAddress4(url) {
+	let data = url.split('://');
+	let protocol = data[0];
+	data = data[1].split('.com');
+	let domain = data[0];
+	data = data[1].split('/');
+
+	if (data[1]) {
+		return [protocol, domain, data[1]];
+	}
+
+	return [protocol, domain];
+}
+
+console.log(breakAddress4('https://www.w3resource.com/javascript-exercises/'));
+console.log(
+	breakAddress3(
+		'https://www.w3resource.com/javascript-exercises/?name=saif&age=23&country=BD',
+	),
+);
