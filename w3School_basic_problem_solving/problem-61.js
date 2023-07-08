@@ -175,3 +175,65 @@ function sumOfDigits5(str) {
 console.log(sumOfDigits5('abcd12efg9')); // 12
 console.log(sumOfDigits5('w3resource')); // 3
 console.log(sumOfDigits5('12345')); // 15
+
+console.log('----------- another problem -----------');
+
+// task : Swap two halves of a given array of integers of even length.
+
+// point : solution 1 : ( using for loop )
+
+function swapHalves(arr) {
+	let middle = arr.length / 2;
+
+	for (let i = 0; i < middle; i++) {
+		let temp = arr[i];
+		arr[i] = arr[i + middle];
+		arr[i + middle] = temp;
+	}
+	return arr;
+}
+
+console.log(swapHalves([1, 2, 3, 4, 5, 6])); // [4, 5, 6, 1, 2, 3]
+console.log(swapHalves([1, 2, 3, 4, 5, 6, 7, 8])); // [5, 6, 7, 8, 1, 2, 3, 4]
+
+// point : solution 2 : ( using while loop )
+
+function swapHalves2(arr) {
+	let middle = arr.length / 2;
+
+	let i = 0;
+
+	while (i < middle) {
+		let temp = arr[i];
+		arr[i] = arr[i + middle];
+		arr[i + middle] = temp;
+
+		i++;
+	}
+
+	return arr;
+}
+
+console.log(swapHalves2([1, 2, 3, 4, 5, 6])); // [4, 5, 6, 1, 2, 3]
+console.log(swapHalves2([1, 2, 3, 4, 5, 6, 7, 8])); // [5, 6, 7, 8, 1, 2, 3, 4]
+
+// point : solution 3 : ( using recursion  ) // not working
+
+function swapHalves3(arr) {
+	let middle = Math.floor(arr.length / 2);
+
+	if (arr.length === 0) {
+		return [];
+	} else if (arr.length === 1) {
+		return arr;
+	} else {
+		let temp = arr[0];
+		arr[0] = arr[middle];
+		arr[middle] = temp;
+	}
+
+	return arr.slice(middle).concat(swapHalves3(arr.slice(0, middle)));
+}
+
+console.log(swapHalves3([1, 2, 3, 4, 5, 6])); // [4, 5, 6, 1, 2, 3]
+console.log(swapHalves3([1, 2, 3, 4, 5, 6, 7, 8])); // [5, 6, 7, 8, 1, 2, 3, 4]
