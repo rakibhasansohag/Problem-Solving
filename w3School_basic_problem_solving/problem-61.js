@@ -237,3 +237,114 @@ function swapHalves3(arr) {
 
 console.log(swapHalves3([1, 2, 3, 4, 5, 6])); // [4, 5, 6, 1, 2, 3]
 console.log(swapHalves3([1, 2, 3, 4, 5, 6, 7, 8])); // [5, 6, 7, 8, 1, 2, 3, 4]
+
+console.log('----------- another problem -----------');
+
+// task : Change the capitalization of all letters in a given string.
+
+// point : solution 1 : ( using for loop )
+
+function changeCapitalization(str) {
+	let newStr = '';
+
+	for (let i = 0; i < str.length; i++) {
+		if (str[i] === str[i].toUpperCase()) {
+			newStr += str[i].toLowerCase();
+		} else {
+			newStr += str[i].toUpperCase();
+		}
+	}
+	return newStr;
+}
+
+console.log(changeCapitalization('W3resource')); // w3RESOURCE
+console.log(changeCapitalization('Germany')); // gERMANY
+console.log(changeCapitalization('PhP')); // php
+
+// point : solution 2 : ( using while loop )
+
+function changeCapitalization2(str) {
+	let newStr = '';
+	let i = 0;
+
+	while (i < str.length) {
+		if (str[i] === str[i].toUpperCase()) {
+			newStr += str[i].toLowerCase();
+		} else {
+			newStr += str[i].toUpperCase();
+		}
+		i++;
+	}
+	return newStr;
+}
+
+console.log(changeCapitalization2('W3resource')); // w3RESOURCE
+console.log(changeCapitalization2('Germany')); // gERMANY
+
+// point : solution 3 : ( using recursion  )
+
+function changeCapitalization3(str) {
+	if (str.length === 0) {
+		return '';
+	} else if (str[0] === str[0].toUpperCase()) {
+		return str[0].toLowerCase() + changeCapitalization3(str.slice(1));
+	} else {
+		return str[0].toUpperCase() + changeCapitalization3(str.slice(1));
+	}
+}
+
+console.log(changeCapitalization3('W3resource')); // w3RESOURCE
+console.log(changeCapitalization3('Germany')); // gERMANY
+
+console.log('----------- another problem -----------');
+
+// task : Swap pairs of adjacent digits of a given integer of even length.
+
+// point : solution 1 : ( using for loop )
+
+function swapPairs(num) {
+	let str = num.toString();
+	let newStr = '';
+
+	for (let i = 0; i < str.length; i += 2) {
+		newStr += str[i + 1] + str[i];
+	}
+	return Number(newStr);
+}
+
+console.log(swapPairs(15)); // 214365
+console.log(swapPairs(12345678)); // 21436587
+
+// point : solution 2 : ( using while loop )
+
+function swapPairs2(num) {
+	let str = num.toString();
+	let newStr = '';
+	let i = 0;
+
+	while (i < str.length) {
+		newStr += str[i + 1] + str[i];
+		i += 2;
+	}
+	return Number(newStr);
+}
+
+console.log(swapPairs2(15)); // 214365
+console.log(swapPairs2(12345678)); // 21436587
+
+// point : solution 3 : ( using recursion  )
+
+function swapPairs3(num) {
+	if (num.toString().length === 0) {
+		return '';
+	} else {
+		return (
+			num.toString()[1] +
+			num.toString()[0] +
+			swapPairs3(num.toString().slice(2))
+		);
+	}
+}
+
+console.log(swapPairs3(15)); // 51
+console.log(swapPairs3(12345678)); // 21436587
