@@ -85,3 +85,93 @@ function sumOfCubes6(n) {
 
 console.log(sumOfCubes6(3)); // 36
 console.log(sumOfCubes6(4)); // 100
+
+console.log('----------- another problem -----------');
+
+// task : Compute the sum of all digits that occur in a given string.
+
+// point : solution 1 : ( using for loop )
+
+function sumOfDigits(str) {
+	let sum = 0;
+	for (let i = 0; i < str.length; i++) {
+		if (str[i] >= '0' && str[i] <= '9') {
+			sum += Number(str[i]);
+		}
+	}
+	return sum;
+}
+
+console.log(sumOfDigits('abcd12efg9')); // 12
+console.log(sumOfDigits('w3resource')); // 3
+console.log(sumOfDigits('12345')); // 15
+
+// point : solution 2 : ( using while loop )
+
+function sumOfDigits2(str) {
+	let sum = 0;
+	let i = 0;
+
+	while (i < str.length) {
+		if (str[i] >= '0' && str[i] <= '9') {
+			sum += Number(str[i]);
+		}
+		i++;
+	}
+	return sum;
+}
+
+console.log(sumOfDigits2('abcd12efg9')); // 12
+console.log(sumOfDigits2('w3resource')); // 3
+console.log(sumOfDigits2('12345')); // 15
+
+// point : solution 3 : ( using recursion  )
+
+function sumOfDigits3(str) {
+	if (str.length === 0) {
+		return 0;
+	} else if (str[0] >= '0' && str[0] <= '9') {
+		return Number(str[0]) + sumOfDigits3(str.slice(1));
+	} else {
+		return sumOfDigits3(str.slice(1));
+	}
+}
+
+console.log(sumOfDigits3('abcd12efg9')); // 12
+console.log(sumOfDigits3('w3resource')); // 3
+console.log(sumOfDigits3('12345')); // 15
+
+// point : solution 4 : ( using reduce  by for loop  )
+
+function sumOfDigits4(str) {
+	let arr = [];
+
+	for (let i = 0; i < str.length; i++) {
+		if (str[i] >= '0' && str[i] <= '9') {
+			arr.push(Number(str[i]));
+		}
+	}
+	return arr.reduce((a, b) => a + b, 0);
+}
+
+console.log(sumOfDigits4('abcd12efg9')); // 12
+console.log(sumOfDigits4('w3resource')); // 3
+console.log(sumOfDigits4('12345')); // 15
+
+// point : solution 5 : ( using reduce  by while loop  )
+
+function sumOfDigits5(str) {
+	let arr = [];
+	let i = 0;
+
+	while (i < str.length) {
+		if (str[i] >= '0' && str[i] <= '9') [arr.push(Number(str[i]))];
+		i++;
+	}
+
+	return arr.reduce((a, b) => a + b, 0);
+}
+
+console.log(sumOfDigits5('abcd12efg9')); // 12
+console.log(sumOfDigits5('w3resource')); // 3
+console.log(sumOfDigits5('12345')); // 15
