@@ -71,5 +71,3 @@ console.log(
 		{ age: 25, hair: 'long', beard: true },
 	),
 ); // false
-
-console.log('---------------- another problem -----------------');
