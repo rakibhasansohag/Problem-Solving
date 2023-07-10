@@ -73,3 +73,34 @@ console.log(
 ); // false
 
 console.log('---------------- another problem -----------------');
+
+// todo : Copy a string to the clipboard
+
+/*
+
+Write a JavaScript program to copy a string to the clipboard.
+
+ #. Create a new <textarea> element, fill it with the supplied data and add it to the HTML document.
+
+ # Use Selection.getRangeAt()to store the selected range (if any).
+Use Document.execCommand('copy') to copy to the clipboard.
+
+# Remove the <textarea> element from the HTML document.
+Finally, use Selection().addRange() to recover the original selected range (if any).
+
+ point : NOTICE: The same functionality can be easily implemented by using the new asynchronous Clipboard API, which is still experimental but should be used in the future instead of this snippet.
+
+*/
+
+// point  : solution 1 ( using document.execCommand() , getSelection , createTextNode() , appendChild() , select() , removeChild() )
+
+const boxElement = document.getElementById('element');
+const textareaElement = document.getElementById('textarea');
+
+function copyToClipboard(text) {
+	textareaElement.value = text;
+	textareaElement.select();
+	document.execCommand('copy');
+}
+
+copyToClipboard('Hello World');
