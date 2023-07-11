@@ -56,6 +56,8 @@ Omit the second argument, delimiter, to use a default delimiter of.
 
 */
 
+// point : solution 1 ( using split and map and reduce )
+
 const csToArrayOfObject = (data, delimiter = ',') => {
 	const titles = data.slice(0, data.indexOf('\n')).split(delimiter);
 
@@ -73,3 +75,25 @@ const csToArrayOfObject = (data, delimiter = ',') => {
 
 console.log(csToArrayOfObject('col1,col2\na,b\nc,d')); // [{'col1': 'a', 'col2': 'b'}, {'col1': 'c', 'col2': 'd'}];
 console.log(csToArrayOfObject('col1;col2\na;b\nc;d', ';')); // [{'col1': 'a', 'col2': 'b'}, {'col1': 'c', 'col2': 'd'}];
+
+// point  solution 2 ( using for loop split and for of loop )
+
+const csToArrayOfObject2 = (data, delimiter = ',') => {
+	const titles = data.slice(0, data.indexOf('\n')).split(delimiter);
+
+	const res = [];
+
+	for (const el of data.slice(data.indexOf('\n')).split('\n')) {
+		const values = el.split(delimiter);
+		const obj = {};
+		for (let i = 0; i < titles.length; i++) {
+			obj[titles[i]] = values[i];
+		}
+		res.push(obj);
+	}
+	return res.splice(1);
+};
+
+console.log(csToArrayOfObject2('col1,col2\na,b\nc,d')); // /[{'col1': 'a', 'col2': 'b'}, {'col1': 'c', 'col2': 'd'}];
+
+console.log(csToArrayOfObject2('col1;col2\na;b\nc;d', ';')); /// [{'col1': 'a', 'col2': 'b'}, {'col1': 'c', 'col2': 'd'}];
