@@ -97,3 +97,80 @@ const csToArrayOfObject2 = (data, delimiter = ',') => {
 console.log(csToArrayOfObject2('col1,col2\na,b\nc,d')); // /[{'col1': 'a', 'col2': 'b'}, {'col1': 'c', 'col2': 'd'}];
 
 console.log(csToArrayOfObject2('col1;col2\na;b\nc;d', ';')); /// [{'col1': 'a', 'col2': 'b'}, {'col1': 'c', 'col2': 'd'}];
+
+console.log('------------------ another problem ------------------');
+
+/*
+
+todo : Write a JavaScript program to convert an array of objects to a comma-separated value (CSV) string that contains only the columns specified.
+
+$ Use Array.prototype.join(delimiter) to combine all the names in columns to create the first row.
+
+$ Use Array.prototype.map() and Array.prototype.reduce() to create a row for each object, substituting non-existent values with empty strings and only mapping values in columns.
+
+$ Use Array.prototype.join('\n') to combine all rows into a string.
+
+$ Omit the third argument, delimiter, to use a default delimiter of,.
+
+
+
+*/
+
+// point : solution 1 ( using map and reduce and join )
+
+const objectToCsv = (data, columns, delimiter = ',') => {
+	return [
+		columns.join(delimiter),
+		...data.map((el) =>
+			columns.reduce(
+				(acc, key) =>
+					`${acc}${!acc.length ? '' : delimiter}"${!el[key] ? '' : el[key]}"`,
+				'',
+			),
+		),
+	].join('\n');
+};
+
+console.log(
+	objectToCsv(
+		[{ x: 100, y: 200 }, { x: 300, y: 400, z: 500 }, { x: 6 }, { y: 7 }],
+		['x', 'y'],
+	),
+);
+console.log(
+	objectToCsv(
+		[{ x: 100, y: 200 }, { x: 300, y: 400, z: 500 }, { x: 6 }, { y: 7 }],
+		['x', 'y'],
+		';',
+	),
+);
+
+// point : solution 2 ( using for of loop and join )
+
+const objectToCsv2 = (data, columns, delimiter = ',') => {
+	const titles = columns.join(delimiter);
+	const res = [];
+	for (const el of data) {
+		const values = columns.reduce(
+			(acc, key) =>
+				`${acc}${!acc.length ? '' : delimiter}"${!el[key] ? '' : el[key]}"`,
+			'',
+		);
+		res.push(values);
+	}
+	return [titles, ...res].join('\n');
+};
+
+console.log(
+	objectToCsv2(
+		[{ x: 100, y: 200 }, { x: 300, y: 400, z: 500 }, { x: 6 }, { y: 7 }],
+		['x', 'y'],
+	),
+);
+console.log(
+	objectToCsv2(
+		[{ x: 100, y: 200 }, { x: 300, y: 400, z: 500 }, { x: 6 }, { y: 7 }],
+		['x', 'y'],
+		';',
+	),
+);
