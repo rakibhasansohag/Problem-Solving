@@ -42,7 +42,33 @@ const dog = {
 	message: 'https://images.dog.ceo/breeds/african/n02116738_1105.jpg',
 };
 
-console.log(dig(data, 'some data')); // 'some data'
-console.log(dig(data, 'level3')); // 'some data'
-console.log(dig(data, 'level4')); // undefined
-console.log(dig(dog, 'status')); // 'success'
+// console.log(dig(data, 'some data')); // 'some data'
+// console.log(dig(data, 'level3')); // 'some data'
+// console.log(dig(data, 'level4')); // undefined
+// console.log(dig(dog, 'status')); // 'success'
+
+// point : ( solution 2 : using nested for loop and for in loop )
+const dig2 = (obj, target) => {
+	const stack = [obj];
+
+	while (stack.length > 0) {
+		const current = stack.pop();
+
+		if (target in current) {
+			return current[target];
+		}
+
+		for (const key in current) {
+			if (typeof current[key] === 'object') {
+				stack.push(current[key]);
+			}
+		}
+	}
+
+	return undefined;
+};
+
+console.log(dig2(data, 'some data')); // 'some data'
+console.log(dig2(data, 'level3')); // 'some data'
+console.log(dig2(data, 'level4')); // undefined
+console.log(dig2(dog, 'status')); // 'success'
