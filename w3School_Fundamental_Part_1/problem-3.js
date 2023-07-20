@@ -160,6 +160,18 @@ const powerset = (arr, index = 0, currentSubset = [], result = []) => {
 	return result;
 };
 
-console.log(powerset([1, 2])); // [[], [1], [2], [1,2]]
-console.log(powerset([1, 2, 3])); // [[], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3]]
-console.log(powerset([1, 2, 3, 4])); // [[], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3], [4], [1,4], [2,4], [1,2,4], [3,4], [1,3,4], [2,3,4], [1,2,3,4]]
+// console.log(powerset([1, 2])); // [[], [1], [2], [1,2]]
+// console.log(powerset([1, 2, 3])); // [[], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3]]
+// console.log(powerset([1, 2, 3, 4])); // [[], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3], [4], [1,4], [2,4], [1,2,4], [3,4], [1,3,4], [2,3,4], [1,2,3,4]]
+
+// point : ( solution 2 : using filter  and map method )
+
+const powerset2 = (arr) =>
+	arr.reduce(
+		(acc, cur) => acc.concat(acc.map((result) => [cur].concat(result))),
+		[[]],
+	);
+
+console.log(powerset2([1, 2])); // [[], [1], [2], [1,2]]
+console.log(powerset2([1, 2, 3])); // [[], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3]]
+console.log(powerset2([1, 2, 3, 4])); // [[], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3], [4], [1,4], [2,4], [1,2,4], [3,4], [1,3,4], [2,3,4], [1,2,3,4]]
