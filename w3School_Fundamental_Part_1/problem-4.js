@@ -79,3 +79,20 @@ const randomHexaDecimalColorCode = () => {
 };
 
 console.log(randomHexaDecimalColorCode());
+
+console.log('------------------ another problem ------------------');
+
+/*
+
+todo: Removes non-printable ASCII characters from a given string.
+
+Use a regular expression to remove non-printable ASCII characters.
+
+*/
+
+// point : ( solution 1 using replace() and regex )
+
+const removeNonASCII = (str) => str.replace(/[^\x20-\x7E]/g, '');
+
+console.log(removeNonASCII('äÄçÇéÉêRakibHasanSohagÖÐþúÚ'));
+
