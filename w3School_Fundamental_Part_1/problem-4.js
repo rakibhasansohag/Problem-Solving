@@ -96,3 +96,29 @@ const removeNonASCII = (str) => str.replace(/[^\x20-\x7E]/g, '');
 
 console.log(removeNonASCII('äÄçÇéÉêRakibHasanSohagÖÐþúÚ'));
 
+console.log('------------------ another problem ------------------');
+// todo : Convert the length of a given string in bytes
+
+// point : ( solution 1 using Blob() and ArrayBuffer() )
+
+const byteSize = (str) => new Blob([str]).size;
+
+console.log(byteSize('😀'));
+console.log(byteSize('Hello World'));
+console.log(byteSize('Rakib Hasan Sohag'));
+
+// point : ( solution 2 using for loop and array push and charCodeAt() )
+
+const byteSize2 = (str) => {
+	let bytes = [];
+
+	for (let i = 0; i < str.length; i++) {
+		bytes.push(str.charCodeAt(i));
+	}
+
+	return bytes.length;
+};
+
+console.log(byteSize2('😀'));
+console.log(byteSize2('Hello World'));
+console.log(byteSize2('Rakib Hasan Sohag'));
