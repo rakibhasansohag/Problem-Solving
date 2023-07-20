@@ -111,9 +111,9 @@ const digitize3 = (n) => {
 	return result;
 };
 
-console.log(digitize3(123)); // [1, 2, 3]
-console.log(digitize3(1230)); // [1, 2, 3, 0]
-console.log(digitize3(8675309)); // [8, 6, 7, 5, 3, 0, 9]
+// console.log(digitize3(123)); // [1, 2, 3]
+// console.log(digitize3(1230)); // [1, 2, 3, 0]
+// console.log(digitize3(8675309)); // [8, 6, 7, 5, 3, 0, 9]
 
 console.log('...................another problem...........');
 
@@ -139,7 +139,27 @@ const pull2 = (arr, ...args) => {
 	return result;
 };
 
-console.log(pull2(['a', 'b', 'c', 'a', 'b', 'c'], 'a', 'c')); // [ 'b', 'b' ]
-console.log(pull2(['a', 'b', 'c', 'a', 'b', 'c'], 'b')); // [ 'a', 'c', 'a', 'c' ]
+// console.log(pull2(['a', 'b', 'c', 'a', 'b', 'c'], 'a', 'c')); // [ 'b', 'b' ]
+// console.log(pull2(['a', 'b', 'c', 'a', 'b', 'c'], 'b')); // [ 'a', 'c', 'a', 'c' ]
 
+// todo : Combine the numbers of a given array into an array containing all combinations.
 
+// point : ( solution 1 : using for loop and push method )
+
+const powerset = (arr, index = 0, currentSubset = [], result = []) => {
+	if (index === arr.length) {
+		result.push(currentSubset.slice());
+		return;
+	}
+
+	currentSubset.push(arr[index]);
+	powerset(arr, index + 1, currentSubset, result);
+
+	currentSubset.pop();
+	powerset(arr, index + 1, currentSubset, result);
+	return result;
+};
+
+console.log(powerset([1, 2])); // [[], [1], [2], [1,2]]
+console.log(powerset([1, 2, 3])); // [[], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3]]
+console.log(powerset([1, 2, 3, 4])); // [[], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3], [4], [1,4], [2,4], [1,2,4], [3,4], [1,3,4], [2,3,4], [1,2,3,4]]
