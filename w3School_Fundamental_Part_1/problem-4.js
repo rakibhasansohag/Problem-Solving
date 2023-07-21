@@ -103,9 +103,9 @@ console.log('------------------ another problem ------------------');
 
 const byteSize = (str) => new Blob([str]).size;
 
-console.log(byteSize('😀'));
-console.log(byteSize('Hello World'));
-console.log(byteSize('Rakib Hasan Sohag'));
+// console.log(byteSize('😀'));
+// console.log(byteSize('Hello World'));
+// console.log(byteSize('Rakib Hasan Sohag'));
 
 // point : ( solution 2 using for loop and array push and charCodeAt() )
 
@@ -119,6 +119,41 @@ const byteSize2 = (str) => {
 	return bytes.length;
 };
 
-console.log(byteSize2('😀'));
-console.log(byteSize2('Hello World'));
-console.log(byteSize2('Rakib Hasan Sohag'));
+// console.log(byteSize2('😀'));
+// console.log(byteSize2('Hello World'));
+// console.log(byteSize2('Rakib Hasan Sohag'));
+
+console.log('------------------ another problem ------------------');
+
+// todo : Replace the names of multiple object keys with the values provided.
+
+// point : ( solution 1 using forEach() and Object.keys() and Object.assign() )
+
+const replaceKeys = (obj, keysMap) => {
+	Object.keys(obj).forEach((key) => {
+		if (keysMap[key]) {
+			obj[keysMap[key]] = obj[key];
+			delete obj[key]; // delete the key
+		}
+	});
+	return obj;
+};
+
+const obj = { name: 'Bobo', job: 'Programmer', shoeSize: 100 };
+console.log('original object : ', obj);
+console.log('------------------');
+// console.log(replaceKeys(obj, { name: 'firstName', job: 'Actor' }));
+
+// point : ( solution 2 using reduce() and Object.keys() and Object.assign() )
+
+const replaceKeys2 = (keysMap, obj) => {
+	return Object.keys(obj).reduce(
+		(acc, key) => ({
+			...acc,
+			...{ [keysMap[key] || key]: obj[key] },
+		}),
+		{},
+	);
+};
+
+console.log(replaceKeys2({ name: 'firstName', job: 'Actor' }, obj));
