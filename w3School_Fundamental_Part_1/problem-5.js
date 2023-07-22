@@ -54,3 +54,22 @@ const all2 = (arr, fn = Boolean) => arr.reduce((a, b) => a && fn(b), true);
 console.log(all2([4, 2, 3], (x) => x > 1));
 console.log(all2([4, 2, 3], (x) => x < 1));
 console.log(all2([1, 2, 3]));
+
+console.log('------------- another problem -----------------');
+
+// todo : Split values of two given arrays into two groups.
+
+// point : solution 1  ( using reduce() and array.push() )
+
+const bifurcate = (arr, filter) => {
+	return arr.reduce(
+		(acc, value, index) => (acc[filter[index] ? 0 : 1].push(value), acc),
+		[[], []],
+	);
+};
+
+console.log(bifurcate([1, 2, 3, 4], [true, true, false, true]));
+console.log(bifurcate([1, 2, 3, 4], [true, true, true, true]));
+console.log(bifurcate([1, 2, 3, 4], [false, false, false, false]));
+
+console.log(bifurcate([1, 2], [false, false]));
