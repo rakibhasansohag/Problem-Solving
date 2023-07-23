@@ -73,3 +73,83 @@ console.log(bifurcate([1, 2, 3, 4], [true, true, true, true]));
 console.log(bifurcate([1, 2, 3, 4], [false, false, false, false]));
 
 console.log(bifurcate([1, 2], [false, false]));
+
+console.log('-------------------- another problem -------------------');
+
+// todo : Remove specified elements from the left of a given array of elements.
+
+// point : solution 1  ( using filter() )
+
+const dropLeft = (arr, n = 1) => arr.filter((_, indexedDB) => indexedDB >= n);
+
+console.log(dropLeft([1, 2, 3]));
+console.log(dropLeft([1, 2, 3], 1));
+console.log(dropLeft([1, 2, 3], 2));
+console.log(dropLeft([1, 2, 3], 4));
+
+// point : solution 2  ( using slice() )
+
+const dropLeft2 = (arr, n = 1) => arr.slice(n);
+
+console.log(dropLeft2([1, 2, 3]));
+console.log(dropLeft2([1, 2, 3], 1));
+console.log(dropLeft2([1, 2, 3], 2));
+console.log(dropLeft2([1, 2, 3], 4));
+
+// point : solution 3  ( using splice() )
+
+const dropLeft3 = (arr, n = 1) =>
+	n < arr.length ? arr.splice(n, arr.length - n) : [];
+
+console.log(dropLeft3([1, 2, 3]));
+console.log(dropLeft3([1, 2, 3], 1));
+console.log(dropLeft3([1, 2, 3], 2));
+console.log(dropLeft3([1, 2, 3], 4));
+
+// point: solution 4 ( using reduce() )
+
+const dropLeft4 = (arr, n = 1) =>
+	arr.reduce((acc, cur) => (acc.push(cur), acc), []).slice(n);
+
+console.log(dropLeft4([1, 2, 3]));
+console.log(dropLeft4([1, 2, 3], 1));
+console.log(dropLeft4([1, 2, 3], 2));
+console.log(dropLeft4([1, 2, 3], 4));
+
+// point : solution 5 ( using for loop )
+
+const dropLeft5 = (arr, n = 1) => {
+	const result = [];
+
+	for (let i = n; i < arr.length; i++) {
+		result.push(arr[i]);
+	}
+
+	return result;
+};
+
+console.log(dropLeft5([1, 2, 3]));
+console.log(dropLeft5([1, 2, 3], 1));
+console.log(dropLeft5([1, 2, 3], 2));
+console.log(dropLeft5([1, 2, 3], 4));
+
+// point : solution 6 ( using while loop )
+
+const dropLeft6 = (arr, n = 1) => {
+	const result = [];
+	let i = n;
+
+	while (i < arr.length) {
+		result.push(arr[i]);
+		i++;
+	}
+	return result;
+};
+
+console.log(dropLeft6([1, 2, 3]));
+console.log(dropLeft6([1, 2, 3], 1));
+console.log(dropLeft6([1, 2, 3], 2));
+console.log(dropLeft6([1, 2, 3], 4));
+
+console.log('-------------------- another problem -------------------');
+
