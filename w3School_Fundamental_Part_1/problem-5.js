@@ -153,3 +153,66 @@ console.log(dropLeft6([1, 2, 3], 4));
 
 console.log('-------------------- another problem -------------------');
 
+// todo : Remove specified elements from the right of a given array of elements.
+
+// point : solution 1  ( using slice() )
+
+const dropRight = (arr, n = -1) => arr.slice(n);
+
+console.log(dropRight([1, 2, 3]));
+console.log(dropRight([1, 2, 3], -1));
+console.log(dropRight([1, 2, 3], -2));
+console.log(dropRight([1, 2, 3], -4));
+
+// point : solution 2  ( using splice() )
+
+const dropRight2 = (arr, n = -1) => arr.splice(n);
+
+console.log(dropRight2([1, 2, 3]));
+console.log(dropRight2([1, 2, 3], -1));
+console.log(dropRight2([1, 2, 3], -2));
+console.log(dropRight2([1, 2, 3], -4));
+
+// point: solution 3 ( using reduce() )
+
+const dropRight3 = (arr, n = -1) =>
+	arr.reduce((acc, cur) => (acc.push(cur), acc), []).slice(n);
+
+console.log(dropRight3([1, 2, 3]));
+console.log(dropRight3([1, 2, 3], -1));
+console.log(dropRight3([1, 2, 3], -2));
+console.log(dropRight3([1, 2, 3], -4));
+
+// point : solution 4 ( using for loop )
+
+const dropRight4 = (arr, n = -1) => {
+	const result = [];
+
+	for (let i = 0; i < arr.length; i++) {
+		result.push(arr[i]);
+	}
+	return result.slice(n);
+};
+console.log('------------------');
+console.log(dropRight4([1, 2, 3]));
+console.log(dropRight4([1, 2, 3], -1));
+console.log(dropRight4([1, 2, 3], -2));
+console.log(dropRight4([1, 2, 3], -4));
+
+// point : solution 5 ( using while loop )
+
+const dropRight5 = (arr, n = -1) => {
+	let result = [];
+	let i = 0;
+
+	while (i < arr.length) {
+		result.push(arr[i]);
+		i++;
+	}
+	return result.splice(n);
+};
+
+console.log(dropRight5([1, 2, 3]));
+console.log(dropRight5([1, 2, 3], -1));
+console.log(dropRight5([1, 2, 3], -2));
+console.log(dropRight5([1, 2, 3], -4));
