@@ -109,16 +109,17 @@ console.log('--------------- another problem -----------------');
 // todo : Filter out the non-unique values in an array.
 
 // point :  solution 1 ( using filter() and indexOf() with lastIndexOf() )
-
+console.time('filterNonUnique1 with indexOf() and lastIndexOf()');
 const filterNonUnique1 = (arr) =>
 	arr.filter((element) => arr.indexOf(element) === arr.lastIndexOf(element));
 
 console.log(filterNonUnique1([1, 2, 2, 3, 4, 4, 5])); // [ 1, 3, 5 ]
 console.log(filterNonUnique1([1, 2, 3, 4])); // [ 1, 2, 3, 4 ]
 console.log(filterNonUnique1([1, 1, 1, 2, 2])); // []
+console.timeEnd('filterNonUnique1 with indexOf() and lastIndexOf()');
 
 // point : solution 2 ( using filter() and Set() )
-
+console.time('filterNonUnique2 with Set()');
 const filterNonUnique2 = (arr) => {
 	let set = {};
 
@@ -132,9 +133,10 @@ const filterNonUnique2 = (arr) => {
 console.log(filterNonUnique2([1, 2, 2, 3, 4, 4, 5])); // [ 1, 2, 3, 4, 5 ]
 console.log(filterNonUnique2([1, 2, 3, 4])); // [ 1, 2, 3, 4 ]
 console.log(filterNonUnique2([1, 1, 1, 2, 2])); // [  ]
+console.timeEnd('filterNonUnique2 with Set()');
 
 // point : solution 3 ( using filter() and reduce() )
-
+console.time('filterNonUnique3 with reduce()');
 const filterNonUnique3 = (arr) => {
 	return arr.filter(
 		(element) =>
@@ -145,9 +147,10 @@ const filterNonUnique3 = (arr) => {
 console.log(filterNonUnique3([1, 2, 2, 3, 4, 4, 5])); // [ 1, 2, 3, 4, 5 ]
 console.log(filterNonUnique3([1, 2, 3, 4])); // [ 1, 2, 3, 4 ]
 console.log(filterNonUnique3([1, 1, 1, 2, 2])); // [  ]
+console.timeEnd('filterNonUnique3 with reduce()');
 
 // point : solution 4 ( using filter() and forEach() )
-
+console.time('filterNonUnique4 with forEach()');
 const filterNonUnique4 = (arr) => {
 	let result = [];
 
@@ -162,9 +165,10 @@ const filterNonUnique4 = (arr) => {
 console.log(filterNonUnique4([1, 2, 2, 3, 4, 4, 5])); // [ 1, 2, 3, 4, 5 ]
 console.log(filterNonUnique4([1, 2, 3, 4])); // [ 1, 2, 3, 4 ]
 console.log(filterNonUnique4([1, 1, 1, 2, 2])); // [  ]
+console.timeEnd('filterNonUnique4 with forEach()');
 
 // point : solution 5 ( using filter() and for of loop )
-
+console.time('filterNonUnique5 with for of loop ');
 const filterNonUnique5 = (arr) => {
 	let result = [];
 
@@ -179,8 +183,10 @@ const filterNonUnique5 = (arr) => {
 console.log(filterNonUnique5([1, 2, 2, 3, 4, 4, 5])); // [ 1, 2, 3, 4, 5 ]
 console.log(filterNonUnique5([1, 2, 3, 4])); // [ 1, 2, 3, 4 ]
 console.log(filterNonUnique5([1, 1, 1, 2, 2])); // [  ]
+console.timeEnd('filterNonUnique5 with for of loop ');
 
 // point : solution 6 ( using filter() and for loop )
+console.time('filterNonUnique6 with for loop ');
 
 const filterNonUnique6 = (arr) => {
 	const result = [];
@@ -197,3 +203,34 @@ const filterNonUnique6 = (arr) => {
 console.log(filterNonUnique6([1, 2, 2, 3, 4, 4, 5])); // [ 1, 2, 3, 4, 5 ]
 console.log(filterNonUnique6([1, 2, 3, 4])); // [ 1, 2, 3, 4 ]
 console.log(filterNonUnique6([1, 1, 1, 2, 2])); // [  ]
+console.timeEnd('filterNonUnique6 with for loop ');
+
+// point : solution 7 ( with out using any built-in methods )
+console.time('filterNonUnique7 with out built-in methods ');
+const filterNonUnique7 = (arr) => {
+	let result = [];
+
+	for (let i = 0; i < arr.length; i++) {
+		let count = 0;
+
+		for (let j = 0; j < arr.length; j++) {
+			if (arr[i] === arr[j]) {
+				count++;
+			}
+
+			if (count > 1) {
+				break;
+			}
+
+			if (j === arr.length - 1 && count === 1) {
+				result.push(arr[i]);
+			}
+		}
+	}
+	return result;
+};
+
+console.log(filterNonUnique7([1, 2, 2, 3, 4, 4, 5])); // [ 1, 2, 3, 4, 5 ]
+console.log(filterNonUnique7([1, 2, 3, 4])); // [ 1, 2, 3, 4 ]
+console.log(filterNonUnique7([1, 1, 1, 2, 2])); // [  ]
+console.timeEnd('filterNonUnique7 with out built-in methods ');
