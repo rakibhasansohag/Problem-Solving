@@ -51,3 +51,30 @@ console.log(
 	),
 ); // [ { id: 2, value: 'c' } ]
 
+console.log('------------ another problem -----------------');
+
+// todo : Decapitalize the first letter of a string.
+
+// point : solution  1 ( using slice() and toLowerCase() )
+
+const Decapitalize = ([first, ...rest], upperRest = false) => {
+	return (
+		first.toLowerCase() +
+		(upperRest ? rest.join('').toUpperCase() : rest.join(''))
+	);
+};
+
+console.log(Decapitalize('Red')); // 'red'
+console.log(Decapitalize('Red', true)); // 'rED'
+
+// point : solution  2 ( using replace() and toLowerCase() )
+
+const Decapitalize2 = ([first, ...rest], upperRest = false) => {
+	return (
+		first.replace(first, first.toLowerCase()) +
+		(upperRest ? rest.join('').toUpperCase() : rest.join(''))
+	);
+};
+
+console.log(Decapitalize2('Red')); // 'red'
+console.log(Decapitalize2('Red', true)); // 'rED'
