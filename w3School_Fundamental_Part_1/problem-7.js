@@ -78,3 +78,69 @@ const Decapitalize2 = ([first, ...rest], upperRest = false) => {
 
 console.log(Decapitalize2('Red')); // 'red'
 console.log(Decapitalize2('Red', true)); // 'rED'
+
+console.log('------------ another problem -----------------');
+
+// todo : Create a new array out of the two supplied by creating each possible pair from the arrays.
+
+// point : solution  1 ( using reduce() and map() )
+
+const xProd = (a, b) =>
+	a.reduce((acc, x) => acc.concat(b.map((y) => [x, y])), []);
+
+console.log(xProd([1, 2], ['a', 'b'])); // [[1, 'a'], [1, 'b'], [2, 'a'], [2, 'b']]
+console.log(xProd([1, 2], [1, 2]));
+console.log(xProd(['a', 'b'], ['a', 'b']));
+console.log('--------------');
+// point : solution 2 ( using for loop )
+
+const xProd2 = (a, b) => {
+	let arr = [];
+
+	for (let i = 0; i < a.length; i++) {
+		for (let j = 0; j < b.length; j++) {
+			arr.push([a[i], b[j]]);
+		}
+	}
+
+	return arr;
+};
+
+console.log(xProd2([1, 2], ['a', 'b'])); // [[1, 'a'], [1, 'b'], [2, 'a'], [2, 'b']]
+console.log(xProd2([1, 2], [1, 2]));
+console.log(xProd2(['a', 'b'], ['a', 'b']));
+console.log('--------------');
+
+console.log('------------ another problem -----------------');
+
+// todo : Return true if the string is y/yes other wise false.
+// task : will have to use regexp => /^(y|yes)$/i : /^(n|no)$/i
+
+// point : solution  1 ( using test() )
+
+const yesNo = (val) => /^(y|yes)$/i.test(val);
+
+console.log(yesNo('Y')); // true
+console.log(yesNo('yes')); // true
+console.log(yesNo('No')); // false
+console.log(yesNo('Foo')); // false
+
+// point : solution  2 ( using match() )
+
+const yesNo2 = (val) => (val.match(/^(y|yes)$/i) ? true : false);
+
+console.log(yesNo2('Y')); // true
+console.log(yesNo2('yes')); // true
+console.log(yesNo2('No')); // false
+console.log(yesNo2('Foo')); // false
+
+// point : solution  3 ( using includes() )
+
+const yesNo3 = (val) => ['y', 'yes'].includes(val.toLowerCase());
+
+console.log(yesNo3('Y')); // true
+console.log(yesNo3('yes')); // true
+console.log(yesNo3('No')); // false
+console.log(yesNo3('Foo')); // false
+
+console.log('------------ another problem -----------------');
