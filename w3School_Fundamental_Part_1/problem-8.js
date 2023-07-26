@@ -174,3 +174,86 @@ const filterOutElements6 = (arr, ...args) => {
 
 console.log(filterOutElements6([2, 1, 2, 3], 1, 2));
 console.log(filterOutElements6([2, 1, 2, 3], 3, 4));
+
+console.log('--------------- another solution -----------------');
+
+// task : Find all elements in a given array except for the first one.
+
+// point :  solution 1 :  using slice method
+
+const findElements = (arr) => arr.slice(1);
+
+console.log(findElements([1, 2, 3]));
+console.log(findElements([1, 2, 3, 4]));
+
+// point :  solution 2 :  using filter method
+
+const findElements2 = (arr) => arr.filter((item, index) => index !== 0);
+
+console.log(findElements2([1, 2, 3]));
+console.log(findElements2([1, 2, 3, 4]));
+
+// point :  solution 3 :  using for loop
+
+const findElements3 = (arr) => {
+	let newArr = [];
+
+	for (let i = 0; i < arr.length; i++) {
+		if (i !== 0) {
+			newArr.push(arr[i]);
+		} else {
+			continue;
+		}
+	}
+	return newArr;
+};
+
+console.log(findElements3([1, 2, 3]));
+console.log(findElements3([1, 2, 3, 4]));
+
+// point :  solution 4 :  using reduce method
+
+const findElements4 = (arr) => {
+	return arr.reduce((acc, cur, index) => {
+		if (index !== 0) {
+			acc.push(cur);
+		}
+		return acc;
+	}, []);
+};
+
+console.log(findElements4([1, 2, 3]));
+console.log(findElements4([1, 2, 3, 4]));
+
+// point :  solution 5 :  using for of loop
+
+const findElements5 = (arr) => {
+	let newArr = [];
+
+	for (let item of arr) {
+		if (item !== arr[0]) {
+			newArr.push(item);
+		}
+	}
+	return newArr;
+};
+
+console.log(findElements5([1, 2, 3]));
+console.log(findElements5([1, 2, 3, 4]));
+
+// point :  solution 6 :  using forEach method
+
+const findElements6 = (arr) => {
+	let newArr = [];
+
+	arr.forEach((item, index) => {
+		if (index !== 0) {
+			newArr.push(item);
+		}
+	});
+
+	return newArr;
+};
+
+console.log(findElements6([1, 2, 3]));
+console.log(findElements6([1, 2, 3, 4]));
