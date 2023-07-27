@@ -49,3 +49,20 @@ function sum4(arr, n) {
 
 console.log(sum4([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], 'n'));
 console.log(sum4([{ n: -4 }, { n: -2 }, { n: 8 }, { n: 6 }], 'n'));
+
+console.log('------------ another problem  --------------');
+
+// task : Get a random number in the specified range.
+
+// point : solution 1 using Math.random() and min max
+
+function randomRange(min, max) {
+	return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+console.log(randomRange(1, 10));
+console.log(randomRange(1, 5));
+console.log(randomRange(-5, -2));
+console.log(randomRange(0, 1));
+
+console.log('------------ another problem  --------------');
