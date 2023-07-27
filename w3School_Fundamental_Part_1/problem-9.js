@@ -66,3 +66,34 @@ console.log(randomRange(-5, -2));
 console.log(randomRange(0, 1));
 
 console.log('------------ another problem  --------------');
+
+// task : Get an array of given n random integers in the specified range.
+
+// point : solution 1 using Math.random() and min max
+
+function randomRange2(min, max, n) {
+	let result = [];
+
+	for (let i = 0; i < n; i++) {
+		result.push(Math.floor(Math.random() * (max - min + 1) + min));
+	}
+	return result;
+}
+
+console.log(randomRange2(1, 10, 10));
+console.log(randomRange2(-10, 10, 5));
+
+// point : solution 2 using Math.random() and min max ( using Array.from )
+
+function randomRange3(min, max, n = 1) {
+	return Array.from({ length: n }, () =>
+		Math.floor(Math.random() * (max - min + 1) + min),
+	);
+}
+console.log('------------------');
+console.log(randomRange3(1, 10, 10));
+console.log(randomRange3(-10, 10, 5));
+
+console.log('------------------ another problem ------------');
+
+// task : 
