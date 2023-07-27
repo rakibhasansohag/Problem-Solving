@@ -96,4 +96,17 @@ console.log(randomRange3(-10, 10, 5));
 
 console.log('------------------ another problem ------------');
 
-// task : 
+// task :  Create a function that invokes each provided function with the arguments it receives and returns the results.
+
+// point  : solution 1 using apply nd speared operator.
+
+const overTheFunction =
+	(...myFunc) =>
+	(...args) =>
+		myFunc.map((fn) => fn.apply(null, args));
+
+const minMax = overTheFunction(Math.min, Math.max);
+
+console.log(minMax(1, 2, 3, 4, 5));
+console.log(minMax(1, 2, 5, 4, 3));
+console.log(minMax(1, 2, 5, -4, 3));
