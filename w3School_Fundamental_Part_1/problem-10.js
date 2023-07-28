@@ -142,4 +142,53 @@ console.log(padString4('cat', 8));
 console.log(padString4(String(42), 6, '0'));
 console.log(padString4('foobar', 3, 'A'));
 
+console.log('-------------- another problem -----------------');
 
+// task : Remove the key-value pairs corresponding to the given keys from an object.
+
+// point : solution 1 (using for loop)
+
+const removeKey = (obj, arr) => {
+	for (let i = 0; i < arr.length; i++) {
+		delete obj[arr[i]];
+	}
+	return obj;
+};
+
+const obj = { a: 1, b: '2', c: 3 };
+
+console.log(removeKey(obj, ['b']));
+console.log(removeKey(obj, ['a', 'c']));
+console.log(removeKey(obj, ['a', 'c', 'b']));
+
+// point : solution 2 (using filter() method)
+
+const removeKey2 = (obj, arr) => {
+	return Object.keys(obj)
+		.filter((key) => !arr.includes(key))
+		.reduce((acc, key) => {
+			acc[key] = obj[key];
+			return acc;
+		}, {});
+};
+
+const obj1 = { a: 1, b: '2', c: 3 };
+
+console.log(removeKey2(obj1, ['b']));
+console.log(removeKey2(obj1, ['a', 'c']));
+console.log(removeKey2(obj1, ['a', 'c', 'b']));
+
+// point : solution 3 (using reduce() method)
+
+const removeKey3 = (obj, arr) => {
+	return Object.keys(obj).reduce((acc, key) => {
+		if (!arr.includes(key)) acc[key] = obj[key];
+		return acc;
+	}, {});
+};
+
+const obj2 = { a: 1, b: '2', c: 3 };
+
+console.log(removeKey3(obj2, ['b']));
+console.log(removeKey3(obj2, ['a', 'c']));
+console.log(removeKey3(obj2, ['a', 'c', 'b']));
