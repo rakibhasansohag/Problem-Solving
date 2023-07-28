@@ -60,3 +60,86 @@ console.log(sortedObject3(users, ['name', 'age'], ['asc', 'desc']));
 console.log(sortedObject3(users, ['name', 'age']));
 console.log('---');
 console.log(sortedObject3(users, ['name', 'age'], ['desc', 'asc']));
+
+console.log('-------------- another problem -----------------');
+
+// task : Pad a string on both sides with the specified character.
+
+// point : solution 1 (using repeat() method)
+
+const padString = (str, length, char = ' ') => {
+	const len = length - str.length;
+	const left = Math.round(len / 2);
+	const right = len - left;
+
+	if (left < 0 || right < 0) return str;
+
+	return char.repeat(left) + str + char.repeat(right);
+};
+
+console.log(padString('cat', 8));
+console.log(padString(String(42), 6, '0'));
+console.log(padString('foobar', 3, 'A'));
+
+// point : solution 2 (using padStart() and padEnd() method)
+
+const padString2 = (str, length, char = ' ') => {
+	const len = length - str.length;
+	const left = Math.round(len / 2);
+	const right = len - left;
+
+	if (left < 0 || right < 0) return str;
+
+	return (
+		str.padStart(left + str.length, char) + str.padEnd(right + str.length, char)
+	);
+};
+
+console.log(padString2('cat', 8));
+console.log(padString2(String(42), 6, '0'));
+console.log(padString2('foobar', 3, 'A'));
+
+// point : solution 3 (using repeat() method)
+
+const padString3 = (str, length, char = ' ') => {
+	const len = length - str.length;
+	const left = Math.round(len / 2);
+	const right = len - left;
+
+	if (left < 0 || right < 0) return str;
+
+	return char.repeat(left) + str + char.repeat(right);
+};
+
+console.log(padString3('cat', 8));
+console.log(padString3(String(42), 6, '0'));
+console.log(padString3('foobar', 3, 'A'));
+
+// point : solution 4 ( using for loop )
+
+const padString4 = (str, length, char = ' ') => {
+	const len = length - str.length;
+	const left = Math.round(len / 2);
+	const right = len - left;
+
+	if (left < 0 || right < 0) return str;
+
+	let result = '';
+	for (let i = 0; i < left; i++) {
+		result += char;
+	}
+
+	result += str;
+
+	for (let i = 0; i < right; i++) {
+		result += char;
+	}
+
+	return result;
+};
+
+console.log(padString4('cat', 8));
+console.log(padString4(String(42), 6, '0'));
+console.log(padString4('foobar', 3, 'A'));
+
+
