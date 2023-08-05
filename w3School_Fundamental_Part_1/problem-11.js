@@ -117,3 +117,51 @@ console.log(coalesce2(null, undefined, NaN, '', 'Waldo'));
 console.log(coalesce2(undefined, null, NaN, '', 'Waldo'));
 
 console.timeEnd('coalesce2');
+
+console.log('------------- another problem -----------------');
+
+// task : Change function that accepts an array into a variadic function.
+
+// todo : what is variadic function?
+/// A variadic function is a function that accepts a variable number of arguments.
+
+// point solution 1 - using spread operator
+
+console.time('variadic1');
+
+const variadic =
+	(fn) =>
+	(...args) =>
+		fn(args);
+
+variadic(console.log)(1, 2, 3); // [1, 2, 3]
+
+console.timeEnd('variadic1');
+
+// point solution 2 - using Array.prototype.reduce() method
+
+console.time('variadic2');
+
+const variadic2 =
+	(fn) =>
+	(...args) =>
+		args.reduce(fn);
+
+variadic2(console.log)(1, 2, 3); // [1, 2, 3]
+
+console.timeEnd('variadic2');
+
+// point solution 3 - using Array.prototype.forEach() method
+
+console.time('variadic3');
+
+const variadic3 =
+	(fn) =>
+	(...args) =>
+		args.forEach(fn);
+
+variadic3(console.log)(1, 2, 3); // [1, 2, 3]
+
+console.timeEnd('variadic3');
+
+
