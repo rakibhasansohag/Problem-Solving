@@ -105,3 +105,15 @@ console.log(coalesce(null, undefined, NaN, '', 'Waldo'));
 console.log(coalesce(undefined, null, NaN, '', 'Waldo'));
 
 console.timeEnd('coalesce1');
+
+// point solution 2 - using Array.prototype.some() method
+
+console.time('coalesce2');
+
+const coalesce2 = (...args) => args.some((_) => ![undefined, null].includes(_));
+
+console.log(coalesce2(null, undefined, '', NaN, 'Waldo'));
+console.log(coalesce2(null, undefined, NaN, '', 'Waldo'));
+console.log(coalesce2(undefined, null, NaN, '', 'Waldo'));
+
+console.timeEnd('coalesce2');
