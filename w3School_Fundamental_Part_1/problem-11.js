@@ -89,3 +89,19 @@ console.log(objectParis6({ a: 1, b: 2 }));
 console.log(objectParis6({ a: 1, b: 2, c: 3 }));
 
 console.timeEnd('objectParis6');
+
+console.log('------------- another problem -----------------');
+
+// task : Get a customized coalesce function that returns the first argument that returns true from the provided argument validation function.
+
+// point solution 1 - using Array.prototype.find() method
+
+console.time('coalesce1');
+
+const coalesce = (...args) => args.find((_) => ![undefined, null].includes(_));
+
+console.log(coalesce(null, undefined, '', NaN, 'Waldo'));
+console.log(coalesce(null, undefined, NaN, '', 'Waldo'));
+console.log(coalesce(undefined, null, NaN, '', 'Waldo'));
+
+console.timeEnd('coalesce1');
