@@ -200,3 +200,55 @@ console.log(compact3([0, 1, false, 2, '', 3, 'a', 'e' * 23, NaN, 's', 34])); // 
 console.log(compact3([false, NaN, 'e' * 23]));
 
 console.log('------------- another problem -----------------');
+
+// task : Write a JavaScript program to split values into two groups. If an element in the filter is true, the corresponding element in the collection belongs to the first group; otherwise, it belongs to the second group.
+
+// point solution 1 - using Array.prototype.reduce() method
+
+const bifurcate = (arr, filter) => {
+	return arr.reduce(
+		(acc, cur, i) => {
+			acc[filter[i] ? 0 : 1].push(cur);
+			return acc;
+		},
+		[[], []],
+	);
+};
+
+console.log(
+	bifurcate(['beep', 'boop', 'foo', 'bar'], [true, true, false, true]),
+); // [ [ 'beep', 'boop', 'bar' ], [ 'foo' ] ]
+
+// point solution 2 - using for loop method
+
+const bifurcate2 = (arr, filter) => {
+	let result = [[], []];
+
+	for (let i = 0; i < arr.length; i++) {
+		if (filter[i]) {
+			result[0].push(arr[i]);
+		} else {
+			result[1].push(arr[i]);
+		}
+	}
+	return result;
+};
+
+console.log(
+	bifurcate2(['beep', 'boop', 'foo', 'bar'], [true, true, false, true]),
+); // [ [ 'beep', 'boop', 'bar' ], [ 'foo' ] ]
+
+// point : solution 3 - using Array.prototype.forEach() method
+
+const bifurcate3 = (arr, filter) => {
+	let result = [[], []];
+
+	arr.forEach((_, i) => {
+		filter[i] ? result[0].push(_) : result[1].push(_);
+	});
+	return result;
+};
+
+console.log(
+	bifurcate3(['beep', 'boop', 'foo', 'bar'], [true, true, false, true]),
+); // [ [ 'beep', 'boop', 'bar' ], [ 'foo' ] ]
