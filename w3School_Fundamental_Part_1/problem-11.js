@@ -164,4 +164,39 @@ variadic3(console.log)(1, 2, 3); // [1, 2, 3]
 
 console.timeEnd('variadic3');
 
+console.log('------------- another problem -----------------');
 
+// task : Remove falsey values from a given array.
+
+// point solution 1 - using Array.prototype.filter() method
+
+const compact = (arr) => arr.filter(Boolean);
+
+console.log(compact([0, 1, false, 2, '', 3, 'a', 'e' * 23, NaN, 's', 34])); // [ 1, 2, 3, 'a', 's', 34 ]
+console.log(compact([false, NaN, 'e' * 23]));
+
+// point solution 2 - using Array.prototype.reduce() method
+
+const compact2 = (arr) =>
+	arr.reduce((acc, cur) => (cur ? [...acc, cur] : acc), []);
+
+console.log(compact2([0, 1, false, 2, '', 3, 'a', 'e' * 23, NaN, 's', 34])); // [ 1, 2, 3, 'a', 's', 34 ]
+console.log(compact2([false, NaN, 'e' * 23]));
+
+// point solution 3 - using Array.prototype.forEach() method
+
+const compact3 = (arr) => {
+	const result = [];
+
+	arr.forEach((_) => {
+		if (_) {
+			result.push(_);
+		}
+	});
+	return result;
+};
+
+console.log(compact3([0, 1, false, 2, '', 3, 'a', 'e' * 23, NaN, 's', 34])); // [ 1, 2, 3, 'a', 's', 34 ]
+console.log(compact3([false, NaN, 'e' * 23]));
+
+console.log('------------- another problem -----------------');
