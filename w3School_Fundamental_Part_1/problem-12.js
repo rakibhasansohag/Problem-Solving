@@ -102,3 +102,60 @@ const _ = require('lodash');
 const deepEqual3 = (a, b) => _.isEqual(a, b);
 
 console.log(deepEqual3({ a: [2, 3], b: [4] }, { a: [2, 3], b: [4] })); // true
+
+console.log('------------------ another problem ------------------');
+
+// task : Get an array of function property names from own enumerable properties of an object.
+
+// point  solution 1 - using Object.keys() and Array.filter()
+
+const functionProperties = (obj) => {
+	return Object.keys(obj).filter((key) => typeof obj[key] === 'function');
+};
+
+const obj = {
+	a: () => {},
+	b: function () {},
+	c: 'foo',
+};
+
+console.log(functionProperties(obj)); // ['a', 'b']
+
+// point  solution 2 - using Object.keys() and Array.reduce()
+
+const functionProperties2 = (obj) => {
+	return Object.keys(obj).reduce((acc, key) => {
+		if (typeof obj[key] === 'function') {
+			acc.push(key);
+		}
+		return acc;
+	}, []);
+};
+console.log(functionProperties2(obj)); // ['a', 'b']
+
+// point  solution 3 - using Object.keys() and Array.forEach()
+
+const functionProperties3 = (obj) => {
+	const result = [];
+
+	Object.keys(obj).forEach((key) => {
+		if (typeof obj[key] === 'function') {
+			result.push(key);
+		}
+	});
+	return result;
+};
+
+console.log(functionProperties3(obj)); // ['a', 'b']
+
+// point  solution 4 - using Object.keys() and getPrototypeOf() and Array.filter().
+
+const functionProperties4 = (obj, inherited = false) => {
+	return (
+		inherited
+			? [...Object.keys(obj), ...Object.keys(Object.getPrototypeOf(obj))]
+			: Object.keys(obj)
+	).filter((key) => typeof obj[key] === 'function');
+};
+
+console.log(functionProperties4(obj, true)); // ['a', 'b']
