@@ -38,3 +38,67 @@ const curry2 = (fn, arity = fn.length, ...args) => {
 
 console.log(curry2(Math.pow)(2)(8)); // 6
 console.log(curry2(Math.min, 3)(10)(50)(2)); // 2
+
+console.log('------------------ another problem ------------------');
+
+// task : Perform a deep comparison between two values to determine if they are equivalent.
+
+// / Note: Check if the two values are identical, if they are both Date objects with the same time, using Date.getTime() or if they are both non-object values with an equivalent value (strict comparison). Check if only one value is null or undefined or if their prototypes differ. If none of the above conditions are met, use Object.keys() to check if both values have the same number of keys, then use Array.every() to check if every key in the first value exists in the second one and if they are equivalent by calling this method recursively.
+
+// point  solution 1 - using recursion
+
+const deepEqual = (a, b) => {
+	if (a === b) return true;
+
+	if (a instanceof Date && b instanceof Date)
+		return a.getTime() === b.getTime();
+
+	if (!a || !b || (typeof a !== 'object' && typeof b !== 'object'))
+		return a === b;
+
+	if (a.prototype !== b.prototype) return false;
+
+	if (a === null || b === null || a === undefined || b === undefined)
+		return false;
+
+	let keys = Object.keys(a);
+	if (keys.length !== Object.keys(b).length) return false;
+
+	return keys.every((key) => deepEqual(a[key], b[key]));
+};
+
+console.log(
+	deepEqual(
+		{ a: [2, { e: 3 }], b: [4], c: 'foo' },
+		{ a: [2, { e: 3 }], b: [4], c: 'foo' },
+	),
+); // true
+
+// point  solution 2 - using JSON.stringify()
+
+const deepEqual2 = (a, b) => {
+	if (a === b) return true;
+
+	if (a instanceof Date && b instanceof Date)
+		return a.getTime() === b.getTime();
+
+	if (!a || !b || (typeof a !== 'object' && typeof b !== 'object'))
+		return a === b;
+
+	if (a.prototype !== b.prototype) return false;
+
+	if (a === null || b === null || a === undefined || b === undefined)
+		return false;
+
+	return JSON.stringify(a) === JSON.stringify(b);
+};
+
+console.log(deepEqual2({ a: [2, 3], b: [4] }, { a: [2, 3], b: [4] })); // true
+
+// point  solution 3 - using lodash
+
+const _ = require('lodash');
+
+const deepEqual3 = (a, b) => _.isEqual(a, b);
+
+console.log(deepEqual3({ a: [2, 3], b: [4] }, { a: [2, 3], b: [4] })); // true
