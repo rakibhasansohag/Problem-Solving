@@ -159,3 +159,55 @@ const functionProperties4 = (obj, inherited = false) => {
 };
 
 console.log(functionProperties4(obj, true)); // ['a', 'b']
+
+console.log('------------------ another problem ------------------');
+
+// task : Retrieve a set of properties indicated by the given selectors from an object.
+
+// point  solution 1 - using Array.reduce()
+
+const get = (from, ...selectors) => {
+	return [...selectors].map((s) =>
+		s
+			.replace(/\[([^\[\]]*)\]/g, '.$1.')
+			.split('.')
+			.filter((t) => t !== '')
+			.reduce((prev, cur) => prev && prev[cur], from),
+	);
+};
+
+const obj2 = {
+	selector: { to: { val: 'val to select' } },
+	target: [1, 2, { a: 'test' }],
+};
+
+console.log(get(obj2, 'selector.to.val', 'target[0]', 'target[2].a')); // ['val to select', 1, 'test']
+
+// point  solution 2 - using for of loop
+
+const get2 = (from, ...selectors) => {
+	const result = [];
+
+	for (const selector of selectors) {
+		const parts = selector.split('.');
+		let value = from;
+
+		for (const part of parts) {
+			const matchArray = part.match(/(\w+)\[(\d+)\]/);
+
+			if (matchArray) {
+				const arrayProp = matchArray[1];
+				const arrayIndex = parseInt(matchArray[2]);
+				value = value[arrayProp][arrayIndex];
+			} else {
+				value = value[part];
+			}
+
+			if (value === undefined) break;
+		}
+		result.push(value);
+	}
+	return result;
+};
+
+console.log(get2(obj2, 'selector.to.val', 'target[0]', 'target[2].a')); // ['val to select', 1, 'test']
