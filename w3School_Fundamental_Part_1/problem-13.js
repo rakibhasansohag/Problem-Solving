@@ -59,3 +59,34 @@ console.log(convertTime3(0));
 console.log(convertTime3(11));
 console.log(convertTime3(13));
 console.log(convertTime3(25));
+
+console.log('------------------ another problem ------------------');
+
+// task : Get an object containing the parameters of the current URL.
+
+// point solution 1  - using URLSearchParams() and Array.from() and Array.reduce()
+
+const getURLParameters = (url) => {
+	return Array.from(new URLSearchParams(url)).reduce((acc, [key, value]) => {
+		acc[key] = value;
+		return acc;
+	}, {});
+};
+
+console.log(getURLParameters('http://url.com/page?name=Adam&surname=Smith'));
+console.log(getURLParameters('google.com'));
+console.log(getURLParameters('https://www.w3resource.com'));
+
+// point solution 2 - using match() and Array.reduce()
+
+const getURLParameters2 = (url) => {
+	return (url.match(/([^?=&]+)(=([^&]*))/g) || []).reduce((acc, cur) => {
+		const [key, value] = cur.split('=');
+		acc[key] = value;
+		return acc;
+	}, {});
+};
+
+console.log(getURLParameters2('http://url.com/page?name=Adam&surname=Smith'));
+console.log(getURLParameters2('google.com'));
+console.log(getURLParameters2('https://www.w3resource.com'));
