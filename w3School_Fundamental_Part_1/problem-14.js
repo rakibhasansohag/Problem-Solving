@@ -145,3 +145,34 @@ console.log(
 );
 
 console.log('------------------ another problem ------------------');
+
+// task : Check whether all elements in a given array are equal or not.
+
+// point 1 solution : using every()
+
+const allEqual = (arr) => {
+	return arr.every((val) => val === arr[0]);
+};
+
+console.log(allEqual([1, 2, 3, 4, 5, 6]));
+console.log(allEqual([1, 1, 1, 1, 1, 1]));
+
+// point 2 solution : using Set and size
+
+const allEqual2 = (arr) => {
+	return new Set(arr).size === 1;
+};
+
+console.log(allEqual2([1, 2, 3, 4, 5, 6]));
+console.log(allEqual2([1, 1, 1, 1, 1, 1]));
+
+// point 3 solution : using Array.every() and Array.slice()
+
+const allEqual3 = (arr) => {
+	return arr.every((val, i, arr) => val === arr[0]);
+};
+
+console.log(allEqual3([1, 2, 3, 4, 5, 6]));
+console.log(allEqual3([1, 1, 1, 1, 1, 1]));
+
+console.log('------------------ another problem ------------------');
