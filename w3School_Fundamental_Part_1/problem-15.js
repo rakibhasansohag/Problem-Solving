@@ -101,3 +101,49 @@ console.log(average3([{ a: 40 }, { a: 20 }, { a: 80 }, { a: 60 }], (o) => o.a));
 console.log(average3([{ a: 4 }, { a: 2 }, { a: 8 }, { a: 6 }], 'a')); /// 5
 
 console.log('------------------ another problem ------------------');
+
+// task :Write a JavaScript program to split values into two groups according to a predicate function. This specifies which group an element in the input collection belongs to.
+
+/// If the predicate function returns a truthy value, the collection element belongs to the first group; otherwise, it belongs to the second group.
+
+// point : solution 1 : using filter() method
+
+const bifurcate = (arr, fn) => {
+	return [arr.filter((val) => fn(val)), arr.filter((val) => !fn(val))];
+};
+
+console.log(bifurcate(['beep', 'boop', 'foo', 'bar'], (x) => x[0] === 'b')); /// [ [ 'beep', 'boop', 'bar' ], [ 'foo' ] ]
+console.log(bifurcate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], (x) => x % 2 === 0)); /// [ [ 2, 4, 6, 8, 10 ], [ 1, 3, 5, 7, 9 ] ]
+
+// point : solution 2 : using reduce() method
+
+const bifurcate2 = (arr, fn) => {
+	return arr.reduce(
+		(acc, val) => {
+			acc[fn(val) ? 0 : 1].push(val);
+			return acc;
+		},
+		[[], []],
+	);
+};
+
+console.log(bifurcate2(['beep', 'boop', 'foo', 'bar'], (x) => x[0] === 'b')); /// [ [ 'beep', 'boop', 'bar' ], [ 'foo' ] ]
+console.log(bifurcate2([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], (x) => x % 2 === 0)); /// [ [ 2, 4, 6, 8, 10 ], [ 1, 3, 5, 7, 9 ] ]
+
+// point : solution 3 : using for loop
+
+const bifurcate3 = (arr, fn) => {
+	let result = [[], []];
+
+	for (let i = 0; i < arr.length; i++) {
+		if (fn(arr[i])) {
+			result[0].push(arr[i]);
+		} else {
+			result[1].push(arr[i]);
+		}
+	}
+	return result;
+};
+
+console.log(bifurcate3(['beep', 'boop', 'foo', 'bar'], (x) => x[0] === 'b')); /// [ [ 'beep', 'boop', 'bar' ], [ 'foo' ] ]
+console.log(bifurcate3([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], (x) => x % 2 === 0)); /// [ [ 2, 4, 6, 8, 10 ], [ 1, 3, 5, 7, 9 ] ]
