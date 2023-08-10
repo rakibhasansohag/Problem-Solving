@@ -96,3 +96,32 @@ const rakibObj = invoke4(Rakib, 'greet');
 console.log(rakibObj('hi', '!'));
 
 console.log('---------------- another problem -----------------');
+
+// task : Cast the provided value as an array if it's not one.
+
+// point : solution 1 : using spread operator
+
+const castArray = (value) => (Array.isArray(value) ? value : [value]);
+
+console.log(castArray('rakib'));
+console.log(castArray([1, 2, 3]));
+
+// point : solution 2 : using Array.from()
+
+const castArray2 = (value) => Array.from(value);
+
+console.log(castArray2('rakib'));
+console.log(castArray2([1, 2, 3]));
+
+// point : solution 3 : without using any built-in method
+
+const castArray3 = (value) => {
+	if (Array.isArray === true) {
+		return value;
+	} else {
+		return [value];
+	}
+};
+
+console.log(castArray3('rakib'));
+console.log(castArray3([1, 2, 3]));
