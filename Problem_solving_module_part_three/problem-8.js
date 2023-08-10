@@ -53,3 +53,38 @@ const printPattern2 = (n) => {
 };
 
 printPattern2(5);
+
+console.log('\n');
+
+// point  : problem x (2) :
+
+console.log('****');
+console.log('****');
+console.log('****');
+console.log('****' + '\n');
+
+// point  : solution 2 : with out using any built in function ( pattern 2 )
+
+const printPattern3 = (n) => {
+	let str = '';
+
+	for (let i = 1; i <= n; i++) {
+		for (let j = 1; j <= n; j++) {
+			str += '*';
+		}
+		str += '\n';
+	}
+	return str;
+};
+
+console.log(printPattern3(4));
+
+// point  : solution 2 : using built in function ( pattern 2 )
+
+const printPattern4 = (n) => {
+	for (let i = 1; i <= n; i++) {
+		console.log('*'.repeat(n));
+	}
+};
+
+printPattern4(4);
