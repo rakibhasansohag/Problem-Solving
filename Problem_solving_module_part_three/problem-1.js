@@ -12,6 +12,8 @@ console.log('working...');
 
 // point : solution 1 : time complexity O(n) , space complexity O(1)
 
+console.time('solution 1');
+
 function peakElement(arr, peak) {
 	let index = -1;
 
@@ -26,4 +28,34 @@ function peakElement(arr, peak) {
 }
 
 console.log(peakElement([5, 6, 7, 9, 11, 22, 36, 98], 11)); /// 4
-console.log(peakElement([5, 6, 7, 9, 11, 22, 36, 98], 980)); /// 0
+console.log(peakElement([5, 6, 7, 9, 11, 22, 36, 98], 980)); /// -1
+console.timeEnd('solution 1');
+
+// point : solution 2 : using binary search algorithm :
+
+console.time('solution 2');
+
+function peakElement2(arr, peak) {
+	let start = 0;
+	let end = arr.length - 1;
+	let mid = Math.round((start + end) / 2);
+
+	while (start <= end) {
+		if (arr[mid] < peak) {
+			start = mid + 1;
+		} else if (arr[mid] > peak) {
+			end = mid - 1;
+		} else {
+			return mid;
+		}
+
+		mid = Math.round((start + end) / 2);
+	}
+
+	return arr[mid] === peak ? mid : -1;
+}
+
+console.log(peakElement2([5, 6, 7, 9, 11, 22, 36, 98], 11)); /// 4
+console.log(peakElement2([5, 6, 7, 9, 11, 22, 36, 98], 980)); /// -1
+
+console.timeEnd('solution 2');
