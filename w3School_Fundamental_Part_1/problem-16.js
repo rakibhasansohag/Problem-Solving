@@ -43,3 +43,56 @@ function greet3(greeting, punctuation) {
 const greet3Morning = greet3.bind(rakib, 'Good', '!');
 
 console.log(greet3Morning());
+
+console.log('---------------- another problem -----------------');
+
+// task : Create a function that invokes the method at a given key of an object.
+
+// point : solution 1 : using bracket notation
+
+const invoke = (obj, method, ...args) => {
+	return obj[method].apply(obj, args);
+};
+
+const obj = {
+	message: 'Hello, Rakib!',
+	sayHi() {
+		return this.message;
+	},
+};
+
+console.log(invoke(obj, 'sayHi'));
+
+//  point : solution 2 : using spread operator
+
+const invoke2 = (obj, method, ...args) => {
+	return obj[method](...args);
+};
+
+console.log(invoke2(obj, 'sayHi'));
+
+// point : solution 3 : using bind method
+
+const invoke3 = (obj, method, ...args) => {
+	return obj[method].bind(obj, ...args)();
+};
+
+console.log(invoke3(obj, 'sayHi'));
+
+// point : solution 4 : using w3schools way (not working)
+
+const invoke4 = (obj, method, ...args) =>
+	function () {
+		return obj[method].apply(obj, args.concat(...arguments));
+	};
+
+const Rakib = {
+	user: 'Rakib',
+	greet: function (greeting, punctuation) {
+		return greeting + ' ' + this.user + punctuation;
+	},
+};
+const rakibObj = invoke4(Rakib, 'greet');
+console.log(rakibObj('hi', '!'));
+
+console.log('---------------- another problem -----------------');
