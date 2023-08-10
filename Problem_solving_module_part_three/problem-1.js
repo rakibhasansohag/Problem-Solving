@@ -31,7 +31,7 @@ console.log(peakElement([5, 6, 7, 9, 11, 22, 36, 98], 11)); /// 4
 console.log(peakElement([5, 6, 7, 9, 11, 22, 36, 98], 980)); /// -1
 console.timeEnd('solution 1');
 
-// point : solution 2 : using binary search algorithm :
+// point : solution 2 : using binary search algorithm : while loop
 
 console.time('solution 2');
 
@@ -59,3 +59,30 @@ console.log(peakElement2([5, 6, 7, 9, 11, 22, 36, 98], 11)); /// 4
 console.log(peakElement2([5, 6, 7, 9, 11, 22, 36, 98], 980)); /// -1
 
 console.timeEnd('solution 2');
+
+// point  : solution 3 : using binary search algorithm : for loop
+
+console.time('solution 3');
+
+function peakElement3(arr, peak) {
+	let start = 0;
+	let end = arr.length - 1;
+	let mid = Math.round((start + end) / 2);
+
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[mid] < peak) {
+			start = mid + 1;
+		} else if (arr[mid] > peak) {
+			end = mid - 1;
+		} else {
+			return mid;
+		}
+	}
+
+	return arr[mid] === peak ? mid : -1;
+}
+
+console.log(peakElement3([5, 6, 7, 9, 11, 22, 36, 98], 11)); /// 4
+console.log(peakElement3([5, 6, 7, 9, 11, 22, 36, 98], 980)); /// -1
+
+console.timeEnd('solution 3');
