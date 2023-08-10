@@ -2,7 +2,7 @@
 console.log('working...');
 
 // task 1 : Write a javaScript program to that takes an array which contains all unique integer elements and a peak element. Find the index of the peak element from the array . if the peak element does not exist  return -1 .
-// Note : You have to use binary search algorithm to solve this problem.
+// point : Note : You have to use binary search algorithm to solve this problem.
 
 // example  :
 
@@ -13,13 +13,17 @@ console.log('working...');
 // point : solution 1 : time complexity O(n) , space complexity O(1)
 
 function peakElement(arr, peak) {
+	let index = -1;
+
 	for (let i = 0; i < arr.length; i++) {
 		if (arr[i] === peak) {
-			return i;
-		} else {
-			return -1;
+			index = i;
+			break;
 		}
 	}
+
+	return index;
 }
 
-console.log(peakElement([5, 6, 7, 9, 11, 22, 36, 98], 11));
+console.log(peakElement([5, 6, 7, 9, 11, 22, 36, 98], 11)); /// 4
+console.log(peakElement([5, 6, 7, 9, 11, 22, 36, 98], 980)); /// 0
