@@ -44,3 +44,22 @@ chainAsync2([
 
 console.log('---------------- another problem -----------------');
 
+// task : Write a JavaScript program to perform right-to-left function composition..
+
+// point : solution 1 : using reduce
+
+const compose = (...fns) =>
+	fns.reduce(
+		(f, g) =>
+			(...args) =>
+				f(g(...args)),
+	);
+
+const add5 = (x) => x + 5;
+const multiply = (x, y) => x * y;
+
+const multiplyAndAdd5 = compose(add5, multiply);
+/// console.log(multiply(5, 2) + 5); // 15 ( logic for the program)
+
+console.log(multiplyAndAdd5(5, 2));
+console.log(multiplyAndAdd5(6, 3));
