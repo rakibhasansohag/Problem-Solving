@@ -63,3 +63,23 @@ const multiplyAndAdd5 = compose(add5, multiply);
 
 console.log(multiplyAndAdd5(5, 2));
 console.log(multiplyAndAdd5(6, 3));
+
+console.log('---------------- another problem -----------------');
+
+// task : Perform left-to-right function composition.
+
+// point : solution 1 : using reduce
+
+const pipe = (...fns) =>
+	fns.reduce(
+		(f, g) =>
+			(...args) =>
+				g(f(...args)),
+	);
+
+const add = (x, y) => x + y;
+const square = (x) => x * x;
+const addAndSquare = pipe(add, square);
+
+console.log(addAndSquare(1, 2)); // 9
+console.log(addAndSquare(3, 2)); // 25
