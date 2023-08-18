@@ -37,3 +37,20 @@ const countBy = (arr, fn) => {
 console.log(countBy([6.1, 4.2, 6.3], Math.floor)); // {4: 1, 6: 2}
 console.log(countBy(['one', 'two', 'three'], 'length')); // {3: 2, 5: 1}
 console.log(countBy([5.13, 3.4, 4.4], Math.sqrt));
+
+// point : solution 2 : using forEach
+
+const countBy2 = (arr, fn) => {
+	const obj = {};
+	arr.forEach((val) => {
+		const prop = typeof fn === 'function' ? fn(val) : val[fn];
+		obj[prop] = (obj[prop] || 0) + 1;
+	});
+	return obj;
+};
+
+console.log(countBy2([6.1, 4.2, 6.3], Math.floor)); // {4: 1, 6: 2}
+console.log(countBy2(['one', 'two', 'three'], 'length')); // {3: 2, 5: 1}
+console.log(countBy2([5.13, 3.4, 4.4], Math.sqrt));
+
+// point :  solution 3 : using map
