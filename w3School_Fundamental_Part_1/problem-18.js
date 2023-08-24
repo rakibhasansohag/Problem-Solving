@@ -54,3 +54,81 @@ console.log(countBy2(['one', 'two', 'three'], 'length')); // {3: 2, 5: 1}
 console.log(countBy2([5.13, 3.4, 4.4], Math.sqrt));
 
 // point :  solution 3 : using map
+
+console.log('--------------- another problem -----------------');
+//  task  : Count the occurrences of a value in an array
+
+// point : solution 1 : using reduce
+
+const countOccurrences = (arr, val) =>
+	arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
+
+console.log(countOccurrences([1, 1, 2, 1, 2, 3], 1)); // / 3
+console.log(countOccurrences([1, 1, 2, 1, 2, 3], 2)); // / 2
+console.log(countOccurrences([1, 1, 2, 1, 2, 3], 3)); // / 1
+
+// point : solution 2 : using forEach
+
+const countOccurrences2 = (arr, val) => {
+	let count = 0;
+	arr.forEach((v) => (v === val ? count++ : count));
+	return count;
+};
+
+console.log(countOccurrences2([1, 1, 2, 1, 2, 3], 1)); // / 3
+console.log(countOccurrences2([1, 1, 2, 1, 2, 3], 2)); // / 2
+console.log(countOccurrences2([1, 1, 2, 1, 2, 3], 3)); // / 1
+
+// point : solution 3 : using filter
+
+const countOccurrences3 = (arr, val) => arr.filter((v) => v === val).length;
+
+console.log(countOccurrences3([1, 1, 2, 1, 2, 3], 1)); // / 3
+console.log(countOccurrences3([1, 1, 2, 1, 2, 3], 2)); // / 2
+console.log(countOccurrences3([1, 1, 2, 1, 2, 3], 3)); // / 1
+
+// point : solution 4 : using for loop
+
+const countOccurrences4 = (arr, val) => {
+	let count = 0;
+
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] === val) count++;
+	}
+	return count;
+};
+
+console.log(countOccurrences4([1, 1, 2, 1, 2, 3], 1)); // / 3
+console.log(countOccurrences4([1, 1, 2, 1, 2, 3], 2)); // / 2
+console.log(countOccurrences4([1, 1, 2, 1, 2, 3], 3)); // / 1
+
+// point : solution 5 : using for of loop
+
+const countOccurrences5 = (arr, val) => {
+	let count = 0;
+
+	for (const v of arr) {
+		if (v === val) count++;
+	}
+	return count;
+};
+
+console.log(countOccurrences5([1, 1, 2, 1, 2, 3], 1)); // / 3
+console.log(countOccurrences5([1, 1, 2, 1, 2, 3], 2)); // / 2
+console.log(countOccurrences5([1, 1, 2, 1, 2, 3], 3)); // / 1
+
+// point : solution 6 : using while loop
+
+const countOccurrences6 = (arr, val) => {
+	let count = 0;
+
+	while (arr.includes(val)) {
+		arr.splice(arr.indexOf(val), 1);
+		count++;
+	}
+	return count;
+};
+
+console.log(countOccurrences6([1, 1, 2, 1, 2, 3], 1)); // / 3
+console.log(countOccurrences6([1, 1, 2, 1, 2, 3], 2)); // / 2
+console.log(countOccurrences6([1, 1, 2, 1, 2, 3], 3)); // / 1
