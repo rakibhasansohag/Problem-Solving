@@ -21,3 +21,29 @@ point :::: note :
 
 // point : solution 1 : using recursion
 
+const deepClone = (obj) => {
+	let clone = Object.assign({}, obj); // for shallow clone
+
+	Object.keys(clone).forEach((key) => {
+		clone[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key];
+	});
+	return Array.isArray(obj)
+		? (clone.length = obj.length) && Array.from(clone)
+		: clone;
+};
+
+const a = { foo: 'bar', obj: { a: 1, b: 2 } };
+const b = deepClone(a); // a !== b, a.obj !== b.obj
+
+console.log(b);
+
+// point : solution 2 : using JSON
+
+const deepClone2 = (obj) => {
+	let clone = JSON.parse(JSON.stringify(obj));
+	return clone;
+};
+
+const c = { foo: 'bar', obj: { a: 1, b: 2 } };
+const d = deepClone2(c); // a !== b, a.obj !== b.obj
+console.log(d);
