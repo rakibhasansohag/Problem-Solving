@@ -54,10 +54,26 @@ const c = { foo: 'bar', obj: { a: 1, b: 2 } };
 const d = deepClone2(c); // a !== b, a.obj !== b.obj
 console.log(d);
 
-const e = { null: null, undefined: undefined, foo: 'bar', obj: { a: 1, b: 2 } };
-const f = deepClone2(e); // a !== b, a.obj !== b.obj
-const ff = deepClone(e); // a !== b, a.obj !== b.obj
-
-console.log(f);
-console.log(ff);
 // point : solution 3 : using recursion
+
+// task : Detect whether the website is being opened in a mobile device or a desktop/laptop.
+
+// point : solution 1 : using navigator
+
+const detectDeviceType = () => {
+	return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+		navigator.userAgent,
+	)
+		? 'Mobile'
+		: 'Desktop';
+};
+
+console.log(detectDeviceType()); // "Mobile" or "Desktop"
+detectDeviceType();
+// point : solution 2 : using matchMedia
+
+const detectDeviceType2 = () => {
+	return window.matchMedia('(max-width: 768px)').matches ? 'Mobile' : 'Desktop';
+};
+
+console.log(detectDeviceType2()); // "Mobile" or "Desktop"
