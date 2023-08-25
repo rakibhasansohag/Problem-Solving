@@ -115,3 +115,35 @@ const difference2 = (a, b, comp = (a, b) => a === b) =>
 
 console.log(difference2([1, 2, 3], [1, 2, 4])); // [3]
 console.log(difference2([1, 2, 3], [1, 2, 3])); // []
+
+console.log(' -------------- another problem ----------------- ');
+
+// task : Filter out all values from an array for which the comparator function does not return true.
+
+// point : solution 1 : using filter() ( for single value )
+
+const difference3 = (arr, val, comp) => arr.filter((x) => comp(x, val));
+
+console.log(difference3([1, 2, 3], 1, (a, b) => a > b)); // [1, 2, 3]
+
+console.log(
+	difference3(
+		[1, 1.2, 1.5, 3, 0],
+		[1.9, 3, 0],
+		(a, b) => Math.round(a) === Math.round(b),
+	),
+);
+
+// point : solution 2 : using filter() ( for multiple value )
+
+const difference4 = (arr, val, comp) => arr.filter((x) => !val.includes(x));
+
+console.log(difference4([1, 2, 3], [1, 2], (a, b) => a === b)); // [3]
+
+console.log(
+	difference4(
+		[1, 1.2, 1.5, 3, 0],
+		[1.9, 3, 0, 1],
+		(a, b) => Math.round(a) === Math.round(b),
+	),
+);
