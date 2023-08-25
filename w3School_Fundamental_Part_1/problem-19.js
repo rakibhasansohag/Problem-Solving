@@ -77,3 +77,11 @@ const detectDeviceType2 = () => {
 };
 
 console.log(detectDeviceType2()); // "Mobile" or "Desktop"
+
+// Point : solution 3 : using window.orientation
+
+const detectDeviceType3 = () => {
+	return isNaN(window.orientation) ? 'Desktop' : 'Mobile';
+};
+
+console.log(detectDeviceType3()); // "Mobile" or "Desktop"
