@@ -60,23 +60,23 @@ console.log(d);
 
 // point : solution 1 : using navigator
 
-const detectDeviceType = () => {
-	return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-		navigator.userAgent,
-	)
-		? 'Mobile'
-		: 'Desktop';
-};
+// const detectDeviceType = () => {
+// 	return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+// 		navigator.userAgent,
+// 	)
+// 		? 'Mobile'
+// 		: 'Desktop';
+// };
 
-console.log(detectDeviceType()); // "Mobile" or "Desktop"
-detectDeviceType();
+// console.log(detectDeviceType()); // "Mobile" or "Desktop"
+// detectDeviceType();
 // point : solution 2 : using matchMedia
 
 const detectDeviceType2 = () => {
 	return window.matchMedia('(max-width: 768px)').matches ? 'Mobile' : 'Desktop';
 };
 
-console.log(detectDeviceType2()); // "Mobile" or "Desktop"
+// console.log(detectDeviceType2()); // "Mobile" or "Desktop"
 
 // Point : solution 3 : using window.orientation
 
@@ -84,4 +84,34 @@ const detectDeviceType3 = () => {
 	return isNaN(window.orientation) ? 'Desktop' : 'Mobile';
 };
 
-console.log(detectDeviceType3()); // "Mobile" or "Desktop"
+// console.log(detectDeviceType3()); // "Mobile" or "Desktop"
+
+// task : Return the difference between two arrays .
+
+/*
+
+point :::: note :
+
+/ 1 Create a Set from each array, then use Array.prototype.filter() on each of them to only keep values not contained in the other.
+
+/ 2 Finally, create a Set from the results and convert it back into an array. (For values that are objects or arrays, their references should be the same in the original and the filtered arrays.)
+
+*/
+
+// point : solution 1 : using filter()
+
+const difference = (a, b) => {
+	const s = new Set(b);
+	return a.filter((x) => !s.has(x));
+};
+
+console.log(difference([1, 2, 3], [1, 2, 4])); // [3]
+console.log(difference([1, 2, 3], [1, 2, 3])); // []
+
+// point : solution 2 : using filter()
+
+const difference2 = (a, b, comp = (a, b) => a === b) =>
+	a.filter((x) => b.findIndex((y) => comp(x, y)) === -1);
+
+console.log(difference2([1, 2, 3], [1, 2, 4])); // [3]
+console.log(difference2([1, 2, 3], [1, 2, 3])); // []
