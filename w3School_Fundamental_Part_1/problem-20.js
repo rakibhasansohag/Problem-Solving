@@ -44,3 +44,16 @@ console.log(elo([1200, 1200, 1200, 1200]).map(Math.round)); // [1246, 1215, 1185
 
 // 4 player FFA, top 3 and last
 console.log(elo([1200, 1200, 1200, 800]).map(Math.round)); // [1264, 1235, 1204, 797]
+
+// Task : Write a JavaScript Program t execute a provided function once for each array element, starting from the array's last element.
+
+// Note : Use Array.prototype.reduce() to iterate starting from arr.length - 1. Use the spread operator (...) to call fn with the spread of the array arguments. It should accumulate the value returned by fn for each iteration.
+
+const forEachRight = (arr, callback) =>
+	arr.reduceRight((acc, val) => acc.concat(callback(val)), []);
+
+forEachRight([1, 2, 3, 4], (val) => console.log(val)); // '4', '3', '2', '1'
+
+const forEachRight1 = (arr, callback) => arr.slice().reverse().map(callback);
+
+forEachRight1([1, 2, 3, 4], (val) => console.log(val)); // '4', '3', '2', '1'
