@@ -79,3 +79,63 @@ const forOwn1 = (obj, fn) => {
 
 forOwn1({ foo: 'bar', a: 1 }, (v, k) => console.log(v)); // 'bar', '1'
 forOwn1({ foo: 'bar', a: 1 }, (v, k) => console.log(k)); // 'foo', 'a'
+
+console.log('another problem ');
+
+// task : Write a JavaScript program to invert the key-value pairs of an object, without mutating it. The corresponding inverted value of each inverted key is an array of keys responsible for generating the inverted value. If a function is supplied, it is applied to each inverted key.
+
+const invertKeyValues = (obj, fn) => {
+	return Object.keys(obj).reduce((acc, key) => {
+		const val = fn ? fn(obj[key]) : obj[key];
+		acc[val] = acc[val] || [];
+		acc[val].push(key);
+		return acc;
+	}, {});
+};
+
+console.log(invertKeyValues({ a: 1, b: 2, c: 1 })); // { 1: [ 'a', 'c' ], 2: [ 'b' ] }
+console.log(invertKeyValues({ a: 1, b: 2, c: 1 }, (value) => 'group' + value)); // { group1: [ 'a', 'c' ], group2: [ 'b' ] }
+console.log('1');
+// not working
+const invertKeyValues1 = (obj, fn) => {
+	for (let key in obj) {
+		if (obj.hasOwnProperty(key)) {
+			const val = fn ? fn(obj[key]) : obj[key];
+			obj[val] = obj[val] || [];
+			obj[val].push(key);
+		}
+	}
+	return obj;
+};
+
+console.log(invertKeyValues1({ a: 1, b: 2, c: 1 })); // { 1: [ 'a', 'c' ], 2: [ 'b' ] }
+console.log(invertKeyValues1({ a: 1, b: 2, c: 1 }, (value) => 'group' + value)); // { group1: [ 'a', 'c' ], group2: [ 'b' ] }
+console.log('2');
+// not working
+const invertKeyValues2 = (obj, fn) => {
+	const keys = Object.keys(obj);
+
+	keys.forEach((key) => {
+		const val = fn ? fn(obj[key]) : obj[key];
+		obj[val] = obj[val] || [];
+		obj[val].push(key);
+	});
+	return obj;
+};
+
+console.log(invertKeyValues2({ a: 1, b: 2, c: 1 })); // { 1: [ 'a', 'c' ], 2: [ 'b' ] }
+console.log(invertKeyValues2({ a: 1, b: 2, c: 1 }, (value) => 'group' + value)); // { group1: [ 'a', 'c' ], group2: [ 'b' ] }
+console.log('3');
+
+const invertKeyValues3 = (obj, fn) => {
+	return Object.keys(obj).reduceRight((acc, key) => {
+		const val = fn ? fn(obj[key]) : obj[key];
+		acc[val] = acc[val] || [];
+		acc[val].push(key);
+		return acc;
+	}, {});
+};
+
+console.log(invertKeyValues3({ a: 1, b: 2, c: 1 })); // { 1: [ 'a', 'c' ], 2: [ 'b' ] }
+console.log(invertKeyValues3({ a: 1, b: 2, c: 1 }, (value) => 'group' + value)); // { group1: [ 'a', 'c' ], group2: [ 'b' ] }
+console.log('4');
