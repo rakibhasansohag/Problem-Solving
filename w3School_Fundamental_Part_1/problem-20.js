@@ -57,3 +57,25 @@ forEachRight([1, 2, 3, 4], (val) => console.log(val)); // '4', '3', '2', '1'
 const forEachRight1 = (arr, callback) => arr.slice().reverse().map(callback);
 
 forEachRight1([1, 2, 3, 4], (val) => console.log(val)); // '4', '3', '2', '1'
+
+console.log('another problem ');
+
+// task : Iterate over all own properties of an object, running a callback for each one.
+
+// Note : Use Object.keys(obj) to get all the properties of the object, Array.prototype.forEach() to run the provided function for each key-value pair. The callback receives three arguments - the value, the key and the object.
+
+const forOwn = (obj, fn) =>
+	Object.keys(obj).forEach((key) => fn(obj[key], key, obj));
+
+forOwn({ foo: 'bar', a: 1 }, (v, k) => console.log(v)); // 'bar', '1'
+
+const forOwn1 = (obj, fn) => {
+	for (let key in obj) {
+		if (obj.hasOwnProperty(key)) {
+			fn(obj[key], key, obj);
+		}
+	}
+};
+
+forOwn1({ foo: 'bar', a: 1 }, (v, k) => console.log(v)); // 'bar', '1'
+forOwn1({ foo: 'bar', a: 1 }, (v, k) => console.log(k)); // 'foo', 'a'
