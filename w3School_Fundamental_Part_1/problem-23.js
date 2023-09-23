@@ -26,3 +26,52 @@ const createObject2 = (obj, fn) => {
 console.log(createObject2({ a: 1, b: 2 }, (val, key) => key + val));
 console.log(createObject2({ a: 1, b: 2 }, (val, key) => val));
 
+console.log('another problem...');
+
+// task : Write a JavaScript program to map array values to an object using a function. The key-value pairs consist of the original value as the key and the mapped value.
+
+// Point : solution 1 :
+
+const mapObject = (arr, fn) => {
+	return arr.reduce((acc, val, i) => {
+		acc[val] = fn(val, i, arr);
+		return acc;
+	}, {});
+};
+
+console.log(mapObject([1, 2, 3], (a) => a * a));
+
+// Point : solution 2 :
+
+const mapObject2 = (arr, fn) => {
+	return Object.fromEntries(arr.map((val, i) => [val, fn(val, i, arr)]));
+};
+
+console.log(mapObject2([1, 2, 3], (a) => a * a));
+
+// POint : solution 3 :
+
+const mapObject3 = (arr, fn) => {
+	return {
+		...arr.reduce((acc, val, i) => {
+			acc[val] = fn(val, i, arr);
+			return acc;
+		}, {}),
+	};
+};
+
+console.log(mapObject3([1, 2, 3], (a) => a * a));
+
+// Point : solution 4 :
+
+const mapObject4 = (arr, fn) => {
+	return Object.apply(
+		null,
+		arr.map((val, i) => {
+			return { [val]: fn(val, i, arr) };
+		}),
+	);
+};
+
+console.log(mapObject4([1, 2, 3], (a) => a * a));
+          
