@@ -36,3 +36,48 @@ const finalResult = array2
 	.map((value) => value);
 
 console.log(finalResult);
+
+console.log('----------------------------------------------------------------');
+
+// Task :  Nest a given flat array of objects linked to one another recursively
+
+// Point :  solution 1 : using ( ... args)
+const nest = (items, id = null, link = 'parent_id') =>
+	items
+		.filter((item) => item[link] === id)
+		.map((item) => ({ ...item, children: nest(items, item.id) }));
+// One top level comment
+const comments = [
+	{ id: 1, parent_id: null },
+	{ id: 2, parent_id: 1 },
+	{ id: 3, parent_id: 1 },
+	{ id: 4, parent_id: 2 },
+	{ id: 5, parent_id: 4 },
+];
+const nestedComments = nest(comments);
+console.log(nestedComments);
+
+// Point : solution 2  : using (for of loop)
+
+const nest1 = (items, id = null, link = 'parent_id') => {
+	const nestedItems = [];
+
+	for (const item of items) {
+		if (item[link] === id) {
+			const newItem = { ...item, children: nest(items, item.id) };
+			nestedItems.push(newItem);
+		}
+	}
+
+	return nestedItems;
+};
+const comments1 = [
+	{ id: 1, parent_id: null },
+	{ id: 2, parent_id: 1 },
+	{ id: 3, parent_id: 1 },
+	{ id: 4, parent_id: 2 },
+	{ id: 5, parent_id: 4 },
+];
+
+const nestedComments1 = nest(comments1);
+console.log(nestedComments1);
