@@ -81,3 +81,31 @@ const comments1 = [
 
 const nestedComments1 = nest(comments1);
 console.log(nestedComments1);
+
+// Task : Return true if the provided predicate function returns false for all elements in a collection, false otherwise
+
+// Point : Solution1 : using some method
+console.log('-----------------------------');
+const none = (arr, fn = Boolean) => !arr.some(fn);
+
+console.log(none([0, 1, , 3, 0], (x) => x == 2)); // true
+console.log(none([0, 0, 0])); // true
+console.log(none([1, 1, 0])); // false
+console.log('-----------------------------');
+
+// Point : solution2 : using every method (will be false if the condition is true )
+const none1 = (arr, fn = Boolean) => !arr.every((value) => !fn(value));
+
+console.log(none1([0, 1, 3, 0], (x) => x === 2)); // false
+console.log(none1([0, 0, 0])); // false
+console.log(none1([1, 1, 1])); // true
+console.log(none1([1, 1, 0])); //true
+
+console.log('----------------------------------------------------------------');
+// Point : solution 3 : using filter function
+const none2 = (x, y = Boolean) => x.filter(y).length === 0;
+
+console.log(none2([0, 1, 3, 0], (x) => x === 2)); // true
+console.log(none2([0, 0, 0])); // true
+console.log(none2([1, 1, 1])); // false
+console.log(none2([1, 1, 0])); //false
