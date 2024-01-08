@@ -56,3 +56,30 @@ const third2 = nthArg2(2);
 
 const last2 = nthArg2(-1);
 console.log(last2(1, 2, 3, 4, 5));
+
+// Task : Write a JavaScript program to remove an event listener from an element.
+
+// Point : Solution 1 : using removeEventListner to remove something from an element
+
+const remove = (el, evt, fn, opts = false) =>
+	el.removeEventListener(evt, fn, opts);
+
+// || el.removeEventListener(evt, evt.type, opts);
+
+const fn = () => console.log('!!! removeEventListener');
+document.body.addEventListener('click', fn);
+// console.log(remove(document.body, 'click', fn)); // undefined
+
+console.log(remove(document.body, 'click', fn, true));
+
+// Point : solution 2 : using call event with removeEventListener
+
+const remove1 = (el, evt, fn, opts = false) => {
+	const eventWrapper = (event) => fn.call(el, event);
+
+	el.removeEventListener(evt, eventWrapper, opts);
+};
+
+const fn1 = () => console.log('! removeEventListener');
+document.body.addEventListener('click', fn1);
+console.log(remove1(document.body, 'click', fn1));
