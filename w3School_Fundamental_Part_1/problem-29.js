@@ -83,3 +83,46 @@ const remove1 = (el, evt, fn, opts = false) => {
 const fn1 = () => console.log('! removeEventListener');
 document.body.addEventListener('click', fn1);
 console.log(remove1(document.body, 'click', fn1));
+
+// Task : Write a JavaScript program to move the specified amount of elements to the end of the array.
+
+// Point : solution 1 : solve using ... spread operator and slice
+const moveSpecificElements = (arr, element) => [
+	...arr.slice(element),
+	...arr.slice(0, element),
+];
+
+console.log('----------------------------------------------------------------');
+console.log(moveSpecificElements([1, 2, 3, 4, 5], 3));
+console.log(moveSpecificElements([1, 2, 3, 4, 5], -3));
+
+// Point : solution 2 : using for loop
+const moveSpecificElements1 = (arr, element) => {
+	const result = [];
+
+	for (let i = element; i < arr.length + element; i++) {
+		result.push(arr[((i % arr.length) + arr.length) % arr.length]);
+	}
+
+	return result;
+};
+
+console.log(moveSpecificElements1([1, 2, 3, 4, 5], 3));
+console.log(moveSpecificElements1([1, 2, 3, 4, 5], -3));
+
+// point : solution  : 3 solve without using built-in functions
+const moveSpecificElements2 = (arr, element) => {
+	const length = arr.length;
+	const result = [];
+
+	const startIndex = ((element % length) + length) % length;
+
+	for (let i = 0; i < length; i++) {
+		result[i] = arr[(startIndex + i) % length];
+	}
+
+	return result;
+};
+
+console.log(moveSpecificElements2([1, 2, 3, 4, 5], 3));
+console.log(moveSpecificElements2([1, 2, 3, 4, 5], -3));
