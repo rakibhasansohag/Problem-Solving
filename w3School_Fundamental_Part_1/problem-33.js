@@ -111,3 +111,27 @@ const convertWords2 = (str) => {
 
 console.log(convertWords2('I love javaScript!!'));
 console.log(convertWords2('javaScript', true, 324324));
+console.log('--------------------------------');
+// task : Write a JavaScript program to test a value, x, against a predicate function. If true, return fn(x). Else, return x.
+// / note : Return a function expecting a single value, x, that returns the appropriate value based on pred.
+// Point : solution 1 : using a predicate imaginary function
+const predicate = (pred, whenTrue) => (x) => pred(x) ? whenTrue(x) : x;
+const doubleTheEvenNumbers = predicate(
+	(x) => x % 2 === 0,
+	(x) => x * 2,
+);
+
+console.log(doubleTheEvenNumbers(2));
+console.log(doubleTheEvenNumbers(1));
+console.log(doubleTheEvenNumbers('32'));
+
+// Point : solution 2 :
+const doubleTheEvenNumbers1 = (x) => {
+	if (typeof x === 'number' && x % 2 === 0) {
+		return x * 2;
+	}
+	return x;
+};
+console.log(doubleTheEvenNumbers1(2));
+console.log(doubleTheEvenNumbers1(1));
+console.log(doubleTheEvenNumbers1('32'));
