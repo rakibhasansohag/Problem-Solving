@@ -67,3 +67,47 @@ const grouped1 = (...args) => {
 
 console.log(grouped1(['a', 'b'], [1, 2], [true, false]));
 console.log(grouped1(['a'], [1, 2], [true, false]));
+
+// Task : Write a JavaScript program to convert a given string into an array of words.
+
+// Point : solution 1 : using split and filter
+const convertWords = (str, pattern = /^a-zA-Z-]+/) =>
+	str.split(pattern).filter(Boolean);
+
+console.log(convertWords('I love javaScript!!'));
+console.log(convertWords('javaScript', true, 324324));
+
+// Point : solution 2 : using replace and split().filter();
+const convertWords1 = (str) =>
+	str
+		.replace(/^a-zA-Z-]+/)
+		.split(' ')
+		.filter(Boolean);
+console.log(convertWords1('I love javaScript!!'));
+console.log(convertWords1('javaScript', true, 324324));
+
+// Point : solution 3 : without using any built-in functions
+const convertWords2 = (str) => {
+	const result = [];
+	let currentWord = '';
+	let resultIndex = 0;
+
+	for (let i = 0; i < str.length; i++) {
+		const char = str[i].toLowerCase();
+
+		if ((char >= 'a' && char <= 'z') || char === '-') {
+			currentWord += str[i];
+		} else if (currentWord.length > 0) {
+			result[resultIndex] = currentWord;
+			currentWord = '';
+			resultIndex++;
+		}
+	}
+	if (currentWord.length > 0) {
+		result[resultIndex] = currentWord;
+	}
+	return result;
+};
+
+console.log(convertWords2('I love javaScript!!'));
+console.log(convertWords2('javaScript', true, 324324));
