@@ -86,3 +86,55 @@ console.log(
 		(...args) => args.reduce((acc, v) => acc + v, 0),
 	),
 );
+
+console.log('----------------------------------------------------------------');
+
+// task : Write a JavaScript program to get all distinct values (from the right side of the array) of an array, based on a provided comparator function..
+
+// Point : solution 1 : using reduceRight and prototype.some
+const uniqueElementsByRight = (arr, fn) =>
+	arr.reduceRight((acc, cur) => {
+		if (!acc.some((x) => fn(cur, x))) acc.push(cur);
+		return acc;
+	}, []);
+
+console.log(
+	uniqueElementsByRight(
+		[
+			{ id: 0, value: 'a' },
+			{ id: 1, value: 'b' },
+			{ id: 2, value: 'c' },
+			{ id: 1, value: 'd' },
+			{ id: 0, value: 'e' },
+		],
+		(a, b) => a.id == b.id,
+	),
+);
+
+// Point : solution 1 : using
+const uniqueElementsByRight1 = (arr, fn) => {
+	const result = [];
+
+	for (let i = arr.length - 1; i >= 0; i--) {
+		const current = arr[i];
+		const key = fn(current);
+
+		if (!result.some((x) => fn(x) === key)) {
+			result.unshift(current);
+		}
+	}
+	return result.reverse();
+};
+
+console.log(
+	uniqueElementsByRight1(
+		[
+			{ id: 0, value: 'a' },
+			{ id: 1, value: 'b' },
+			{ id: 2, value: 'c' },
+			{ id: 1, value: 'd' },
+			{ id: 0, value: 'e' },
+		],
+		(item) => item.id,
+	),
+);
