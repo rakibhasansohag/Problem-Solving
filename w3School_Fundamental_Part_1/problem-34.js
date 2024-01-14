@@ -134,7 +134,8 @@ console.log(
 			{ id: 2, value: 'c' },
 			{ id: 1, value: 'd' },
 			{ id: 0, value: 'e' },
+			{ id: 0, value: 'a' },
 		],
-		(item) => item.id,
+		(item) => item.value,
 	),
 );
