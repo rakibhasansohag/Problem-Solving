@@ -26,3 +26,31 @@ const unionElements1 = (a, b) => {
 };
 console.log(unionElements1([1, 2, 3], [4, 3, 2]));
 console.log(unionElements1([1, 2, 3], [1, 2, 3]));
+console.log('working...');
+// task : Write a JavaScript program to build an array, using an iterator function and an initial seed value.
+
+// point : solution 1 : using while loop and and condition
+const unfold = (fn, seed) => {
+	let result = [];
+	let value = [null, seed];
+	while ((value = fn(value[1]))) result.push(value[0]);
+	return result;
+};
+let fun = (number) => (number > 50 ? false : [-number, number + 10]);
+let secondFun = (number) => (number > 100 ? false : [number, number + number]); // 2 ** 2
+console.log(unfold(fun, 10));
+console.log(unfold(secondFun, 10));
+
+// Point : using rest  operator
+const unfold1 = (fn, seed) => {
+	const unfoldRecursive = (result, value) => {
+		const next = fn(value);
+		return next ? unfoldRecursive([...result, next[0]], next[1]) : result;
+	};
+	return unfoldRecursive([], seed);
+};
+
+let funBegin = (number) => (number > 50 ? false : [-number, number + 10]);
+console.log(unfold1(funBegin, 10));
+let thirdFun = (number) => (number > 100 ? false : [number, number + number]);
+console.log(unfold1(thirdFun, 10));
