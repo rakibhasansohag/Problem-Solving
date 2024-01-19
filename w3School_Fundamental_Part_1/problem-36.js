@@ -56,7 +56,7 @@ let thirdFun = (number) => (number > 100 ? false : [number, number + number]);
 console.log(unfold1(thirdFun, 10));
 console.log('----------------------------------------------------------------');
 
-// task : Unflatten an object with the paths for keys.
+// task : Write a JavaScript program to unflatten an object with the paths for keys..
 
 // point : solution 1 : using nested reduce and split(".")
 // / note : what is unflatten an object ?
