@@ -17,3 +17,15 @@ const add = (x) => (y) => (z) => x + y + z;
 const uncurriedAdd = uncurry(add, 3);
 console.log(uncurriedAdd(1, 2, 3));
 // console.log(uncurriedAdd(1, 2));
+
+// task : Write a JavaScript program to create a function that accepts up to one argument, ignoring any additional arguments.
+
+// Point : solution 1 : calling the provided function with arguments
+
+const ignoreing = (fn) => (val) => fn(val);
+console.log(['6', '8', '10'].map(ignoreing(parseInt)));
+console.log(
+	['6', '7', '8', '9', '10', '11']
+		.map(ignoreing(parseInt))
+		.filter((x) => x !== 10),
+);
