@@ -29,3 +29,34 @@ console.log(
 		.map(ignoreing(parseInt))
 		.filter((x) => x !== 10),
 );
+
+// task : Write a JavaScript program to check if the predicate (second argument) is truthy on all elements of a collection (first argument).
+
+// Point : solution using every method
+const truthyCheckCollection = (collection, prev) =>
+	collection.every((obj) => obj[prev]);
+
+console.log(
+	truthyCheckCollection(
+		[
+			{ user: 'Tinky-Winky', sex: 'male' },
+			{ user: 'Dipsy', sex: 'male' },
+		],
+		'sex',
+	),
+);
+
+console.log(
+	truthyCheckCollection(
+		[
+			{ user: 'Tinky-Winky', sex: 'male', age: 12 },
+			{
+				user: 'rakib',
+				sex: 'male',
+				age: 12,
+			},
+		],
+
+		'user',
+	),
+);
