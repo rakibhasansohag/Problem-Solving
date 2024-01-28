@@ -87,3 +87,52 @@ const truncateString1 = (str, num) => {
 
 console.log(truncateString1('boomerang', 7));
 console.log(truncateString1('sevenIsDead', 10));
+
+// task : Write a JavaScript program to apply a function against an accumulator and each key in the object (from left to right).
+
+// Point : solution using Object.keys and reduce
+
+const transform = (obj, key, acc) =>
+	Object.keys(obj).reduce((acc, cur) => key(acc, obj[cur], cur, obj), acc);
+
+console.log(
+	transform(
+		{ a: 1, b: 2, c: 1 },
+		(r, v, k) => {
+			(r[v] || (r[v] = [])).push(k);
+			return r;
+		},
+		{},
+	),
+);
+
+// Point : solution without using built-in functions
+const transform1 = (obj, key, acc) => {
+	for (let prop in obj) {
+		if (obj.hasOwnProperty(prop)) {
+			acc = key(acc, obj[prop], prop, obj);
+		}
+	}
+	return acc;
+};
+
+console.log(
+	transform1(
+		{ a: 1, b: 2, c: 1 },
+		(r, v, k) => {
+			(r[v] || (r[v] = [])).push(k);
+			return r;
+		},
+		{},
+	),
+);
+console.log(
+	transform1(
+		{ x: 3, y: 4, z: 3 },
+		(r, v, k) => {
+			(r[v] || (r[v] = [])).push(k);
+			return r;
+		},
+		{},
+	),
+);
