@@ -60,3 +60,30 @@ console.log(
 		'user',
 	),
 );
+
+// task : Write a JavaScript program to truncate a string up to a specified length.
+
+// Point : solution using slice and condition
+const truncateString = (str, num) =>
+	str.length > num ? str.slice(0, num > 3 ? num - 3 : null) + '...' : str;
+console.log(truncateString('boomerang', 7));
+console.log(truncateString('sevenIsDead', 10));
+
+// Point : solution without using build-in function
+
+const truncateString1 = (str, num) => {
+	let truncated = '';
+
+	if (str.length > num) {
+		for (let i = 0; i < num - 3; i++) {
+			truncated += str[i];
+		}
+		truncated += '...';
+	} else {
+		truncated = str;
+	}
+	return truncated;
+};
+
+console.log(truncateString1('boomerang', 7));
+console.log(truncateString1('sevenIsDead', 10));
