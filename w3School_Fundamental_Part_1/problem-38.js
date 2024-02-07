@@ -73,3 +73,26 @@ console.log(
 		'IAmListeningToFMWhileLoadingDifferentURLOnMyBrowserAndAlsoEditingSomeXMLAndHTML',
 	),
 );
+
+// task : Write a JavaScript program to convert a value to a safe integer.
+// Point : solve using Math.max ( Number.MAX_SAFE_INTEGER )
+const toSafeInteger = (num) =>
+	Math.round(Math.min(num, Number.MAX_SAFE_INTEGER), Number.MIN_SAFE_INTEGER);
+
+console.log(toSafeInteger('3.2'));
+console.log(toSafeInteger(Infinity));
+
+// Point : solving using Condition
+const toSafeInteger1 = (num) => {
+	const n = Number(num);
+
+	if (isNaN(n) || n < Number.MIN_SAFE_INTEGER) {
+		return Number.MIN_SAFE_INTEGER;
+	} else if (n > Number.MAX_SAFE_INTEGER) {
+		return Number.MAX_SAFE_INTEGER;
+	}
+
+	return Math.round(n);
+};
+console.log(toSafeInteger1('3.2'));
+console.log(toSafeInteger1(Infinity));
