@@ -71,3 +71,47 @@ console.log(toOrdinalSuffix2('1'));
 console.log(toOrdinalSuffix2('4'));
 console.log(toOrdinalSuffix2('50'));
 console.log(toOrdinalSuffix2('123'));
+console.log('------- problem 2 -------');
+
+// task : Write a JavaScript program to convert a string to kebab case.
+// what is kabab case ?
+// /  kabab case also known as hypen case, it involves writing compound words in lowercase letters and separating them with hypens(-). it commonly used in naming files,  URLs and css classes n web development.
+
+// point : solution using regex  (/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+const toKebabCase = (str) =>
+	str &&
+	str
+		.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+		.map((x) => x.toLowerCase())
+		.join('-');
+
+console.log(toKebabCase('camelCase'));
+console.log(toKebabCase('some text'));
+console.log(
+	toKebabCase('some-mixed_string With spaces_underscores-and-hyphens'),
+);
+console.log(toKebabCase('AllThe-small Things'));
+console.log(
+	toKebabCase(
+		'IAmListeningToFMWhileLoadingDifferentURLOnMyBrowserAndAlsoEditingSomeXMLAndHTML',
+	),
+);
+
+// Point : using simple way
+const toKebabCase1 = (str) => {
+	const words = str.match(/[A-Z]*[a-z]+|[0-9]+/g);
+	return words ? words.join('-').toLowerCase() : '';
+};
+
+console.log('--------------------------------');
+console.log(toKebabCase1('camelCase'));
+console.log(toKebabCase1('some text'));
+console.log(
+	toKebabCase1('some-mixed_string With spaces_underscores-and-hyphens'),
+);
+console.log(toKebabCase1('AllThe-small Things'));
+console.log(
+	toKebabCase1(
+		'IAmListeningToFMWhileLoadingDifferentURLOnMyBrowserAndAlsoEditingSomeXMLAndHTML',
+	),
+);
