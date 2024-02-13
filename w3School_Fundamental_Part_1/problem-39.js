@@ -131,7 +131,6 @@ const toHash = (object, key) => {
 };
 
 console.log(toHash([4, 3, 2, 1])); // {0: 4, 1: 3, 2: 2, 3: 1}
-
 console.log(toHash([{ a: 'label' }, 'a'])); // {label: {a: 'label}}
 let users = [
 	{ id: 1, first: 'Jon' },
@@ -148,3 +147,25 @@ managers.forEach(
 );
 
 console.log(managers);
+
+// Point : Simple way to solve the problem
+console.log('--------------------------------');
+const toHash1 = (object, key) => {
+	return object.reduce((acc, data, index) => {
+		const keyValue = key ? data[key] : index;
+		acc[keyValue] = data;
+		return acc;
+	}, []);
+};
+
+console.log(toHash1([4, 3, 2, 1])); // {0: 4, 1: 3, 2: 2, 3: 1}
+console.log(toHash1([{ a: 'label' }, 'a'])); // {label: {a: 'label}}
+
+let managers1 = [{ manager: 1, employees: [2, 3] }];
+
+managers1.forEach((manager) => {
+	manager.employees = manager.employees.map((id) =>
+		users.find((user) => user.id === id),
+	);
+});
+console.log(managers1);
