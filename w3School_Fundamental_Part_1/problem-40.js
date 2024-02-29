@@ -88,3 +88,22 @@ console.log(toOrdinalSuffix('1'));
 console.log(toOrdinalSuffix('4'));
 console.log(toOrdinalSuffix('50'));
 console.log(toOrdinalSuffix('123'));
+
+console.log('--------------------------------');
+// Task : Write a JavaScript program that converts float-point arithmetic to decimal form, and creates a comma separated string from a number.
+
+const toDecimalMark = (num) => num.toLocaleString('en-US');
+
+console.log(toDecimalMark(12305030388.9087));
+console.log(toDecimalMark(123.2264));
+console.log(toDecimalMark(-100.1));
+
+// Point: solution 2 : using regex (custom way)
+function toDecimalMark2(num) {
+	const [integerPart, decimalPart] = num.toString().split('.');
+	const formattedInteger = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	return decimalPart ? `${formattedInteger}.${decimalPart}` : formattedInteger;
+}
+console.log(toDecimalMark2(12305030388.9087));
+console.log(toDecimalMark2(123.2264));
+console.log(toDecimalMark2(-100.1));
