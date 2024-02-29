@@ -66,3 +66,25 @@ const words = (str, pattern = /[^a-zA-Z-]+/) =>
 	str.split(pattern).filter(Boolean);
 console.log(words('I love javaScript!!'));
 console.log(words('python, java, php'));
+
+console.log('----------------------------------------------------------------');
+
+// task : Write a JavaScript program to convert a given string into an array of words.
+
+const toOrdinalSuffix = (num) => {
+	const initial = parseInt(num);
+
+	const digits = [initial % 10, initial % 100];
+	const ordinals = ['st', 'nd', 'rd', 'th'];
+	const oPattern = [1, 2, 3, 4];
+	const tPattern = [11, 12, 13, 14, 15, 16, 17, 18, 19];
+
+	return oPattern.includes(digits[0]) && !tPattern.includes(digits[1])
+		? initial + ordinals[digits[0] - 1]
+		: initial + ordinals[3];
+};
+
+console.log(toOrdinalSuffix('1'));
+console.log(toOrdinalSuffix('4'));
+console.log(toOrdinalSuffix('50'));
+console.log(toOrdinalSuffix('123'));
