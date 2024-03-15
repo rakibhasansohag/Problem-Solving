@@ -73,3 +73,28 @@ const takeWhile = (arr, func) => {
 
 console.log(takeWhile([1, 2, 3, 4], (n) => n >= 3)); // [1,2]
 console.log(takeWhile([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], (n) => n >= 10));
+
+// Point: Task: Write a JavaScript program to remove n elements from the end of a given array.
+console.log('--------------------------------');
+// Point: solve using slice function
+const removeElement = (array, n = 1) =>
+	array.slice(array.length - n, array.length);
+console.log(removeElement([1, 2, 3], 2));
+console.log(removeElement([1, 2, 3]));
+
+// Point: solving without  using any built-in functions
+const removeLastElement1 = (arr, n = 1) => {
+	const result = [];
+
+	for (let i = arr.length - 1; i >= 0; i--) {
+		if (n > 0) {
+			result.unshift(arr[i]);
+			n--;
+		} else {
+			break;
+		}
+	}
+	return result;
+};
+console.log(removeLastElement1([1, 2, 3], 2));
+console.log(removeLastElement1([1, 2, 3]));
