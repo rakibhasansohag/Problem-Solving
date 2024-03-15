@@ -98,3 +98,43 @@ const removeLastElement1 = (arr, n = 1) => {
 };
 console.log(removeLastElement1([1, 2, 3], 2));
 console.log(removeLastElement1([1, 2, 3]));
+console.log('----------------------------------------------------------------');
+// task : Write a JavaScript program to get an array with n elements removed from the beginning from a given array.
+
+// Point: solve using slice
+const take = (arr, n = 1) => arr.slice(0, n);
+console.log(take([1, 2, 3], 5));
+console.log(take([1, 2, 3], 0));
+
+// Point: solving  without using built-in functions;
+const takeTwo = (arr, n = 1) => {
+	const result = [];
+
+	for (let i = 0; i < n; i++) {
+		if (i < arr.length) {
+			result[i] = arr[i];
+		} else {
+			break;
+		}
+	}
+	return result;
+};
+
+console.log(takeTwo([1, 2, 3], 5));
+console.log(takeTwo([1, 2, 3], 0));
+
+const takeThree = (arr, n = 1) => {
+	const result = [];
+
+	for (let i = 0; i < n; i++) {
+		if (i < arr.length) {
+			result.push(arr[i]);
+		} else {
+			break;
+		}
+	}
+	return result;
+};
+
+console.log(takeThree([1, 2, 3], 5));
+console.log(takeThree([1, 2, 3], 0));
