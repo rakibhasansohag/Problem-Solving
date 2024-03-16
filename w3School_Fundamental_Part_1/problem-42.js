@@ -107,3 +107,48 @@ console.log(
 		(a, b) => Math.round(a) === Math.round(b),
 	),
 );
+
+// Task:Write a JavaScript program to get the symmetric difference between two given arrays.
+
+// Point: solution 1 : using Set() and filter() method
+console.log('----------------------------------------------------------------');
+const symmetricDifference = (a, b) => {
+	const difference = new Set(a);
+	const difference2 = new Set(b);
+
+	return [
+		...a.filter((x) => !difference2.has(x)),
+		...b.filter((x) => !difference.has(x)),
+	];
+};
+console.log(symmetricDifference([1, 2, 3], [1, 2, 4]));
+
+// Point: solving without using any built-in functions
+const symmetricDifference1 = (a, b) => {
+	const result = [];
+
+	for (const x of a) {
+		let flag = false;
+		for (const y of b) {
+			if (Math.round(x) === Math.round(y)) {
+				flag = true;
+				break;
+			}
+		}
+		if (!flag) result.push(x);
+	}
+
+	for (const x of b) {
+		let flag = false;
+		for (const x of a) {
+			if (Math.round(x) === Math.round(y)) {
+				flag = true;
+				break;
+			}
+		}
+		if (!flag) result.push(y);
+	}
+
+	return result;
+};
+console.log(symmetricDifference([1, 2, 3], [1, 2, 4]));
