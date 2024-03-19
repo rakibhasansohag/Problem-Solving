@@ -109,7 +109,6 @@ console.log(
 );
 
 // Task:Write a JavaScript program to get the symmetric difference between two given arrays.
-
 // Point: solution 1 : using Set() and filter() method
 console.log('----------------------------------------------------------------');
 const symmetricDifference = (a, b) => {
@@ -152,3 +151,50 @@ const symmetricDifference1 = (a, b) => {
 	return result;
 };
 console.log(symmetricDifference([1, 2, 3], [1, 2, 4]));
+
+// Point: using for loop
+const symmetricDifference2 = (a, b) => {
+	const result = [];
+	for (let i = 0; i < a.length; i++) {
+		if (b.indexOf(a[i]) === -1) {
+			result.push(a[i]);
+		}
+	}
+	for (let i = 0; i < b.length; i++) {
+		if (a.indexOf(b[i]) === -1) {
+			result.push(b[i]);
+		}
+	}
+	return result;
+};
+
+console.log(symmetricDifference([1, 2, 3], [1, 2, 4]));
+
+// Task: Write a JavaScript program to get the sum of the powers of all the numbers from start to end (both inclusive).
+
+// Point : solving using Array.fill(), map(), reduce();
+const sumPower = (end, power = 2, start = 1) => {
+	return Array(end + 1 - start)
+		.fill()
+		.map((_, i) => (i + start) ** power)
+		.reduce((a, b) => a + b, 0);
+};
+
+console.log(sumPower(10));
+console.log(sumPower(10, 3));
+console.log(sumPower(10, 3, 5));
+
+// Point : solving without using any built-in functions
+const sumPower1 = (end, power = 2, start = 1) => {
+	let sum = 0;
+
+	for (let i = start; i <= end; i++) {
+		sum += i ** power;
+	}
+
+	return sum;
+};
+
+console.log(sumPower1(10));
+console.log(sumPower1(10, 3));
+console.log(sumPower1(10, 3, 5));
