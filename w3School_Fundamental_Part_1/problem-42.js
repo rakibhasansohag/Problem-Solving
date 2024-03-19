@@ -198,3 +198,55 @@ const sumPower1 = (end, power = 2, start = 1) => {
 console.log(sumPower1(10));
 console.log(sumPower1(10, 3));
 console.log(sumPower1(10, 3, 5));
+
+console.log('----------------------------------------------------------------');
+
+// task : Write a JavaScript program to generate all permutations of a string (contains duplicates).
+
+// Point : solving using  map(), reduce(),
+const stringPermutations = (str) => {
+	if (str.length <= 2) return str.length === 2 ? [str, str[1] + str[0]] : [str];
+
+	return str
+		.split('')
+		.reduce(
+			(acc, letter, i) =>
+				acc.concat(
+					stringPermutations(str.slice(0, i)).map((val) => letter + val),
+				),
+			[],
+		);
+};
+
+console.log(stringPermutations('abc'));
+console.log(stringPermutations('*$*'));
+console.log(stringPermutations('aabb'));
+
+const stringPermutations1 = (input) => {
+	const result = [];
+
+	const stringPermutations1Helper = (inputString, prefix = '') => {
+		if (inputString.length === 0) {
+			result.push(prefix);
+			return;
+		}
+
+		const visited = new Set();
+		for (let i = 0; i < inputString.length; i++) {
+			const currentChar = inputString[i];
+			if (!visited.has(currentChar)) {
+				visited.add(currentChar);
+				const remainingString =
+					inputString.slice(0, i) + inputString.slice(i + 1);
+				stringPermutations1Helper(remainingString, prefix + currentChar);
+			}
+		}
+	};
+
+	stringPermutations1Helper(input);
+	return result;
+};
+
+console.log(stringPermutations1('abc'));
+console.log(stringPermutations1('*$*'));
+console.log(stringPermutations1('aabb'));
