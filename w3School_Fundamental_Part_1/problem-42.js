@@ -250,3 +250,36 @@ const stringPermutations1 = (input) => {
 console.log(stringPermutations1('abc'));
 console.log(stringPermutations1('*$*'));
 console.log(stringPermutations1('aabb'));
+
+console.log('-----------------------------------------');
+// Task: Write a JavaScript program to perform stable sorting of an array, preserving the initial indexes of items when their values are the same. Returns a new array instead of mutating the original array.
+
+// Point: using map(), sort(), and returning a new array
+const stableSort = (arr, compare) =>
+	arr
+		.map((item, index) => ({ item, index }))
+		.sort((a, b) => compare(a.item, b.item) || a.index - b.index)
+		.map(({ item }) => item);
+
+const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+console.log(stableSort(arr, () => 0));
+
+const arr1 = [1, 2, 3, 4, 5, 6, 10, 12, 34, 23, 4, 2, 3, 4];
+console.log(stableSort(arr1, (a, b) => a - b));
+
+console.log('-----------------------------------------');
+// Point: using reduce and map
+const stableSort1 = (arr, compare) =>
+	arr
+		.reduce((sorted, item, index) => {
+			sorted.push({ item, index });
+			return sorted;
+		}, [])
+		.sort((a, b) => compare(a.item, b.item) || a.index - b.index)
+		.map(({ item }) => item);
+
+const arr3 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+console.log(stableSort1(arr3, () => 0));
+
+const arr4 = [1, 2, 3, 4, 5, 6, 10, 12, 34, 23, 4, 2, 3, 4];
+console.log(stableSort1(arr4, (a, b) => a - b));
