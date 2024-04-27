@@ -18,3 +18,35 @@ const arrayMax = spreadOver(Math.max);
 console.log(spreadOver(add)(array)); ///  3
 console.log(arrayMax(array)); ///  5
 
+// Task : Split a multiline string into an array of lines.
+
+// Point : solution 1 - using split()
+const splitLines = (str) => str.split(/\r?\n/);
+
+console.log(splitLines("Line 1\nLine 2\nLine 3"));
+console.log(splitLines("this is fine "));
+
+// Point: solution 2 - without using any built-in functions
+const splitLines1 = (str) => {
+  const lines = [];
+  let currentLine = "";
+
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i];
+
+    if (char === "\n" || char === "\r") {
+      if (currentLine !== "") {
+        lines.push(currentLine);
+        currentLine = "";
+      }
+    } else {
+      currentLine += char;
+    }
+  }
+  if (currentLine !== "") lines.push(currentLine);
+
+  return lines;
+};
+
+console.log(splitLines1("Line 1\nLine 2\nLine 3"));
+console.log(splitLines1("this is fine "));
