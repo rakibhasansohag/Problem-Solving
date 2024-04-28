@@ -100,3 +100,63 @@ console.log(sortedLastIndexBy1([50, 5], 3, (x) => x));
 console.log(sortedLastIndexBy1([5], 3, (x) => x));
 console.log(sortedLastIndexBy1([], 3, (x) => x));
 console.log(sortedLastIndexBy1([{ x: 4 }, { x: 5 }], { x: 4 }, (o) => o.x));
+
+console.log("--------- another problem ---------------");
+console.log(Boolean(null));
+console.log(Boolean(NaN));
+console.log(Boolean(undefined));
+console.log(Boolean(0));
+console.log(Boolean(-0));
+console.log(Boolean(""));
+
+// Task :  Get the highest index at which value should be inserted into array in order to maintain its sort order
+
+// Point: solution 1 - using sort
+const sortedLastIndex = (arr, n) => {
+  const isDescending = arr[0] > arr[arr.length - 1];
+
+  const index = arr
+    .reverse()
+    .findIndex((el) => (isDescending ? n <= el : n >= el));
+
+  return index === -1 ? 0 : arr.length - index;
+};
+
+console.log(sortedLastIndex([10, 20, 30, 40, 50], 35)); ///3
+console.log(sortedLastIndex([2, 3, 20, 50, 5], 3)); ///2
+console.log(sortedLastIndex([2, 3, 50, 5], 3)); /// 2
+console.log(sortedLastIndex([50, 5], 3)); /// 3
+console.log(sortedLastIndex([5], 3)); /// 0
+console.log(sortedLastIndex([], 3)); /// 0
+console.log(sortedLastIndex([{ x: 4 }, { x: 5 }], { x: 4 })); /// 2
+console.log(sortedLastIndex([10, 20, 30, 30, 40], 30)); /// Output: 4
+
+console.log("solution 2 ");
+// Point : solution 2 - without using any built-in  functions;
+
+const sortedLastIndex1 = (arr, target) => {
+  let left = 0;
+  let right = arr.length - 1;
+  let result = -1;
+
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+
+    if (arr[mid] === target) return mid;
+    else if (arr[mid] < target) left = mid + 1;
+    else {
+      result = mid;
+      right = mid - 1;
+    }
+  }
+  return result + 1;
+};
+
+console.log(sortedLastIndex1([10, 20, 30, 40, 50], 35)); ///3
+console.log(sortedLastIndex1([2, 3, 20, 50, 5], 3)); ///2
+console.log(sortedLastIndex1([2, 3, 50, 5], 3)); /// 2
+console.log(sortedLastIndex1([50, 5], 3)); /// 3
+console.log(sortedLastIndex1([5], 3)); /// 0
+console.log(sortedLastIndex1([], 3)); /// 0
+console.log(sortedLastIndex1([{ x: 4 }, { x: 5 }], { x: 4 })); /// 2
+console.log(sortedLastIndex1([10, 20, 30, 30, 40], 30)); /// Output: 4
