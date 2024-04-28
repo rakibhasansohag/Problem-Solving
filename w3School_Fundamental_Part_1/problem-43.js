@@ -50,3 +50,53 @@ const splitLines1 = (str) => {
 
 console.log(splitLines1("Line 1\nLine 2\nLine 3"));
 console.log(splitLines1("this is fine "));
+
+// Task : Get the highest index at which value should be inserted into array in order to maintain its sort order, based on a provided iterator function.
+const sortedLastIndexBy = (arr, n, fn) => {
+  let index = -1;
+
+  const sortedArr = [...arr].sort((a, b) => fn(a) - fn(b));
+
+  for (let i = 0; i < sortedArr.length; i++) {
+    if (fn(sortedArr[i]) > fn(n)) {
+      index = i;
+      break;
+    }
+  }
+
+  if (index === -1) index = sortedArr.length;
+
+  return index;
+};
+
+// Test the function
+console.log(sortedLastIndexBy([10, 20, 30, 40, 50], 35, (x) => x));
+console.log(sortedLastIndexBy([2, 3, 20, 50, 5], 3, (x) => x));
+console.log(sortedLastIndexBy([2, 3, 50, 5], 3, (x) => x));
+console.log(sortedLastIndexBy([50, 5], 3, (x) => x));
+console.log(sortedLastIndexBy([5], 3, (x) => x));
+console.log(sortedLastIndexBy([], 3, (x) => x));
+console.log(sortedLastIndexBy([{ x: 4 }, { x: 5 }], { x: 4 }, (o) => o.x)); // Output: 1
+// Point : solution 1 - using sort
+const sortedLastIndexBy1 = (arr, n, fn) => {
+  const isDescending = fn(arr[0]) > fn(arr[arr.length - 1]);
+
+  const val = fn(n);
+
+  const index = arr
+    .map(fn)
+    .reverse()
+    .findIndex((el) => (isDescending ? val <= el : val >= el));
+
+  return index === -1 ? 0 : arr.length - index;
+};
+
+console.log("---------------------------");
+// Testing the function
+console.log(sortedLastIndexBy1([10, 20, 30, 40, 50], 35, (x) => x));
+console.log(sortedLastIndexBy1([2, 3, 20, 50, 5], 3, (x) => x));
+console.log(sortedLastIndexBy1([2, 3, 50, 5], 3, (x) => x));
+console.log(sortedLastIndexBy1([50, 5], 3, (x) => x));
+console.log(sortedLastIndexBy1([5], 3, (x) => x));
+console.log(sortedLastIndexBy1([], 3, (x) => x));
+console.log(sortedLastIndexBy1([{ x: 4 }, { x: 5 }], { x: 4 }, (o) => o.x));
