@@ -160,3 +160,6 @@ console.log(sortedLastIndex1([5], 3)); /// 0
 console.log(sortedLastIndex1([], 3)); /// 0
 console.log(sortedLastIndex1([{ x: 4 }, { x: 5 }], { x: 4 })); /// 2
 console.log(sortedLastIndex1([10, 20, 30, 30, 40], 30)); /// Output: 4
+
+console.log("problem solve : ");
+
