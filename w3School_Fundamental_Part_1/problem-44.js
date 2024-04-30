@@ -39,3 +39,33 @@ function sortedIndex2(arr, target) {
 
 console.log(sortedIndex2([5, 3, 2, 1], 4)); // 0
 console.log(sortedIndex2([30, 50], 40)); // 2
+
+console.log("------------------ another problem ------------------");
+// Task : Sort the characters of a string Alphabetically.
+
+// Point : solution 1 - using sort method
+const sortCharactersInString = (str) =>
+  [...str].sort((a, b) => a.localeCompare(b)).join("");
+
+console.log(sortCharactersInString("cabbage")); // Output: 'aabbceg'
+console.log(sortCharactersInString("a7fs23l1n4o6x")); // Output: '123467aflnosx'
+
+// Point : solution 2 - without using any built-in functions;
+
+const sortCharactersInString1 = (str) => {
+  const arr = [...str];
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length - i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        const temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
+    }
+  }
+  return arr.join("");
+};
+
+console.log(sortCharactersInString1("cabbage")); // Output: 'aabbceg'
+console.log(sortCharactersInString1("a7fs23l1n4o6x")); // Output: '123467aflnosx'
