@@ -182,3 +182,29 @@ const similarity2 = (arr, values) => {
 };
 
 console.log(similarity2([1, 2, 3], [1, 2, 4])); // Output: [1, 2]
+
+// Task : Randomize the order of the values of an array, returning a new array.
+// Point : solution 1 - using Math.random() and Math.floor()
+
+const randomize = (array) => {
+  const shuffledArray = [...array];
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+  return shuffledArray;
+};
+
+console.log(randomize([1, 2, 3]));
+
+// Point : solution 2 - without using any built-in functions
+const randomize2 = (array) => {
+  const shuffledArray = [...array];
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+  return shuffledArray;
+};
+
+console.log(randomize2([1, 2, 3]));
