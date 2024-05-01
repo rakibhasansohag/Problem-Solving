@@ -208,3 +208,37 @@ const randomize2 = (array) => {
 };
 
 console.log(randomize2([1, 2, 3]));
+
+//Task :  Create a shallow clone of an object.
+// Point : solution 1 - using Object.assign() and an empty object ({}) to create a shallow clone of the original.
+const shallowClone = (obj) => Object.assign({}, obj);
+
+const x = { x: true, y: false };
+
+const xx = { x: true, y: false, z: 10, a: [1, 2, 3] };
+let y = shallowClone(x);
+
+const yy = shallowClone(xx);
+const z = { z: true };
+const zz = z;
+console.log(zz);
+
+console.log(y);
+console.log(x);
+
+console.log(x === y);
+console.log(yy);
+
+// Point : solution 2 - without using any built-in functions
+const shallowClone1 = (obj) => {
+  const result = [];
+
+  for (let key in obj) {
+    result[key] = obj[key];
+  }
+
+  return result;
+};
+
+const clone = shallowClone1(x);
+console.log(clone);
