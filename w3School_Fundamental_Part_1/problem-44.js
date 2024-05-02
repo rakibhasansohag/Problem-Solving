@@ -276,3 +276,42 @@ const hash1 = (str) => {
 };
 
 console.log(hash1("name"));
+
+const calculateStringHash = (inputString) => {
+  const characters = inputString.split("");
+
+  return characters.reduce((hashCode, character) => {
+    const characterCode = character.charCodeAt(0);
+    return (hashCode << 6) + characterCode - hashCode;
+  }, 0);
+};
+
+// Task : Write a function that takes two numbers (a and b) as arguments. If a is smaller than b, divide a by b. Otherwise, multiply both numbers. Return the resulting value.
+
+// Point : solution 1 -   using ternary operator
+const calculate = (a, b) => (a < b ? a / b : a * b);
+console.log(calculate(10, 5));
+
+// Point : solution 2 - using if else
+const calculate2 = (a, b) => {
+  if (a < b) {
+    return a / b;
+  } else {
+    return a * b;
+  }
+};
+
+console.log(calculate2(10, 5));
+
+// Task : Write a function that takes a number (a) as argument. Round a to the 2nd digit after the decimal point. Return the rounded number.
+// Point: solution 1 - using Math.round()
+const round = (a) => Math.round(a * 100) / 100;
+console.log(round(3.1415));
+
+// Point: solution 2 - using toFixed()
+const round1 = (a) => a.toFixed(2);
+console.log(round1(3.1415));
+
+// Point : solution 3 - using Number
+const round2 = (a) => Number(a.toFixed(2));
+console.log(round2(3.1415));
