@@ -315,3 +315,42 @@ console.log(round1(3.1415));
 // Point : solution 3 - using Number
 const round2 = (a) => Number(a.toFixed(2));
 console.log(round2(3.1415));
+
+// Task: Write a function that takes a number (a) as argument. Split a into its individual digits and return them in an array. Hint: you might want to change the type of the number for the splitting.
+// Point: solution 1 -- using String
+const split = (a) => Array.from(String(a), Number);
+console.log(split(10));
+console.log(split(12345));
+
+// Point : solution 2 - using spread operator
+const split1 = (a) => [...String(a)];
+console.log(split1(10));
+console.log(split1(12345));
+
+// Point: solution 3 - using Number
+const split2 = (a) => a.toString().split("").map(Number);
+console.log(split2(10));
+console.log(split2(12345));
+
+// Point: solution 4 - using while loop
+const split3 = (a) => {
+  let arr = [];
+  while (a > 0) {
+    arr.push(a % 10);
+
+    a = Math.floor(a / 10);
+  }
+
+  return arr.reverse(); // to reverse the output as desire one
+};
+console.log(split3(10));
+console.log(split3(12345));
+
+// Point: solution 5 - simple way;
+const split4 = (a) => {
+  const string = a + "";
+  const arr = string.split("");
+  return arr.map((el) => +el);
+};
+console.log(split4(10));
+console.log(split4(12345));
