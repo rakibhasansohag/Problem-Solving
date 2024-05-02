@@ -242,3 +242,37 @@ const shallowClone1 = (obj) => {
 
 const clone = shallowClone1(x);
 console.log(clone);
+
+// Task : Write a JavaScript program to hash the input string into a whole number.
+// Point : solution 1 - using Math.pow() and Math.round()
+const hash = (str) => {
+  let arr = str.split("");
+
+  return arr.reduce(
+    (hashCode, currentValue) =>
+      (hashCode =
+        currentValue.charCodeAt(0) +
+        (hashCode << 6) +
+        (hashCode << 16) -
+        hashCode),
+    0
+  );
+};
+console.log(hash("name"));
+
+// Point : solution 2 - without using  any built-in functions
+const hash1 = (str) => {
+  let hash = 0;
+
+  for (let i = 0; i < str.length; i++) {
+    const charCode = str.charCodeAt(i);
+    hash = hash * 16 + charCode;
+
+    // Convert to 32bit integer
+    hash = Math.round(hash);
+  }
+
+  return hash;
+};
+
+console.log(hash1("name"));
