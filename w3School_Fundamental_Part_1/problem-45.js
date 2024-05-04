@@ -25,11 +25,11 @@ console.log(
 // Point : solution 1 using Promise all
 const runPromiseInSeries = (arr) => Promise.all(arr);
 const delay = (d) => new Promise((r) => setTimeout(r, d));
-runPromiseInSeries([
-  () => delay(1000),
-  () => delay(2000),
-  () => delay(3000),
-]).then(console.log);
+// runPromiseInSeries([
+//   () => delay(1000),
+//   () => delay(2000),
+//   () => delay(3000),
+// ]).then(console.log);
 
 console.log("before promise");
 Promise.resolve().then(() => console.log("after promise"));
@@ -52,3 +52,47 @@ const round1 = (n, decimals = 0) =>
 console.log(round(1.005, 2)); // Output: 1.01
 console.log(round(1.05, 2)); // Output: 1.05
 console.log(round(1.0005, 2)); // Output: 1
+
+// Task : Clear up the chaos behind these strings.("  Hello World!  ")
+// Point : solution 1 - using regex
+const clearUp = (str) => {
+  return str
+    .replace(/[^a-zA-Z0-9]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+};
+
+console.log(clearUp("  Hello World!  "));
+
+// Point : solution 2 - using replace
+const clearUp1 = (str) => {
+  return str
+    .replace(/[^a-zA-Z0-9]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+};
+
+console.log(clearUp1("  Hello World!  "));
+
+// Task : Return the next higher prime number.
+// Point : solution 1- using prime number
+
+const isPrime = (num) => {
+  if (num <= 1) return false;
+  if (num <= 3) return true;
+  if (num % 2 === 0 || num % 3 === 0) return false;
+  for (let i = 5; i * i <= num; i += 2) {
+    if (num % i === 0 || num % (i + 2) === 0) return false;
+  }
+  return true;
+};
+
+const nextHigherPrime = (n) => {
+  for (let i = n + 1; ; i += 2) {
+    if (isPrime(i)) {
+      return i;
+    }
+  }
+};
+
+console.log(nextHigherPrime(10));
