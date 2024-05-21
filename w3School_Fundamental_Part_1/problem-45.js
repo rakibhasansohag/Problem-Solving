@@ -96,3 +96,49 @@ const nextHigherPrime = (n) => {
 };
 
 console.log(nextHigherPrime(10));
+
+// Task :Write a JavaScript program to reverse the order of characters in the string.
+// Point : solution 1 : using array reverse method
+const reverseString = (str) => [...str].reverse().join("");
+
+console.log(reverseString("Hello World!"));
+console.log(reverseString("I love javaScript!"));
+
+// Point : solution 2 : using for loop
+const reverseString1 = (str) => {
+  let result = "";
+
+  for (let i = 0; i < str.length; i++) {
+    result = str[i] + result;
+  }
+
+  return result;
+};
+
+console.log(reverseString1("Hello World!"));
+console.log(reverseString1("I love javaScript!"));
+console.log("------------------ another problem ------------------");
+
+// Task : Write a JavaScript program to create an object composed of the properties the given function returns false for. The function is invoked with two arguments: (value and key).
+
+// Point : solution 1 - using obj keys
+const omitBy = (obj, fn) =>
+  Object.keys(obj)
+    .filter((k) => !fn(obj[k], k))
+    .reduce((acc, key) => ((acc[key] = obj[key]), acc), {});
+
+console.log(omitBy({ a: 1, b: "2", c: 3 }, (x) => typeof x === "number")); // Output: { b: '2' }
+
+// Point : solution 2 - using for loop
+const omitBy1 = (obj, fn) => {
+  const result = {};
+
+  for (const key in obj) {
+    if (!fn(obj[key], key)) {
+      result[key] = obj[key];
+    }
+  }
+  return result;
+};
+
+console.log(omitBy1({ a: 1, b: "2", c: 3 }, (x) => typeof x === "number"));
