@@ -142,3 +142,28 @@ const omitBy1 = (obj, fn) => {
 };
 
 console.log(omitBy1({ a: 1, b: "2", c: 3 }, (x) => typeof x === "number"));
+
+// Task :Write a JavaScript program that takes a predicate and an array, like Array.filter(), but only keeps x if pred(x) returns false.
+// Point : solution 1 - using array filter method
+const reject = (pred, array) => array.filter((...args) => !pred(...args));
+console.log(reject((x) => x % 2 === 0, [1, 2, 3, 4, 5])); // Output: [1, 3, 5]
+console.log(
+  reject((word) => word.length > 4, ["Apple", "Pear", "Kiwi", "Banana"])
+); // Output: ['Pear', 'Kiwi']
+
+// Point : solution 1 : using for loop
+const reject1 = (pred, array) => {
+  const result = [];
+
+  for (let i = 0; i < array.length; i++) {
+    if (!pred(array[i])) {
+      result.push(array[i]);
+    }
+  }
+  return result;
+};
+
+console.log(reject1((x) => x % 2 === 0, [1, 2, 3, 4, 5])); // Output: [1, 3, 5]
+console.log(
+  reject1((word) => word.length > 4, ["Apple", "Pear", "Kiwi", "Banana"])
+); // Output: ['Pear', 'Kiwi']
