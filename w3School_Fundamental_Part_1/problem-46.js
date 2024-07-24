@@ -26,3 +26,12 @@ const reduceSuccessive1 = (arr, fn, acc) => {
 
 console.log('part 2');
 console.log(reduceSuccessive1([1, 2, 3, 4, 5, 6], (acc, val) => acc + val, 0)); // Output: [0, 1, 3, 6, 10, 15, 21]
+
+// Task : Get an array of lines from the specified file
+
+const fs = require('fs');
+const readFileLines = (filename) =>
+	fs.readFileSync(filename).toString('UTF-8').split('\n');
+
+const textArr = readFileLines('problem-1.js');
+console.log(textArr);
