@@ -89,3 +89,58 @@ const pullBy1 = (arr, ...args) => {
 };
 pullBy1(myArray, filterArray, (x) => x.x);
 console.log(myArray);
+
+console.log('pulled out the specified data');
+// Task :Mutate the original array to filter out the values specified
+
+// Point  : using filter method
+const pullAtValue = (arr, pullArr) => {
+	let removed = [],
+		pushToRemove = arr.forEach((v, i) =>
+			pullArr.includes(v) ? removed.push(v) : v,
+		),
+		mutateTo = arr.filter((v, i) => !pullArr.includes(v));
+
+	arr.length = 0;
+
+	mutateTo.forEach((v) => arr.push(v));
+
+	return removed;
+};
+
+let specifiedArray = ['a', 'b', 'c', 'd'];
+
+console.log('Original data');
+console.log(specifiedArray);
+// let pulled = pullAtValue(specifiedArray, ['b', 'd']);
+// Output: ['a', 'c']
+console.log('Pulled data');
+// console.log(pulled); // Output: ['b', 'd']
+
+// Point : without using any built-in function
+const pullAtValue1 = (arr, pullArr) => {
+	let removed = [];
+	let i = 0;
+
+	while (i < arr.length) {
+		let shouldRemove = false;
+
+		for (let j = 0; j < pullArr.length; j++) {
+			if (arr[i] === pullArr[j]) {
+				shouldRemove = true;
+				removed.push(arr[i].trim());
+				break;
+			}
+		}
+
+		if (shouldRemove) {
+			arr.splice(i, 1);
+		} else {
+			i++;
+		}
+	}
+	return removed;
+};
+
+const pullFilter = pullAtValue1(specifiedArray, ['b', 'd', ', ']);
+console.log(pullFilter);
