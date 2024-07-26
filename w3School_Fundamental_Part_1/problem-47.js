@@ -38,3 +38,37 @@ const prettyBytes1 = (bytes, precision = 3, addSpace = true) => {
 console.log(prettyBytes1(1000)); // Output: 1 KB
 console.log(prettyBytes1(-27145424323.5821, 5)); // Output: -27.145 TB
 console.log(prettyBytes1(123456789, 3, false)); // Output: 123MB
+
+console.log('Perform letf -t right functions composition');
+// Task : Perform left-to-right function composition.
+// Point : solve using reduce
+
+const pipeFunctions = (...fns) =>
+	fns.reduce(
+		(acc, cur) =>
+			(...args) =>
+				cur(acc(...args)),
+	);
+const addFive = (x) => x + 5;
+const multiply = (x, y) => x * y;
+const multiplyAndAdd5 = pipeFunctions(multiply, addFive);
+
+console.log(multiplyAndAdd5(5, 2));
+console.log(multiplyAndAdd5(16, 2));
+
+// Point : without using any built-in functions
+
+const pipeFunctions1 = (...fns) => {
+	return (...args) => {
+		let result = fns[0](...args);
+		for (let i = 1; i < fns.length; i++) {
+			result = fns[i](result);
+		}
+		return result;
+	};
+};
+
+const multiplyAndAdd51 = pipeFunctions1(multiply, addFive);
+
+console.log(multiplyAndAdd51(5, 2));
+console.log(multiplyAndAdd51(16, 2));
