@@ -72,3 +72,48 @@ const multiplyAndAdd51 = pipeFunctions1(multiply, addFive);
 
 console.log(multiplyAndAdd51(5, 2));
 console.log(multiplyAndAdd51(16, 2));
+
+// task :  Perform left-to-right function composition for asynchronous functions.
+
+// const pipeAsyncFunctions =
+// 	(...fns) =>
+// 	(arg) =>
+// 		fns.reduce((acc, cur) => acc.then(cur), Promise.resolve(arg));
+// const sum = pipeAsyncFunctions(
+// 	(x) => x + 1,
+// 	(x) => new Promise((resolve) => setTimeout(() => resolve(x + 2), 1000)),
+// 	async (x) => x + 4,
+// );
+
+// (async () => {
+// 	console.log(await sum(5));
+// })();
+
+// Point : without using any built-in functions
+const pipeAsyncFunctions1 = (...fns) => {
+	return (arg) => {
+		const applyFns = (index, acc) => {
+			if (index === fns.length) {
+				return Promise.resolve(acc);
+			}
+
+			const fn = fns[index];
+			return Promise.resolve(acc)
+				.then(fn)
+				.then((result) => applyFns(index + 1, result))
+				.catch((error) => Promise.reject(error));
+		};
+
+		return applyFns(0, arg);
+	};
+};
+
+const sum1 = pipeAsyncFunctions1(
+	(x) => x + 1,
+	(x) => new Promise((resolve) => setTimeout(() => resolve(x + 2), 1000)),
+	async (x) => x + 4,
+);
+
+(async () => {
+	console.log(await sum1(5));
+})();
