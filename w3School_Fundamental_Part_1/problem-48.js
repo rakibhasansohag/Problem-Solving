@@ -32,3 +32,17 @@ console.log(percentile([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5));
 console.log(percentile([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10));
 console.log(percentile([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 0));
 console.log(percentile([1, 2, 3, 4, 5, 6], 4).toFixed(2)); // 66.66;
+
+// Task : Create a function that invokes fn with partials appended to the arguments it receives.
+const partialRight =
+	(fn, ...partials) =>
+	(...args) =>
+		fn(...args, ...partials);
+
+console.log(partialRight(Math.max, 1, 2, 3)(4));
+console.log(partialRight(Math.min, 1, 2, 3)(4));
+
+const greet = (greeting, name) => greeting + ' ' + name + '!';
+
+const greatRakib = partialRight(greet, 'Rakib');
+console.log(greatRakib('Hello'));
