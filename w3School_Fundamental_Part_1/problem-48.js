@@ -46,3 +46,36 @@ const greet = (greeting, name) => greeting + ' ' + name + '!';
 
 const greatRakib = partialRight(greet, 'Rakib');
 console.log(greatRakib('Hello'));
+
+// Task : Parse a HTTP Cookie header string and return an object of all cookie name-value pairs.
+
+// Point : solution 1 : using split, map and reduced
+const parseCookie = (str) =>
+	str
+		.split(';')
+		.map((value) => value.split('='))
+		.reduce((acc, cur) => {
+			acc[decodeURIComponent(cur[0].trim())] = decodeURIComponent(
+				cur[1].trim(),
+			);
+			return acc;
+		}, {});
+
+console.log(parseCookie('foo=bar; equation=E%3Dmc%5E2'));
+console.log(parseCookie('foo=bar; equation=E%3Dmc%5E2').equation);
+
+// Point : solution 2 : without using any  built in functions
+const parseCookie1 = (str) => {
+	let obj = {};
+	let keyValuePairs = str.split(';');
+
+	for (let i = 0; i < keyValuePairs.length; i++) {
+		let [key, value] = keyValuePairs[i].split('=');
+		obj[key.trim()] = decodeURIComponent(value ? value.trim() : '');
+	}
+
+	return obj;
+};
+
+console.log(parseCookie1('foo=bar; equation=E%3Dmc%5E2'));
+console.log(parseCookie1('foo=bar; equation=E%3Dmc%5E2').equation);
