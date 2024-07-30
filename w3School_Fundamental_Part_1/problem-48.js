@@ -79,3 +79,14 @@ const parseCookie1 = (str) => {
 
 console.log(parseCookie1('foo=bar; equation=E%3Dmc%5E2'));
 console.log(parseCookie1('foo=bar; equation=E%3Dmc%5E2').equation);
+
+// Task : Get the nth element of a given array
+
+// Point : solution 1 : using array methods
+const getNthElement = (arr, n = 0) =>
+	(n > 0 ? arr.slice(n, n + 1) : arr.slice(n))[0];
+
+console.log(getNthElement([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5));
+console.log(getNthElement(['a', 'b', 'c'], 1)); // 'b'
+// Log the element at index -3 of the array ['a', 'b', 'b']
+console.log(getNthElement(['a', 'b', 'b'], -3)); // 'a
