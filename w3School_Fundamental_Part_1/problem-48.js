@@ -90,3 +90,52 @@ console.log(getNthElement([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5));
 console.log(getNthElement(['a', 'b', 'c'], 1)); // 'b'
 // Log the element at index -3 of the array ['a', 'b', 'b']
 console.log(getNthElement(['a', 'b', 'b'], -3)); // 'a
+
+// task : Get the n minimum elements from the provided array.
+
+// Point : solution 1 : using sort and slice
+const minN = (arr, n = 1) => [...arr].sort((a, b) => a - b).slice(0, n);
+
+console.log(minN([1, 2, 3]));
+console.log(minN([1, 2, 3], 2));
+
+// Point: solution 2 : using filter
+const minN1 = (arr, n = 1) =>
+	[...arr].sort((a, b) => a - b).filter((item, index) => index < n);
+
+console.log(minN1([1, 2, 3]));
+console.log(minN1([1, 2, 3], 2));
+
+// Point: solution 3 : using reduce
+const minN2 = (arr, n = 1) =>
+	[...arr]
+		.sort((a, b) => a - b)
+		.reduce((acc, val, index) => {
+			if (index < n) {
+				acc.push(val);
+			}
+			return acc;
+		}, []);
+
+console.log(minN2([1, 2, 3]));
+console.log(minN2([1, 2, 3], 2));
+
+// Point : solution 4 : without using any built-in method
+const minN3 = (arr, n = 1) => {
+	let result = [];
+
+	for (let i = 0; i < arr.length; i++) {
+		if (i < n) {
+			result.push(arr[i]);
+		}
+
+		if (result.length === n) {
+			return result;
+		}
+	}
+
+	return result;
+};
+
+console.log(minN3([1, 2, 3]));
+console.log(minN3([1, 2, 3], 2));
