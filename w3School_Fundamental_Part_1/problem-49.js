@@ -137,3 +137,76 @@ const other1 = {
 
 console.log('without using any built-in functions');
 console.log(mergeObject(object1, other1));
+
+console.log('match object with provided functions');
+
+// Task : Compare two objects to determine if the first one contains equivalent property values to the second one, based on a provided function.
+
+// Point : solution  1 : using Object.keys
+const matchObjects = (obj, source, fn) => {
+	return Object.keys(source).every((key) =>
+		obj.hasOwnProperty(key) && fn
+			? fn(obj[key], source[key], key, obj, source)
+			: obj[key] == source[key],
+	);
+};
+
+console.log(matchObjects({ a: 1, b: 2 }, { a: 1 }, (a, b) => a === b));
+const isGreeting = (val) => /^h(?:i|ello)$/.test(val);
+console.log(
+	matchObjects(
+		{ greeting: 'hello' }, // Object 'obj' with property 'greeting' set to 'hello'
+		{ greeting: 'hi' }, // Object 'source' with property 'greeting' set to 'hi'
+		// Custom comparison function to check if both values are greetings using 'isGreeting' function
+		(oV, sV) => isGreeting(oV) && isGreeting(sV),
+	),
+);
+
+// Point: solution  2 : without using any built-in functions
+const matchObjects1 = (obj, source, fn) => {
+	const sourceKeys = getKeys(source);
+
+	for (let i = 0; i < sourceKeys.length; i++) {
+		const key = sourceKeys[i];
+
+		if (
+			!hasProperty(obj, key) ||
+			(fn && !fn(obj[key], source[key], key, obj, source))
+		) {
+			return false;
+		}
+	}
+
+	return true;
+};
+
+const getKeys = (obj) => {
+	let keys = [];
+
+	for (let key in obj) {
+		if (hasProperty(obj, key)) {
+			keys.push(key);
+		}
+	}
+
+	return keys;
+};
+
+const hasProperty = (obj, key) => {
+	for (let prop in obj) {
+		if (prop === key) {
+			return true;
+		}
+	}
+
+	return false;
+};
+console.log(matchObjects1({ a: 1, b: 2 }, { a: 1 }, (a, b) => a === b)); // true
+const isGreeting1 = (val) => /^h(?:i|ello)$/.test(val);
+console.log(
+	matchObjects1(
+		{ greeting: 'hello' },
+		{ greeting: 'hi' },
+		(oV, sV) => isGreeting1(oV) && isGreeting1(sV),
+	),
+); // false
