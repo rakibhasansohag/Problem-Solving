@@ -94,3 +94,27 @@ const isValidJSON = (obj) => {
 console.log(isValidJSON('{"name":"Adam","age":20}')); // true (valid JSON)
 console.log(isValidJSON('{"name":"Adam",age:"20"}')); // false (invalid JSON)
 console.log(isValidJSON(null));
+
+// Task : Check if a given string is upper case or not.
+const isUpperCase = (str) => str === str.toUpperCase();
+console.log(isUpperCase('ABC')); // true (all characters are uppercase)
+console.log(isUpperCase('A3@$')); // true (all characters are uppercase)
+console.log(isUpperCase('aB4')); // false (contains lowercase characters)
+
+console.log('other');
+// Task : Return true if the specified value is undefined, false otherwise.
+const isUndefined = (val) => val === undefined;
+console.log(isUndefined(undefined)); // true (the value is undefined)
+console.log(isUndefined('')); // false (the value is not undefined)
+
+// Task : Check whether the given argument is a symbol or not.
+const isSymbol = (val) => typeof val === 'symbol';
+console.log(isSymbol(Symbol('x'))); // true (Symbol('x') is a symbol)
+console.log(isSymbol(Symbol(1))); // true (Symbol(1) is a symbol)
+console.log(isSymbol(Symbol(')'))); // true (Symbol(')') is a symbol)
+console.log('symobol');
+
+// Task : Check whether the given argument is a string.
+const isString = (val) => typeof val === 'string';
+console.log(isString('10')); // true ('10' is a string)
+console.log(isString(1)); //false
