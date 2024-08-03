@@ -75,3 +75,22 @@ const joinArray1 = (arr, separator = '', end = separator) => {
 console.log(joinArray1(['pen', 'pineapple', 'apple', 'pen'], ',', '&'));
 console.log(joinArray1(['pen', 'pineapple', 'apple', 'pen'], ','));
 console.log(joinArray1(['pen', 'pineapple', 'apple', 'pen']));
+
+// Task : Check whether the provided argument is a valid JSON.
+
+// Point : using JSON.parse
+const isValidJSON = (obj) => {
+	if (obj === null) return false;
+
+	if (typeof obj !== 'string') return false;
+
+	try {
+		JSON.parse(obj);
+		return true;
+	} catch (e) {
+		return false;
+	}
+};
+console.log(isValidJSON('{"name":"Adam","age":20}')); // true (valid JSON)
+console.log(isValidJSON('{"name":"Adam",age:"20"}')); // false (invalid JSON)
+console.log(isValidJSON(null));
