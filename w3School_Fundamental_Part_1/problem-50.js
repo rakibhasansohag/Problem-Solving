@@ -118,3 +118,27 @@ console.log('symobol');
 const isString = (val) => typeof val === 'string';
 console.log(isString('10')); // true ('10' is a string)
 console.log(isString(1)); //false
+
+// Task : Return 1 if the array is sorted in ascending order, -1 if it is sorted in descending order or 0 if it is not sorted.
+const isSorted = (arr) => {
+	let ascending = true;
+	let descending = true;
+
+	for (let i = 0; i < arr.length - 1; i++) {
+		if (arr[i] > arr[i + 1]) {
+			ascending = false;
+		}
+
+		if (arr[i] < arr[i + 1]) {
+			descending = false;
+		}
+	}
+
+	if (ascending) return 1;
+	if (descending) return -1;
+
+	return 0;
+};
+console.log(isSorted([0, 1, 2, 2])); // 1 (ascending order)
+console.log(isSorted([4, 3, 2])); // -1 (descending order)
+console.log(isSorted([4, 3, 5])); // 0 (not sorted)
