@@ -174,3 +174,24 @@ console.log(isPrimitive('Hello!')); // true (string is a primitive type)
 console.log(isPrimitive(false)); // true (boolean is a primitive type)
 console.log(isPrimitive(Symbol())); // true (symbol is a primitive type)
 console.log(isPrimitive([])); // false (array is not a primitive type)
+
+// Task : Check whether the provided integer is a prime number or not.
+const isPrime = (num) => {
+	const boundary = Math.floor(Math.sqrt(num));
+
+	for (var i = 2; i <= boundary; i++) if (num % i === 0) return false;
+
+	return num >= 2;
+};
+console.log('prime number');
+console.log(isPrime(11)); // true (11 is a prime number)
+console.log(isPrime(17)); // true (17 is a prime number)
+console.log(isPrime(8)); // false (8 is not a prime number)
+
+// Task : Check whether the provided value is an object created by the Object constructor.
+
+const isPlainObject = (val) =>
+	!!val && typeof val === 'object' && val.constructor === Object;
+
+console.log(isPlainObject({ a: 1 })); // true (the value is a plain object)
+console.log(isPlainObject(new Map())); // false (the value is not a plain object)
