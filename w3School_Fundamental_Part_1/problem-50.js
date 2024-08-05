@@ -142,3 +142,35 @@ const isSorted = (arr) => {
 console.log(isSorted([0, 1, 2, 2])); // 1 (ascending order)
 console.log(isSorted([4, 3, 2])); // -1 (descending order)
 console.log(isSorted([4, 3, 5])); // 0 (not sorted)
+
+// Task : Return true if an object looks like a Promise, false otherwise.
+
+// Point : using condition reference
+const isPromiseLike = (obj) =>
+	obj !== null &&
+	(typeof obj === 'object' || obj === 'function') &&
+	typeof obj.then === 'function';
+
+console.log(
+	isPromiseLike({
+		then: function () {
+			return '';
+		},
+	}),
+);
+console.log(isPromiseLike(null)); // false (null)
+console.log(isPromiseLike({})); // false (object without 'then' method)
+
+// Task : Get a boolean determining if the passed value is primitive or not.
+
+// Point : using typeof
+const isPrimitive = (val) =>
+	!['object', 'function'].includes(typeof val) || val === null;
+
+console.log('primitive value');
+console.log(isPrimitive(null)); // true (null is a primitive type)
+console.log(isPrimitive(50)); // true (number is a primitive type)
+console.log(isPrimitive('Hello!')); // true (string is a primitive type)
+console.log(isPrimitive(false)); // true (boolean is a primitive type)
+console.log(isPrimitive(Symbol())); // true (symbol is a primitive type)
+console.log(isPrimitive([])); // false (array is not a primitive type)
