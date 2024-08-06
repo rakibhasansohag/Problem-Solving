@@ -31,3 +31,26 @@ const isNull = (val) => val === null || val === undefined;
 console.log(isNull(null));
 console.log(isNull(undefined));
 console.log(isNull(1));
+
+console.log('is Empty or not...');
+// Task : Return true if a value is an empty object, collection, map or set, has no enumerable properties or is any type that is not considered a collection.
+const isEmpty = (val) => val == null || !(Object.keys(val) || val).length;
+
+console.log(isEmpty(new Map())); // true (the Map is empty)
+console.log(isEmpty(new Set())); // true (the Set is empty)
+console.log(isEmpty([])); // true (the array is empty)
+console.log(isEmpty({})); // true (the object is empty)
+console.log(isEmpty('')); // true (the string is empty)
+console.log(isEmpty([1, 2])); // false (the array is not empty)
+console.log(isEmpty({ a: 1, b: 2 })); // false (the object is not empty)
+console.log(isEmpty('text')); // false (the string is not empty)
+console.log(isEmpty(123)); // true (numbers are considered empty)
+console.log(isEmpty(true)); // true (booleans are considered empty)
+
+console.log('is divisible...');
+// Task : Check whether the first numeric argument is divisible by the second one.
+const isDivisible = (divided, divisor) => divided % divisor === 0;
+console.log(isDivisible(6, 3)); // true (6 is divisible by 3)
+console.log(isDivisible(5, 3)); // false (5 is not divisible by 3)
+console.log(isDivisible(100, 10)); // true (100 is divisible by 10)
+console.log(isDivisible(0, 3)); // true (0 is divisible by any non-zero number)
