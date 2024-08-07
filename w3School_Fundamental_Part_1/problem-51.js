@@ -54,3 +54,21 @@ console.log(isDivisible(6, 3)); // true (6 is divisible by 3)
 console.log(isDivisible(5, 3)); // false (5 is not divisible by 3)
 console.log(isDivisible(100, 10)); // true (100 is divisible by 10)
 console.log(isDivisible(0, 3)); // true (0 is divisible by any non-zero number)
+
+console.log('----------------------- isEven -----------------------');
+// Task : Check if a given number is even or not.
+const isEven = (num) => num % 2 === 0;
+console.log(isEven(2));
+console.log(isEven(3));
+console.log(isEven(0));
+console.log(isEven(-2));
+
+// Task : Determine whether the current runtime environment is a browser.
+const isBrowser = () => ![typeof window, typeof document].includes('undefined');
+console.log(isBrowser());
+
+// Task : Check whether the given argument is a native boolean element.
+const isBoolean = (value) =>
+	typeof value !== 'object' && typeof value === 'boolean';
+console.log(isBoolean(true));
+console.log(isBoolean(null));
