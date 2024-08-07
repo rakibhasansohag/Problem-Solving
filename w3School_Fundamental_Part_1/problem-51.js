@@ -72,3 +72,35 @@ const isBoolean = (value) =>
 	typeof value !== 'object' && typeof value === 'boolean';
 console.log(isBoolean(true));
 console.log(isBoolean(null));
+
+console.log('--------- array like ---------');
+// Task : Check whether the provided argument is array-like
+const isArrayLike = (value) => {
+	try {
+		return [...value], true;
+	} catch (e) {
+		// console.log(e);
+		return false;
+	}
+};
+
+// console.log(isArrayLike(document.querySelectorAll('.className'))); // true (document.querySelectorAll('.className') returns a NodeList which is array-like)
+console.log(isArrayLike('abc')); // true ('abc' is a string which is array-like)
+console.log(isArrayLike(null)); // false (null is not array-like)
+
+// Task : Check if a given string is an anagram of another string (case-insensitive, ignores spaces, punctuation and special characters).
+
+const isAnagram = (str1, str2) => {
+	const normalize = (str) =>
+		str
+			.toLowerCase()
+			.replace(/[^a-z0-9]/gi, '')
+			.split('')
+			.sort()
+			.join('');
+
+	return normalize(str1) === normalize(str2);
+};
+console.log(isAnagram('iceman', 'cinema')); // true (both strings contain the same letters)
+console.log(isAnagram('madam', 'madam')); // true (both strings are the same)
+console.log(isAnagram('Hello', 'not')); // false (both strings are different)
