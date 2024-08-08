@@ -104,3 +104,38 @@ const isAnagram = (str1, str2) => {
 console.log(isAnagram('iceman', 'cinema')); // true (both strings contain the same letters)
 console.log(isAnagram('madam', 'madam')); // true (both strings are the same)
 console.log(isAnagram('Hello', 'not')); // false (both strings are different)
+
+console.log('--------- isOSpecified type ---------');
+// Task : Check whether the provided value is of the specified type
+const isSpecified = (type, value) =>
+	![, null].includes(value) && value.constructor === type;
+console.log(isSpecified(Array, [1])); // true (Array instance)
+console.log(isSpecified(ArrayBuffer, new ArrayBuffer())); // true (ArrayBuffer instance)
+console.log(isSpecified(Map, new Map())); // true (Map instance)
+console.log(isSpecified(RegExp, /./g)); // true (RegExp instance)
+console.log(isSpecified(Set, new Set())); // true (Set instance)
+console.log(isSpecified(WeakMap, new WeakMap())); // true (WeakMap instance)
+console.log(isSpecified(WeakSet, new WeakSet())); // true (WeakSet instance)
+console.log(isSpecified(String, '')); // true (String instance)
+console.log(isSpecified(String, new String(''))); // true (String instance)
+console.log(isSpecified(Number, 1)); // true (Number instance)
+console.log(isSpecified(Number, new Number(1))); // true (Number instance)
+console.log(isSpecified(Boolean, true)); // true (Boolean instance)
+console.log(isSpecified(Boolean, new Boolean(true))); // true (Boolean instance)
+console.log(isSpecified('hello', 'hello'));
+
+// Task : Get a list of elements that exist in both arrays, using a provided comparator function
+console.log('--------- intersection ---------');
+const intersectionWith = (a, b, compact) =>
+	a.filter((x) => b.findIndex((y) => compact(x, y)) !== -1);
+
+console.log(intersectionWith([1, 2, 3], [2, 3, 4], (a, b) => a === b));
+console.log(intersectionWith([1, 2, 3], [2, 3, 4], (a, b) => a === b));
+console.log(
+	intersectionWith(
+		[1, 1.2, 1.5, 3, 0],
+		[1.9, 3, 0, 3.9],
+		(a, b) => Math.round(a) === Math.round(b),
+	),
+);
+// Output: [1.5, 3, 0]
