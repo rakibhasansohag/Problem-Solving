@@ -93,3 +93,16 @@ const intersection3 = (array1, array2) => {
 
 console.log(intersection3([1, 2, 3], [4, 3, 2])); // Output: [2, 3]
 console.log(intersection3([2.1, 1.2], [2.3, 3.4]));
+
+// Task : Create a n-dimensional array with given value.
+console.log('------------------ another problem ------------------');
+const createArray = (value, ...args) =>
+	args.length === 0
+		? value
+		: Array.from({ length: args[0] }).map(() =>
+				createArray(value, ...args.slice(1)),
+		  );
+
+console.log(createArray(1, 3)); // Output: [1, 1, 1]
+console.log(createArray(5, 2, 2, 2)); // Output: [[[5, 5], [5, 5]], [[5, 5], [5, 5]]]
+console.log(createArray(3, 3, 3)); // [ [ 3, 3, 3 ], [ 3, 3, 3 ], [ 3, 3, 3 ] ]
