@@ -106,3 +106,43 @@ const createArray = (value, ...args) =>
 console.log(createArray(1, 3)); // Output: [1, 1, 1]
 console.log(createArray(5, 2, 2, 2)); // Output: [[[5, 5], [5, 5]], [[5, 5], [5, 5]]]
 console.log(createArray(3, 3, 3)); // [ [ 3, 3, 3 ], [ 3, 3, 3 ], [ 3, 3, 3 ] ]
+
+// Task : Initialize and fill an array with the specified values.
+console.log(
+	'------------------ initialize and fill an array with the specified values. ------------------',
+);
+// Point : solution 1:using array.fill
+const initializeArrayWithValue = (n, value = 0) => Array(n).fill(value);
+
+console.log(initializeArrayWithValue(3, 5)); // Output: [ 5, 5, 5 ]
+console.log(initializeArrayWithValue(3)); // Output: [ 0, 0, 0 ]
+console.log(initializeArrayWithValue(3, 'x')); // Output: [ 'x', 'x', 'x' ]
+
+// Point: using Array.from()
+const initializeArrayWithValue1 = (n, value = 0) =>
+	Array.from({ length: n }, () => value);
+
+console.log(initializeArrayWithValue1(3, 5)); // Output: [ 5, 5, 5 ]
+console.log(initializeArrayWithValue1(3)); // Output: [ 0, 0, 0 ]
+console.log(initializeArrayWithValue1(3, 'x')); // Output: [ 'x', 'x', 'x' ]
+
+// Point : solution 2:using for loop
+const initializeArrayWithValue2 = (n, value = 0) => {
+	const arr = [];
+	for (let i = 0; i < n; i++) {
+		arr.push(value);
+	}
+	return arr;
+};
+
+console.log(initializeArrayWithValue2(3, 5)); // Output: [ 5, 5, 5 ]
+console.log(initializeArrayWithValue2(3)); // Output: [ 0, 0, 0 ]
+console.log(initializeArrayWithValue2(3, 'x')); // Output: [ 'x', 'x', 'x' ]
+
+// Point : solution 3:using from and map
+const initializeArrayWithValue3 = (n, value = 0) =>
+	Array.from(Array(n).keys()).map((v) => value);
+
+console.log(initializeArrayWithValue3(3, 5)); // Output: [ 0, 1, 2 ]
+console.log(initializeArrayWithValue3(3)); // Output: [ 0, 1, 2 ]
+console.log(initializeArrayWithValue3(3, 'x')); // Output: [ 'x', 'x', 'x' ]
