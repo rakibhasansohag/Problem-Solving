@@ -146,3 +146,27 @@ const initializeArrayWithValue3 = (n, value = 0) =>
 console.log(initializeArrayWithValue3(3, 5)); // Output: [ 0, 1, 2 ]
 console.log(initializeArrayWithValue3(3)); // Output: [ 0, 1, 2 ]
 console.log(initializeArrayWithValue3(3, 'x')); // Output: [ 'x', 'x', 'x' ]
+
+// Task :  Initializes an array containing the numbers in the specified range (in reverse) where start and end are inclusive with their common difference step.
+console.log(
+	'------------------------- another problem -------------------------',
+);
+const initializeArrayWithRangeRight = (end, start = 0, step = 1) =>
+	Array.from({ length: Math.ceil((end + 1 - start) / step) }).map(
+		(value, i, array) => (array.length - i - 1) * step + start,
+	);
+console.log(initializeArrayWithRangeRight(5)); // Output: [5, 4, 3, 2, 1, 0]
+console.log(initializeArrayWithRangeRight(7, 3)); // Output: [7, 6, 5, 4, 3]
+console.log(initializeArrayWithRangeRight(9, 0, 2)); // Output: [8, 6, 4, 2, 0]
+
+// Point: using for loop
+const initializeArrayWithRangeRight1 = (end, start = 0, step = 1) => {
+	const arr = [];
+	for (let i = end; i >= start; i -= step) {
+		arr.push(i);
+	}
+	return arr;
+};
+console.log(initializeArrayWithRangeRight1(5)); // Output: [5, 4, 3, 2, 1, 0]
+console.log(initializeArrayWithRangeRight1(7, 3)); // Output: [7, 6, 5, 4, 3]
+console.log(initializeArrayWithRangeRight1(9, 0, 2)); // Output: [8, 6, 4, 2, 0]
