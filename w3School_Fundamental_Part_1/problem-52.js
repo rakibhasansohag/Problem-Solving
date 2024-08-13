@@ -167,6 +167,7 @@ const initializeArrayWithRangeRight1 = (end, start = 0, step = 1) => {
 	}
 	return arr;
 };
+
 console.log(initializeArrayWithRangeRight1(5)); // Output: [5, 4, 3, 2, 1, 0]
 console.log(initializeArrayWithRangeRight1(7, 3)); // Output: [7, 6, 5, 4, 3]
 console.log(initializeArrayWithRangeRight1(9, 0, 2)); // Output: [8, 6, 4, 2, 0]
