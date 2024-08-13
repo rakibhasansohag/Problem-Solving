@@ -44,3 +44,29 @@ console.log(inRange(3, 2, 5));
 console.log(inRange(3, 4));
 console.log(inRange(2, 3, 5));
 console.log(inRange(3, 2));
+
+// Task : Get the number of times a function executed per second.
+// Point: solution 1: using setInterval
+const perSecond = (fn, iterations = 100) => {
+	const before = performance.now();
+
+	for (let i = 0; i < iterations; i++) fn();
+
+	return (1000 * iterations) / (performance.now() - before);
+};
+
+const numbers = Array(100000)
+	.fill()
+	.map((_, i) => i);
+
+const sumReduce = () => numbers.reduce((acc, cur) => acc + cur, 0);
+
+const sumForLoop = () => {
+	let sum = 0;
+
+	for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+	return sum;
+};
+
+console.log(perSecond(sumReduce));
+console.log(perSecond(sumForLoop));
