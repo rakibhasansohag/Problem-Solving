@@ -70,3 +70,38 @@ const sumForLoop = () => {
 
 console.log(perSecond(sumReduce));
 console.log(perSecond(sumForLoop));
+
+// Task : Calculate the Hamming distance between two values.
+const hammingDistance = (num1, num2) =>
+	((num1 ^ num2).toString(2).match(/1/g) || '').length;
+
+console.log(hammingDistance(2, 3)); // Output: 1
+console.log(hammingDistance(5, 3)); // Output: 2
+
+// Point: solution 2 : using bitwise operator
+const hammingDistance1 = (num1, num2) => {
+	let xor = num1 ^ num2;
+	let count = 0;
+
+	while (xor) {
+		xor &= xor - 1;
+		count++;
+	}
+
+	return count;
+};
+
+console.log(hammingDistance1(2, 3)); // Output: 1
+console.log(hammingDistance1(5, 3)); // Output: 2
+
+// Task : Write a JavaScript program to get the native type of a value. Returns the lowercased constructor name of value, "undefined" or "null" if value is undefined or null.
+const getType = (value) =>
+	value === undefined
+		? 'undefined'
+		: value === null
+		? 'null'
+		: value.constructor.name.toLowerCase();
+
+console.log(getType(new Set([1, 2, 3])));
+console.log(getType(Math.round(10)));
+console.log(getType({}));
