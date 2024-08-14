@@ -105,3 +105,23 @@ const getType = (value) =>
 console.log(getType(new Set([1, 2, 3])));
 console.log(getType(Math.round(10)));
 console.log(getType({}));
+
+// Task : Write a JavaScript program to get a string like HH:MM:SS from a Date object.
+const getFColonTimeFromDate = (date) => date.toTimeString().slice(0, 8);
+
+console.log(getFColonTimeFromDate(new Date(2000, 0, 1, 0, 0, 0)));
+console.log(getFColonTimeFromDate(new Date(2000, 0, 1, 23, 59, 59)));
+console.log(getFColonTimeFromDate(new Date(2000, 0, 1, 0, 0, 0, 500)));
+console.log(getFColonTimeFromDate(new Date(2000, 0, 1, 0, 0, 0, 500000)));
+
+
+
+// Task : Write a JavaScript program that initializes an array containing the numbers in the specified range. This is where start and end are inclusive and the ratio between the two terms is step. Returns an error if step equals 1.
+const geometricProgression = (end, start = 1, step = 2) =>
+	Array.from({
+		length: Math.floor(Math.log(end / start) / Math.log(step)) + 1,
+	}).map((value, index) => start * step ** index);
+
+console.log(geometricProgression(256));
+console.log(geometricProgression(256, 3));
+console.log(geometricProgression(256, 1, 4));
