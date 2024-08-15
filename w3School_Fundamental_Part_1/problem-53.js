@@ -114,8 +114,6 @@ console.log(getFColonTimeFromDate(new Date(2000, 0, 1, 23, 59, 59)));
 console.log(getFColonTimeFromDate(new Date(2000, 0, 1, 0, 0, 0, 500)));
 console.log(getFColonTimeFromDate(new Date(2000, 0, 1, 0, 0, 0, 500000)));
 
-
-
 // Task : Write a JavaScript program that initializes an array containing the numbers in the specified range. This is where start and end are inclusive and the ratio between the two terms is step. Returns an error if step equals 1.
 const geometricProgression = (end, start = 1, step = 2) =>
 	Array.from({
@@ -125,3 +123,30 @@ const geometricProgression = (end, start = 1, step = 2) =>
 console.log(geometricProgression(256));
 console.log(geometricProgression(256, 3));
 console.log(geometricProgression(256, 1, 4));
+
+// Task : Calculate the greatest common divisor between two or more numbers/arrays.
+const gcd = (...arr) => {
+	const _gcd = (a, b) => (!b ? a : gcd(b, a % b));
+
+	return [...arr].reduce((x, y) => _gcd(x, y));
+};
+
+console.log(gcd(8, 36)); // Output: 4 (GCD of 8 and 36)
+console.log(gcd(...[12, 8, 32])); // Output: 4 (GCD of 12, 8, and 32)
+console.log(gcd([12, 8, 32])); // Output: 4 (GCD of 12, 8, and 32)
+
+// Task :  Get the standard deviation of an array of numbers.
+const standardDeviation = (arr, usePopulation = false) => {
+	const mean = arr.reduce((acc, val) => acc + val, 0) / arr.length;
+
+	const sumOfSquaredDifferences = arr
+		.reduce((acc, val) => acc.concat((val - mean) ** 2), [])
+		.reduce((acc, val) => acc + val, 0);
+
+	return Math.sqrt(
+		sumOfSquaredDifferences / (arr.length - (usePopulation ? 0 : 1)),
+	);
+};
+console.log(standardDeviation([10, 2, 38, 23, 38, 23, 21]));
+console.log(standardDeviation([10, 2, 38, 23, 38, 23, 21], true));
+console.log(standardDeviation([10, 2, 38, 23, 343, 214, 34, 234, 34]));
