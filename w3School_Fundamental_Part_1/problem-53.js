@@ -150,3 +150,23 @@ const standardDeviation = (arr, usePopulation = false) => {
 console.log(standardDeviation([10, 2, 38, 23, 38, 23, 21]));
 console.log(standardDeviation([10, 2, 38, 23, 38, 23, 21], true));
 console.log(standardDeviation([10, 2, 38, 23, 343, 214, 34, 234, 34]));
+
+console.log('---------------- another problem ------------------');
+// Task : Get n random elements at unique keys from array up to the size of array.
+const sampleSizes = ([...arr], n = 1) => {
+	let m = arr.length;
+
+	while (m) {
+		const i = Math.floor(Math.random() * m--);
+
+		[arr[m], arr[i]] = [arr[i], arr[m]];
+	}
+
+	return arr.slice(0, n);
+};
+
+console.log(sampleSizes([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 2));
+console.log(sampleSizes([1, 2, 3], 2));
+console.log(sampleSizes([1, 2, 3], 4));
+
+console.log('---------------- another problem ------------------');
