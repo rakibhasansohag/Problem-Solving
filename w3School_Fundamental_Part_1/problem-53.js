@@ -170,3 +170,15 @@ console.log(sampleSizes([1, 2, 3], 2));
 console.log(sampleSizes([1, 2, 3], 4));
 
 console.log('---------------- another problem ------------------');
+
+// Task : Remove elements from an array for which the given function returns false.
+const remove = (arr, func) =>
+	Array.isArray(arr)
+		? arr.filter(func).reduce((acc, val) => {
+				arr.splice(arr.indexOf(val), 1);
+				return acc.concat(val);
+		  }, [])
+		: [];
+
+console.log(remove([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], (x) => x % 2 === 0));
+console.log(remove([1, 2, 3, 4], (n) => n % 2 === 0)); // Output: [2, 4]
