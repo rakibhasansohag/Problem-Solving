@@ -182,3 +182,37 @@ const remove = (arr, func) =>
 
 console.log(remove([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], (x) => x % 2 === 0));
 console.log(remove([1, 2, 3, 4], (n) => n % 2 === 0)); // Output: [2, 4]
+
+console.log('to replace all to camel case');
+// task : Write a JavaScript program to convert a string from camelcase.
+const fromCamelCase = (str, separator = '_') =>
+	str
+		.replace(/([a-z\d])([A-Z])/g, '$1' + separator + '$2')
+		.replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1' + separator + '$2')
+		.toLowerCase();
+
+console.log(fromCamelCase('someDatabaseFieldName', ' '));
+console.log(fromCamelCase('someLabelThatNeedsToBeCamelized', '-'));
+console.log(fromCamelCase('someJavascriptProperty', '_'));
+
+// Task : Write a JavaScript program to generate the human-readable format in the given number of milliseconds.
+
+const humanReadableFormat = (ms) => {
+	if (ms < 0) ms = -ms;
+
+	const time = {
+		day: Math.floor(ms / 86400000),
+		hour: Math.floor(ms / 3600000) % 24,
+		minute: Math.floor(ms / 60000) % 60,
+		second: Math.floor(ms / 1000) % 60,
+		millisecond: ms % 1000,
+	};
+
+	return Object.entries(time)
+		.filter((val) => val[1] !== 0)
+		.map((val) => val[1] + ' ' + (val[1] !== 1 ? val[0] + 's' : val[0]))
+		.join(', ');
+};
+
+console.log(humanReadableFormat(1001));
+console.log(humanReadableFormat(34325055574));
