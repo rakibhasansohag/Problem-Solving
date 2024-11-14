@@ -78,8 +78,8 @@ function logAtMost5(n) {
 function sumOfArray(arr) {
 	let total = 0 ; 
 
-	for ( let =i = 0 ; i < arr.length ; i ++) {
-		total += arr[i]
+	for (let i = 0; i < arr.length; i++) {
+		total += arr[i];
 	}
 	return total
 }
@@ -96,3 +96,10 @@ function doubleArray(arr) {
 }
 // doubleArray([1,2,3,4,5])
 
+// Note: Logarithmic Complexity
+// ANd why  use BIg o Notation 
+// 1) To analyze the performance of an algorithm, we use BIg O Notation.
+// 2) Big O Notation can give us a high level understanding of the time or space complexity of an algorithm.
+// 3) Big O Notation doesn't care about precision, only about general trends(linear?quadratic?constant?).
+// 4) The time or space complexity ( as measured by Big O) depends only on the algorithm, not the hardware used to run the algorithm 
+// 5)Big O Notation is everywhere, so we should always get lots of practice!
