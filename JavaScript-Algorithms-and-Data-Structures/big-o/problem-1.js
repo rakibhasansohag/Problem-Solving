@@ -53,3 +53,46 @@ function printAllPairs(n){
 }
 
 // printAllPairs(10)
+
+// Note O(n)
+// Point: Problem 3) TODO: Log at least 5 numbers
+function logAtLeast5(n) {
+	for (let i = 1 ; i <= Math.max(5,n) ; i ++) {
+		console.log(i)
+	}
+}
+
+// logAtLeast5(10)
+
+// Point: Problem 4) TODO: Log at most 5 numbers
+function logAtMost5(n) {
+	for (let i = 1; i <= Math.min(5, n) ; i ++){
+		console.log(i)
+	}
+}
+// logAtMost5(10)
+
+// Note : Space Complexity
+
+// Point: Problem 5) TODO: Sum Of Array
+function sumOfArray(arr) {
+	let total = 0 ; 
+
+	for ( let =i = 0 ; i < arr.length ; i ++) {
+		total += arr[i]
+	}
+	return total
+}
+// sumOfArray([1,2,3,4,5])
+
+// Point: Problem 6) TODO: Double Array
+function doubleArray(arr) {
+	let newArr = []
+
+	for ( let i = 0 ; i < arr.length  ; i ++  ) {
+		newArr.push(2 * arr[i])
+	}
+	return newArr
+}
+// doubleArray([1,2,3,4,5])
+
