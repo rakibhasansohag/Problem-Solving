@@ -1,0 +1,26 @@
+// TODO: Suppose we want to write a function that calculates the usm of all numbers from 1 up to ( and including ) some number n.
+
+// Point: solution 1)
+function addUpTo(n) {
+	let total = 0;
+	for (let i = 1; i <= n; i++) {
+		total += i;
+	}
+	return total;
+}
+
+// let t1 = performance.now();
+// console.log(addUpTo(10));
+// let t2 = performance.now();
+// console.log(`Time elapsed: ${(t2 - t1) / 1000} seconds`);
+
+// Point: solution 2)
+function addUpTo1(n) {
+	return (n * (n + 1)) / 2;
+}
+
+let t3 = performance.now();
+console.log(addUpTo1(10));
+let t4 = performance.now();
+console.log(`Time elapsed: ${(t4 - t3) / 1000} seconds`);
+// console.log(addUpTo1(10));
